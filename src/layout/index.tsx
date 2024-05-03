@@ -13,13 +13,13 @@ const Layout = ({ children }: LayoutProps) => {
     return (
         <Box
           sx={{
-            backgroundColor: "#10141F",
+            backgroundColor: "#FFFFFF",
             display: "flex",
             flexDirection: {
               xs: "column",
               lg: "row",
             },
-            color: "white",
+            color: "black",
             gap: 3,
             overflowY: "hidden",
             height: "100vh",

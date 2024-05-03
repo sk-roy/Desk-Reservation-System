@@ -40,9 +40,8 @@ const Sidebar = () => {
     return (
         <Box
         sx={{
-            backgroundColor: "#161d2f",
+            backgroundColor: "#4D667CE5",
             padding: 2,
-            borderRadius: 2,
             display: "flex",
             flexDirection: {
                 xs: "row",
