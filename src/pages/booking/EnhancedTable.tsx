@@ -18,6 +18,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
+import { Button } from '@mui/material';
 
 interface Data {
   id: number;
@@ -28,6 +29,7 @@ interface Data {
   email: string;
   bookingId: string;
   emailSent: string;
+  status: number;
 }
 
 function createData(
@@ -39,6 +41,7 @@ function createData(
   email: string,
   bookingId: string,
   emailSent: string,
+  status: number,
 ): Data {
   return {
     id,
@@ -49,14 +52,15 @@ function createData(
     email,
     bookingId,
     emailSent,
+    status,
   };
 }
 
 const rows = [
-  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes'),
-  createData(2, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes'),
-  createData(3, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes'),
-  createData(4, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes'),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
+  createData(2, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
+  createData(3, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
+  createData(4, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -149,6 +153,12 @@ const headCells: readonly HeadCell[] = [
     disablePadding: false,
     label: 'E-mail Sent',
   },
+  {
+    id: 'status',
+    numeric: false,
+    disablePadding: false,
+    label: 'Status',
+  },
 ];
 
 interface EnhancedTableProps {
@@ -203,6 +213,12 @@ function EnhancedTableHead(props: EnhancedTableProps) {
             </TableSortLabel>
           </TableCell>
         ))}
+        {/* <TableCell>
+            <Box>Status</Box>
+        </TableCell> */}
+        <TableCell>
+            <Box>Action</Box>
+        </TableCell>
       </TableRow>
     </TableHead>
   );
@@ -363,7 +379,10 @@ export default function EnhancedTable() {
                     tabIndex={-1}
                     key={row.id}
                     selected={isItemSelected}
-                    sx={{ cursor: 'pointer' }}
+                    sx={{ cursor: 'pointer', 
+                        bgcolor: '#F9FAFB',
+                        borderRadius: '8px', 
+                    }}
                   >
                     <TableCell padding="checkbox">
                       <Checkbox
@@ -383,11 +402,36 @@ export default function EnhancedTable() {
                       {row.licensePlateNo}
                     </TableCell>
                     <TableCell align="left">{row.bookingPeriod}</TableCell>
-                    <TableCell align="left">{row.carType}</TableCell>
+                    <TableCell align="left">
+                        <Box sx={{
+                            color: '#2E4AAE'
+                        }}>
+                        {row.carType}
+                        </Box>
+                    </TableCell>
                     <TableCell align="left">{row.customerName}</TableCell>
                     <TableCell align="left">{row.email}</TableCell>
                     <TableCell align="left">{row.bookingId}</TableCell>
                     <TableCell align="left">{row.emailSent}</TableCell>
+                    <TableCell align="left">
+                        <Box sx={{                            
+                            color: 'white',
+                            bgcolor: '#2E4AAE',
+                            borderRadius: '4px',
+                            height: '22px',
+                            width: '80px',
+                            textAlign: 'center',
+                            fontSize: 10,
+                        }}
+                        >
+                            {row.status === 1 ? 'UPCOMING' : 'ATTENDED'}
+                        </Box>
+                    </TableCell>
+                    <TableCell align="left">
+                        <button >
+                            Cancel
+                        </button>
+                    </TableCell>
                   </TableRow>
                 );
               })}

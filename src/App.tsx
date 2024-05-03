@@ -1,7 +1,8 @@
 import React from "react";
 import { RouterProvider } from "react-router-dom";
 import { router } from "./route";
-import { createTheme } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
+import theme from "./theme";
 
 
 // const theme = createTheme({
@@ -17,7 +18,11 @@ import { createTheme } from "@mui/material";
 
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return(
+    <ThemeProvider theme={theme}>
+      <RouterProvider router={router} />
+    </ThemeProvider> 
+  );
 }
 
 export default App;
