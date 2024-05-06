@@ -28,7 +28,7 @@ const Booking = () => {
             alignItems='flex-start'
             justifyContent='space-between'
             spacing={1}
-            padding={2}>
+            padding={4}>
                 <Stack
                 direction='column'
                 alignItems='flex-start'
