@@ -1,9 +1,11 @@
-import { Box, Hidden, Typography } from "@mui/material";
+import { Box, Hidden, Stack, Typography } from "@mui/material";
 import React from "react";
 import { useLocation } from "react-router";
-import homeIcon from "../../assets/icons/icon-nav-home.svg";
-import bookingIcon from "../../assets/icons/icon-nav-movies.svg";
-import bookmarkIcon from "../../assets/icons/icon-nav-bookmark.svg";
+import homeIcon from "../../assets/icons/home-03.png";
+import bookingIcon from "../../assets/icons/calendar-check-01.png";
+import bookmarkIcon from "../../assets/icons/bar-chart-12.png";
+import profileIcon from "../../assets/icons/Avatar.svg"
+import logo from "../../assets/icons/logo.png"
 import { Link } from "react-router-dom";
 
 
@@ -30,7 +32,7 @@ const navLinks = [
     },
     {
         name: "Profile",
-        icon: bookmarkIcon,
+        icon: profileIcon,
         link: "/profile"
     },
 ];
@@ -68,16 +70,52 @@ const Sidebar = () => {
                 },
                 width: "100%",
             }}>
-                <Hidden smDown>
+                <Box 
+                display='flex'
+                justifyContent="center" 
+                alignItems="center"
+                >
+                    <img
+                    src={logo}
+                    alt='enosis'/>
+
+                    <Typography 
+                    variant="h5" 
+                    component="h1"
+                    my={2}
+                    color="white"
+                    margin='5px'
+                    fontWeight={400}
+                    fontSize={18}>
+                        RAC
+                    </Typography>
+
                     <Typography variant="h5" 
                     component="h1"
                     my={2}
                     color="white"
                     fontWeight={400}
-                    fontSize={18}>
-                        Rent-A-Car
+                    fontSize={18}
+                    >                        
+                        |
                     </Typography>
-                </Hidden>
+                    
+                    <Stack
+                    margin='5px'>                        
+                        <Typography  
+                        component="p"
+                        color="#B4C5D9"
+                        fontSize={8}>
+                            Rent-A
+                        </Typography>
+                        <Typography 
+                        component="p"
+                        color="#B4C5D9"
+                        fontSize={8}>
+                            Car
+                        </Typography>
+                    </Stack>
+                </Box>
                 <Box sx={{
                     py: {
                         sx: "0px",
@@ -89,6 +127,8 @@ const Sidebar = () => {
                         lg: "column"
                     },
                     gap: 4,
+                    color: '#B4C5D9',
+                    fontSize: '13px',
                 }}
                 >
                     {navLinks.map((item) => (

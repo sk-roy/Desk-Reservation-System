@@ -1,38 +1,26 @@
-// src/components/DateRangeFilter.tsx
+import * as React from 'react';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DateRangePicker } from '@mui/x-date-pickers-pro';
+import { SingleInputDateRangeField } from '@mui/x-date-pickers-pro/SingleInputDateRangeField';
+import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 
-import React, { useState } from 'react';
-import { TextField } from '@mui/material';
-
-interface DateRangeFilterProps {
-    onFilterChange: (startDate: string, endDate: string) => void;
+export default function DateRangeFilter() {
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer components={['SingleInputDateRangeField']}>
+        <DateRangePicker
+          slots={{
+            field: (props) => (
+              <SingleInputDateRangeField
+                {...props}
+                inputProps={{ style: { height: '38px', padding: 0, margin: 0,  } }}
+              />
+            ),
+          }}
+          name="allowedRange"
+        />
+      </DemoContainer>
+    </LocalizationProvider>
+  );
 }
-
-const DateRangeFilter: React.FC<DateRangeFilterProps> = ({ onFilterChange }) => {
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
-
-    const handleFilterChange = () => {
-        // Call the parent component's filter function
-        onFilterChange(startDate, endDate);
-    };
-
-    return (
-        <div>
-            <TextField
-                label="From"
-                type="date"
-                value={startDate}
-                onChange={(e) => setStartDate(e.target.value)}
-            />
-            <TextField
-                label="To"
-                type="date"
-                value={endDate}
-                onChange={(e) => setEndDate(e.target.value)}
-            />
-            {/* <button onClick={handleFilterChange}>Apply Filter</button> */}
-        </div>
-    );
-};
-
-export default DateRangeFilter;

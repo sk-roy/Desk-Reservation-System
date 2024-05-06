@@ -60,7 +60,11 @@ const rows = [
   createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
   createData(2, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
   createData(3, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
-  createData(4, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
+  createData(4, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
+  createData(5, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
+  createData(6, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
+  createData(7, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
+  createData(8, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -397,9 +401,14 @@ export default function EnhancedTable() {
                       component="th"
                       id={labelId}
                       scope="row"
-                      padding="none"
+                      padding="none"          
                     >
-                      {row.licensePlateNo}
+                      <Box 
+                      color= {row.status === 1 ? 'black' : '#6C859B'}   
+                      fontWeight={row.status === 1 ? 'bold' : ''}
+                      >
+                        {row.licensePlateNo}
+                      </Box>
                     </TableCell>
                     <TableCell align="left">{row.bookingPeriod}</TableCell>
                     <TableCell align="left">
@@ -414,15 +423,18 @@ export default function EnhancedTable() {
                     <TableCell align="left">{row.bookingId}</TableCell>
                     <TableCell align="left">{row.emailSent}</TableCell>
                     <TableCell align="left">
-                        <Box sx={{                            
-                            color: 'white',
-                            bgcolor: '#2E4AAE',
+                        <Box sx={{      
+                            // bgcolor: {row.status === 1 ? '#2E4AAE' : '#C7D3E1'},
                             borderRadius: '4px',
                             height: '22px',
                             width: '80px',
                             textAlign: 'center',
                             fontSize: 10,
-                        }}
+                            paddingTop: .5,
+                            paddingBottom: 0,
+                        }}                               
+                        color= {row.status === 1 ? 'white' : 'black'}
+                        bgcolor= {row.status === 1 ? '#2E4AAE' : '#C7D3E1'}
                         >
                             {row.status === 1 ? 'UPCOMING' : 'ATTENDED'}
                         </Box>

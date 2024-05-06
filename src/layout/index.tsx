@@ -22,7 +22,8 @@ const Layout = ({ children }: LayoutProps) => {
             color: "black",
             gap: 3,
             overflowY: "hidden",
-            height: "100vh",
+            width: '1440px',
+            height: "900px",
           }}
         >
           <Sidebar />
