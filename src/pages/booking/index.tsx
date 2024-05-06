@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import Layout from "../../layout";
 import { Box, Button, FormControl, Grid, IconButton, MenuItem, OutlinedInput, Select, Stack, TextField, Toolbar, Tooltip, Typography } from "@mui/material";
-import { DateRange } from "@mui/icons-material";
+import { DateRange, Height } from "@mui/icons-material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import EnhancedTable from "./EnhancedTable";
 import { DatePicker } from "@mui/x-date-pickers";
 import DateRangeFilter from "./DateRangeFilter";
+import { blueGrey } from "@mui/material/colors";
+import { DateRangePicker } from "@mui/x-date-pickers-pro";
+import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro";
+import DateRangePickerPopup from "./DateRange";
 
 
 const Booking = () => {
@@ -23,86 +27,122 @@ const Booking = () => {
 
     return (
         <Layout>
-            <Stack 
-            direction='column'
-            alignItems='flex-start'
+            <Box 
+            display='flex'
+            flexDirection='column'
+            // alignItems='flex-start'
             justifyContent='space-between'
-            spacing={1}
-            padding={4}>
-                <Stack
-                direction='column'
-                alignItems='flex-start'
-                justifyContent='space-between'
-                spacing={0}
-                padding={0}>                
-                    <Typography
-                    sx={{ 
-                        flex: '1 1 100%',
-                        fontWeight: 'bold',
-                        fontSize: '24px' }}
-                    color="inherit"
-                    variant="h5"
-                    component="div"
-                    >
-                        Bookings
-                    </Typography>
+            // spacing={1
+            paddingLeft="32px"
+            paddingTop="32px"
+            paddingRight="32px"
+            width="1220px"
+            height='900px'
+            gap="12px"
+            >
+                <Box    // Header
+                display="flex"
+                flexDirection="column"
+                alignItems='space-between'
+                // height="214px"
+                gap='6px'
+                >
+                    <Box // Frame 45 - Booking
+                    display="flex"
+                    flexDirection="column"
+                    height="72px"
+                    width="1156px"
+                    paddingBottom="8px"
+                    gap="6px"
+                    >          
+                        <Typography
+                        sx={{ 
+                            fontWeight: '700',
+                            fontSize: '24px' }}
+                        color="#212B36"
+                        fontFamily="Inter"
+                        component="div"
+                        >
+                            Bookings
+                        </Typography>
+                        
+                        <Typography
+                        sx={{ 
+                            fontWeight: '500',
+                            fontSize: '16px' }}
+                            color="#4D667C"
+                            fontFamily="Inter"
+                            component="div"
+                        >
+                            35 bookings this month
+                        </Typography>
+                    </Box>  
                     
-                    <Typography
-                    sx={{ flex: '1 1 100%' }}
-                    color="#4D667C"
-                    variant="subtitle1"
-                    component="div"
+                    <Box   // Booking action bar
+                    display="flex"
+                    flexDirection="row"
+                    width="1156px"
+                    gap="32px"
+                    alignItems="space-between"
+                    // bgcolor="gray"
+                    // justifyContent='space-between'
                     >
-                        35 bookings this month
-                    </Typography>
-                </Stack>
+                        <Box   // select date to filter - this month
+                        display="flex"
+                        flexDirection="row"
+                        width="992px"
+                        gap="10px"
+                        alignItems="space-between"
+                        >   
+                            <DateRangeFilter /> 
 
-
-                <Grid 
-                container 
-                spacing={2}>
-                    {/* First date input */}
-                    <Grid item>
-                        <DateRangeFilter/>
-                    </Grid>
-
-                    <Grid item xs>
-                        <TextField 
-                        type="text"
-                        placeholder="This month"                         
-                        InputProps={{
-                            style: {
-                            height: 38,
-                            },
-                        }} />
-                    </Grid>
-
-                    {/* Button */}
-                    <Grid item>
-                        <Button variant="contained" color="primary">
-                        Book A Car
-                        </Button>
-                    </Grid>
-                </Grid>
-
-    {/* 
-                <Stack
-                direction='row'
-                alignItems='flex-start'
-                justifyContent='space-between'
-                spacing={2}
-                padding={2}>   
-                    <DateRangeFilter onFilterChange={handleFilterChange} />             
-                    <DatePicker label={'"month" and "year"'} views={['month', 'year']} />
-                    <DateRange>22</DateRange>
-                    <DateRange>22</DateRange>
-                    <Button variant="contained">
-                        Book a Car
-                    </Button>
-                </Stack> */}
-                
-                <EnhancedTable/>
-            </Stack>
+                            <Select // dropdown
+                            defaultValue={2}
+                            style={{  
+                                width: "140px",
+                                height: "38px",
+                                borderRadius: "6px",
+                                border: "1px",
+                                fontSize: "13px",
+                                paddingLeft: "9px",
+                                paddingTop: "16px",
+                                paddingRight: "9px",
+                                paddingBottom: "18px",
+                                color: "#6C859B",
+                            }}>
+                                <MenuItem value={1}>This Week</MenuItem>
+                                <MenuItem value={2}>This Month</MenuItem>
+                                <MenuItem value={3}>Next 3 Months</MenuItem>
+                                <MenuItem value={4}>Last Week</MenuItem>
+                                <MenuItem value={5}>Last Month</MenuItem>
+                                <MenuItem value={6}>Last 3 Months</MenuItem>
+                            </Select>
+                        </Box>
+                        <Box>                                
+                            <button   // Book-A-Car button
+                            style={{
+                                backgroundColor: "#2E4AAE",
+                                fontSize: "14px",
+                                fontWeight: "600",
+                                color: "#FFFFFF",
+                                paddingLeft: "14px",
+                                paddingRight: "14px",
+                                paddingTop: "7px",
+                                paddingBottom: "7px",
+                                borderRadius: "8px",
+                                borderColor: "transparent",
+                            }}>  
+                                Book A Car
+                            </button>
+                        </Box>
+                    </Box>
+                </Box>
+                <Box
+                    height='1000px'
+                >
+                    <EnhancedTable/>
+                </Box>
+            </Box>
         </Layout>
     );
 }

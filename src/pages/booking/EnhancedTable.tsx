@@ -18,7 +18,8 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { Button } from '@mui/material';
+import { Button, Hidden, TableFooter } from '@mui/material';
+import { Delete } from '@mui/icons-material';
 
 interface Data {
   id: number;
@@ -26,8 +27,6 @@ interface Data {
   customerName: string;
   carType: string;
   licensePlateNo: string;
-  email: string;
-  bookingId: string;
   emailSent: string;
   status: number;
 }
@@ -38,8 +37,6 @@ function createData(
   bookingPeriod: string,
   carType: string,
   customerName: string,
-  email: string,
-  bookingId: string,
   emailSent: string,
   status: number,
 ): Data {
@@ -49,22 +46,28 @@ function createData(
     bookingPeriod,
     carType,
     customerName,
-    email,
-    bookingId,
     emailSent,
     status,
   };
 }
 
 const rows = [
-  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
-  createData(2, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
-  createData(3, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
-  createData(4, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
-  createData(5, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
-  createData(6, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 1),
-  createData(7, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
-  createData(8, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'chinmoy@example.com', 'A222222', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
+  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
 ];
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
@@ -138,18 +141,6 @@ const headCells: readonly HeadCell[] = [
     numeric: false,
     disablePadding: false,
     label: 'Customer Name',
-  },
-  {
-    id: 'email',
-    numeric: false,
-    disablePadding: false,
-    label: 'Customer E-mail',
-  },
-  {
-    id: 'bookingId',
-    numeric: false,
-    disablePadding: false,
-    label: 'Booking ID',
   },
   {
     id: 'emailSent',
@@ -354,10 +345,10 @@ export default function EnhancedTable() {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
-        <TableContainer>
+        {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
+        <TableContainer sx={{ height: 450 }}>
           <Table
-            sx={{ minWidth: 750 }}
+            sx={{ height: 'max-content' }}
             aria-labelledby="tableTitle"
             size='medium'
           >
@@ -385,7 +376,8 @@ export default function EnhancedTable() {
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer', 
                         bgcolor: '#F9FAFB',
-                        borderRadius: '8px', 
+                        borderRadius: '8px',
+                        height: "64px" 
                     }}
                   >
                     <TableCell padding="checkbox">
@@ -405,7 +397,8 @@ export default function EnhancedTable() {
                     >
                       <Box 
                       color= {row.status === 1 ? 'black' : '#6C859B'}   
-                      fontWeight={row.status === 1 ? 'bold' : ''}
+                      fontWeight={row.status === 1 ? '600' : ''}
+                      fontSize="14px"
                       >
                         {row.licensePlateNo}
                       </Box>
@@ -419,8 +412,6 @@ export default function EnhancedTable() {
                         </Box>
                     </TableCell>
                     <TableCell align="left">{row.customerName}</TableCell>
-                    <TableCell align="left">{row.email}</TableCell>
-                    <TableCell align="left">{row.bookingId}</TableCell>
                     <TableCell align="left">{row.emailSent}</TableCell>
                     <TableCell align="left">
                         <Box sx={{      
@@ -440,9 +431,40 @@ export default function EnhancedTable() {
                         </Box>
                     </TableCell>
                     <TableCell align="left">
-                        <button >
+                      <Box>
+                        {row.status === 1 ? (
+                          <button 
+                          style={{
+                            borderRadius: "6px",
+                            paddingLeft: "14px",
+                            paddingTop: "7px",
+                            paddingRight: "14px",
+                            paddingBottom: "7px",
+                            color: "#4D667C",
+                            borderColor: "transparent",
+                            fontSize: "12px",
+                            fontWeight: "600",
+                            backgroundColor: "#EEF3FA",
+                          }}>
                             Cancel
-                        </button>
+                          </button>
+                        ) : (
+                          <Button
+                          variant="outlined"
+                          color="secondary"
+                          style={{
+                            color: 'red',
+                            borderColor: 'transparent',
+                            fontSize: '10px',
+                            fontWeight: 600,
+                            backgroundColor: "#EEF3FA",
+                          }}
+                          startIcon={<DeleteIcon />}
+                          >
+                            Delete
+                          </Button>
+                        )}
+                      </Box>
                     </TableCell>
                   </TableRow>
                 );
@@ -459,7 +481,21 @@ export default function EnhancedTable() {
             </TableBody>
           </Table>
         </TableContainer>
-        <TablePagination
+        <TableFooter>
+          <TableRow>
+            <TableCell colSpan={10}>
+              <TablePagination
+                rowsPerPageOptions={[10, 25, 50]}
+                count={rows.length}
+                page={page}
+                onPageChange={handleChangePage}
+                rowsPerPage={rowsPerPage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+              />
+            </TableCell>
+          </TableRow>
+        </TableFooter>
+        {/* <TablePagination
           rowsPerPageOptions={[5, 10, 25, 30]}
           component="div"
           count={rows.length}
@@ -467,7 +503,7 @@ export default function EnhancedTable() {
           page={page}
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
-        />
+        /> */}
       </Paper>
     </Box>
   );

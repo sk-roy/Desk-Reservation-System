@@ -1,5 +1,5 @@
 import { Box, Hidden, Stack, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router";
 import homeIcon from "../../assets/icons/home.svg";
 import bookingIcon from "../../assets/icons/calendar-check-01.svg";
@@ -38,7 +38,11 @@ const navLinks = [
     // },
 ];
 
+
 const Sidebar = () => {
+    const [selectedTab, updateSelectedTab] = useState("Home")
+
+
     return (
         <Box
         sx={{
@@ -50,21 +54,13 @@ const Sidebar = () => {
                 lg: "column",
             },
             justifyContent: "space-between",
+            alignItems: "center",
             width: "100%",
             height: 900,
+            gap: 5
         }}>
-            <Box sx={{
-                display: "flex",
-                flexDirection: {
-                    xs: "row",
-                    lg: "column",
-                },
-                gap: 5,
-                width: "100%",
-                height: "100%",
-                padding: "10px",
-            }}>
-                <Box    // logo
+            
+            <Box    // logo
                 flexDirection="row">
                     <Box 
                     display='flex'
@@ -114,13 +110,78 @@ const Sidebar = () => {
                             </Typography>
                         </Stack>
                     </Box>
-                </Box>
+            </Box>
+
+            <Box sx={{
+                display: "flex",
+                flexDirection: {
+                    xs: "row",
+                    lg: "column",
+                },
+                gap: 5,
+                width: "196px",
+                height: "100%",
+                justifyContent: "space-between",
+                // padding: "10px",
+                // backgroundColor: "gray"
+            }}>
+                {/* <Box    // logo
+                flexDirection="row">
+                    <Box 
+                    display='flex'
+                    flexDirection='row'
+                    alignItems="center"
+                    paddingLeft={2}
+                    paddingRight={2}
+                    >
+                        <img
+                        src={logo}
+                        alt='enosis'/>
+
+                        <Typography 
+                        variant="h5" 
+                        component="h1"
+                        my={2}
+                        color="white"
+                        margin='5px'
+                        fontWeight={400}
+                        fontSize={18}>
+                            RAC
+                        </Typography>
+
+                        <Typography variant="h5" 
+                        component="h1"
+                        my={2}
+                        color="white"
+                        fontWeight={400}
+                        fontSize={18}
+                        >                        
+                            |
+                        </Typography>
+                        
+                        <Stack
+                        margin='5px'>                        
+                            <Typography  
+                            component="p"
+                            color="#B4C5D9"
+                            fontSize={8}>
+                                Rent-A
+                            </Typography>
+                            <Typography 
+                            component="p"
+                            color="#B4C5D9"
+                            fontSize={8}>
+                                Car
+                            </Typography>
+                        </Stack>
+                    </Box>
+                </Box> */}
 
                 <Box sx={{   // tabs
                     alignItems: "start",
                     display: "flex",
                     flexDirection: "column",
-                    gap: 4,
+                    gap: "10px",
                     // color: '#B4C5D9',
                     fontSize: '13px',
                 }}
@@ -129,20 +190,31 @@ const Sidebar = () => {
                         <Link
                         key={item.name}
                         to={item.link}
-                        style={{ textDecoration: "none" }}>
+                        style={{ textDecoration: "none" }}
+                        onClick={() => {
+                            updateSelectedTab(item.name)
+                        }}
+                        >
                             <Box
                             sx={{
                             display: "flex",
                             alignItems: "center",
                             gap: 2,
                             color: "#B4C5D9",
-                            textDecoration: "none",
-                            // height: "46px",
-                            // width: "auto",
+                            // textDecoration: "none",
+                            height: "46px",
+                            width: "196px",
                             // borderRadius: "6px",
-                            // padding: "12px",
-                            // backgroundColor: "#2E4AAE",
-                            }}>
+                            paddingLeft: "16px",
+                            paddingTop: "12px",
+                            paddingBottom: "12px",
+                            paddingRight: "16px",
+                            borderRadius: "6px",
+                            // backgroundColor: {{selectedTab === item.name ? "#2E4AAE" : "#212B36"}},
+                            }}
+                            bgcolor={selectedTab === item.name ? "#2E4AAE" : "#212B36"}
+                            // bgcolor= {row.status === 1 ? '#2E4AAE' : '#C7D3E1'}
+                            >
                                 <img
                                 src={item.icon}
                                 alt={item.name}
@@ -158,45 +230,45 @@ const Sidebar = () => {
                         </Link>
                     ))}
                 </Box>
-            </Box>
 
-            <Box // profile
-            sx={{
-                display: "flex",
-                alignItems: "end",
-                gap: 2,
-                color: "black",
-                backgroundColor: "white",
-                justifyContent: "space-between",
-                padding: "14px",
-                borderRadius: "8px",
-                height: "48px",
-                width: "196px",
-            }}>
-                <Box
-                display="flex"
-                alignItems="center"
-                gap={1}>
+                <Box // profile
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 2,
+                    color: "black",
+                    backgroundColor: "white",
+                    justifyContent: "space-between",
+                    padding: "14px",
+                    borderRadius: "8px",
+                    height: "48px",
+                    width: "196px",
+                }}>
+                    <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={1}>
+                        <img
+                        src={profileAvatar}
+                        alt="Brian O'Conor"
+                        style={{
+                            width: "24px",
+                            height: "24px"
+                        }}/>
+                        <Hidden mdDown>
+                            <Typography fontSize="13px">Brian O'Conor</Typography>
+                        </Hidden>                    
+                    </Box>    
+                    <Box
+                    display="flex"
+                    padding={1}>         
                     <img
-                    src={profileAvatar}
-                    alt="Brian O'Conor"
-                    style={{
-                        width: "24px",
-                        height: "24px"
-                    }}/>
-                    <Hidden mdDown>
-                        <Typography fontSize="13px">Brian O'Conor</Typography>
-                    </Hidden>                    
-                </Box>    
-                <Box
-                display="flex"
-                padding={1}>         
-                <img
-                    src={profileIcon}
-                    alt="Brian O'Conor"
-                    style={{
-                        width: "10px",
-                }}/>   </Box>                
+                        src={profileIcon}
+                        alt="Brian O'Conor"
+                        style={{
+                            width: "10px",
+                    }}/>   </Box>                
+                </Box>
             </Box>
          </Box>
     );
