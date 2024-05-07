@@ -1,29 +1,11 @@
 import React, { useState } from "react";
 import Layout from "../../layout";
-import { Box, Button, FormControl, Grid, IconButton, MenuItem, OutlinedInput, Select, Stack, TextField, Toolbar, Tooltip, Typography } from "@mui/material";
-import { DateRange, Height } from "@mui/icons-material";
-import DeleteIcon from '@mui/icons-material/Delete';
-import EnhancedTable from "./EnhancedTable";
-import { DatePicker } from "@mui/x-date-pickers";
+import { Box, MenuItem, Select, Typography } from "@mui/material";
 import DateRangeFilter from "./DateRangeFilter";
-import { blueGrey } from "@mui/material/colors";
-import { DateRangePicker } from "@mui/x-date-pickers-pro";
-import { SingleInputDateRangeField } from "@mui/x-date-pickers-pro";
-import DateRangePickerPopup from "./DateRange";
+import EnhancedTable from "./EnhancedTable";
 
 
 const Booking = () => {
-    const [filteredData, setFilteredData] = useState([]); // Your filtered data state
-
-    const handleFilterChange = (startDate: string, endDate: string) => {
-        // Implement your data filtering logic here
-        // Update the filteredData state accordingly
-        // Example: filter data based on date range
-        // const newData = originalData.filter(item =>
-        //     item.date >= startDate && item.date <= endDate
-        // );
-        // setFilteredData(newData);
-    };
 
     return (
         <Layout>

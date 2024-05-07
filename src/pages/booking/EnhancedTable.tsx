@@ -495,15 +495,6 @@ export default function EnhancedTable() {
             </TableCell>
           </TableRow>
         </TableFooter>
-        {/* <TablePagination
-          rowsPerPageOptions={[5, 10, 25, 30]}
-          component="div"
-          count={rows.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          onPageChange={handleChangePage}
-          onRowsPerPageChange={handleChangeRowsPerPage}
-        /> */}
       </Paper>
     </Box>
   );
