@@ -8,6 +8,7 @@
     "@mui/icons-material": "^5.15.16",
     "@mui/lab": "^5.0.0-alpha.170",
     "@mui/material": "^5.15.16",
+    "@mui/x-charts": "^7.3.2",
     "@mui/x-date-pickers": "^7.3.2",
     "@mui/x-date-pickers-pro": "^7.3.2",
     "@testing-library/jest-dom": "^5.17.0",
