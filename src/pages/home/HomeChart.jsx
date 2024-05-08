@@ -46,31 +46,18 @@ const HomeChart = () => {
     markers: {
       size: 5,
     },
-    // tooltip: {
-    //   custom: function({series, seriesIndex, dataPointIndex, w}) {
-    //     // return 
-    //     // '<div class="arrow_box">' +
-    //     //   '<span>' + series[seriesIndex][dataPointIndex] + '</span>' +
-    //     //   '</div>'
-
-          
-    //     return '<div style={{ width:"142px", borderRadius:"4px", paddingLeft:"8px", paddingRight:"8px", paddingTop:"5px", paddingBottom:"5px", boxShadow: "0px 2px 14px 0px #3A414F29", gap:"2px"}}>' +
-    //       '  <span style={{ fontSize: "10px", fontWeight: 500, lineHeight: "14px", color: "#6C859B",}}> Mon, 05 Jan, 2024 </span>' +
-    //       '  <span style={{ fontSize: "12px", fontWeight: 700, lineHeight: "18px", color: "#2E4AAE", }} > Attendance: 126/205 </span>' +
-    //       '</div>'
-
-
-          
-    //       // <div display="flex" flexDirection="column" width="142px" borderRadius="4px" paddingLeft="8px" paddingRight="8px" paddingTop="5px" paddingBottom="5px" boxShadow= "0px 2px 14px 0px #3A414F29" gap="2px">
-    //       // <span fontSize="10px" fontWeight={500} lineHeight="14px" color="#6C859B"> Mon, 05 Jan, 2024 </span>
-    //       // <span fontSize="12px" fontWeight={700} lineHeight="18px" color="#2E4AAE"> Attendance: 126/205 </span>
-    //       // </div>         
-    //       // '<Box display="flex" flexDirection="column" width="142px" borderRadius="4px" paddingLeft="8px" paddingRight="8px" paddingTop="5px" paddingBottom="5px" boxShadow= "0px 2px 14px 0px #3A414F29" gap="2px">' +
-    //       // '<Typography fontSize="10px" fontWeight={500} lineHeight="14px" color="#6C859B"> Mon, 05 Jan, 2024 </Typography>' +
-    //       // '<Typography fontSize="12px" fontWeight={700} lineHeight="18px" color="#2E4AAE"> Attendance: 126/205 </Typography>' +
-    //       // '</Box>'
-    //   }
-    // },
+    tooltip: {
+      custom: function({series, w}) {
+        return '<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 2px; height: 44px; width: 142px; border-radius: 4px;">' +
+        '<div style="font-size: 10px; font-weight: 500; align-items: center; color: #6C859B; line-height: 14px;">' +
+        '<span>Mon, 05 Jan, 2024</span>' +
+        '</div>' +
+        '<div style="font-size: 12px; font-weight: 700; align-items: center; color: #2E4AAE; line-height: 18px;">' +
+        '<span>Attendance: 126/205</span>' +
+        '</div>' +
+        '</div>'
+      }
+    }
   };
 
   const series = [
