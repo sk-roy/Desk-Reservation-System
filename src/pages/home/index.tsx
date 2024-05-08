@@ -1,4 +1,4 @@
-import { Box, Button, Divider, Grid, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, MenuItem, Select, Typography } from "@mui/material";
 import React from "react";
 import Layout from "../../layout";
 import { red } from "@mui/material/colors";
@@ -6,6 +6,8 @@ import GoToOfficeImg from "../../components/images/Group 33.svg";
 import HomeGraph from "../../components/images/HomeGraph.svg";
 import profileIcon from "../../assets/icons/profileIcon.svg"
 import { FirstReservation, NextReservation } from "./Reversations";
+import FilterByMonthSelect from "./FilterByMonthSelect";
+import HomeChart from "./HomeChart";
 
 const Home = () => {
   return (
@@ -138,7 +140,7 @@ const Home = () => {
                   display="flex"
                   flexDirection="row"
                   justifyContent="space-between">
-                    <Box   // Attendence 1.1
+                    <Box   // Attendence 1.1.1
                     width="506px"
                     gap="10px"
                     display="flex"
@@ -152,7 +154,7 @@ const Home = () => {
                         Attendance by Reservation
                       </Typography>
 
-                      <Box
+                      <Box    // Attendence 1.1.2
                       height="22px"
                       // width="168px"
                       borderRadius="6px"
@@ -174,63 +176,21 @@ const Home = () => {
                       </Box>
 
                     </Box>
+                    
+                    <FilterByMonthSelect/> 
+                  </Box>
 
-                    <button // Attendence 1.2
-                    style={{
-                      height: "24px",
-                      width: "106px",
-                      borderRadius: "6px",
-                      gap: "2px",
-                      paddingLeft: "3px",
-                      paddingTop: "4px",
-                      paddingRight: "3px",
-                      paddingBottom: "6px",  
-                      backgroundColor: "var(--Offwhite-Offwhite-3, #E8EDF5)}",
-                      borderColor: "transparent", 
-                    }}>  
-                      <Box
-                      display="flex"
-                      flexDirection="row"
-                      justifyContent="center"
-                      alignItems="center"
-                      gap="2px">                                            
-                        <Typography
-                        color="#6C859B"
-                        fontSize="12px"
-                        fontWeight={600}
-                        lineHeight="18px"
-                        height="18px">
-                          Last 6 Months
-                        </Typography>
-                        <img 
-                        src={profileIcon}
-                        height="8px"
-                        width="5px">
-                        </img>
-                      </Box>
-
-                    </button>
+                  {/* <Box  display="flex" flexDirection="column" width="142px" borderRadius="4px" paddingLeft="8px" paddingRight="8px" paddingTop="5px" paddingBottom="5px" boxShadow= "0px 2px 14px 0px #3A414F29" gap="2px">
+                    <Typography fontSize="10px" fontWeight={500} lineHeight="14px" color="#6C859B"> Mon, 05 Jan, 2024 </Typography>
+                    <Typography fontSize="12px" fontWeight={700} lineHeight="18px" color="#2E4AAE"> Attendance: 126/205 </Typography>
+                  </Box> */}
+                  
+                  <Box  // Area Chart
+                  height="296px"
+                  width="100%">
+                    <HomeChart/>
                   </Box>
                   
-                  <img
-                  src={HomeGraph}
-                  alt="graphIcon"
-                  height="296px"
-                  width="632px"/>
-                  
-                  {/* <Box   // Attendence 2
-                  height="296px"
-                  width="100%"
-                  gap="18px"
-                  bgcolor="gray"
-                  display="flex"
-                  flexDirection="column">
-                    <Box // monthes
-                    >
-                      monthes 
-                    </Box>
-                  </Box> */}
-
                   <Box   // Attendence 3
                   height="86px"
                   bgcolor="#E8EDF5"
@@ -320,10 +280,7 @@ const Home = () => {
                     </Box>
                   </Box>
                 </Box>
-
-              </Box>
-
-              
+              </Box>              
             </Grid>
             
             <Grid  // Upcoming reservation
@@ -354,46 +311,17 @@ const Home = () => {
                     fontWeight={700}
                     color="#4D667C">
                       Upcoming Reservation
-                    </Typography>                  
-                    <button 
-                      style={{
-                        height: "24px",
-                        width: "106px",
-                        borderRadius: "6px",
-                        gap: "2px",
-                        paddingLeft: "3px",
-                        paddingTop: "4px",
-                        paddingRight: "3px",
-                        paddingBottom: "6px",  
-                        backgroundColor: "var(--Offwhite-Offwhite-3, #E8EDF5)}",
-                        borderColor: "transparent", 
-                      }}>  
-                        <Box
-                        display="flex"
-                        flexDirection="row"
-                        justifyContent="center"
-                        alignItems="center"
-                        gap="2px">                                            
-                          <Typography
-                          color="#6C859B"
-                          fontSize="12px"
-                          fontWeight={600}
-                          lineHeight="18px"
-                          height="18px">
-                            This Months
-                          </Typography>
-                          <img 
-                          src={profileIcon}
-                          height="8px"
-                          width="5px">
-                          </img>
-                        </Box>
+                    </Typography>   
 
-                      </button>
+                    <FilterByMonthSelect/>
                   </Box>
                 </Grid>
 
-                <Grid    // Upcoming reservation 2
+                <Grid    // Upcoming reservation 2                
+                // sx={{ overflowY: 'scroll' }}
+                // overflowY="scroll"
+                overflow="hidden"
+                // sx={{ overflow: 'hidden' }}
                 item xs={12}>
                   <Box 
                   height="598px"
@@ -402,6 +330,10 @@ const Home = () => {
                   display="flex"
                   flexDirection="column">
                     <FirstReservation/>
+                    <NextReservation/>
+                    <NextReservation/>
+                    <NextReservation/>
+                    <NextReservation/>
                     <NextReservation/>
                     <NextReservation/>
                     <NextReservation/>
