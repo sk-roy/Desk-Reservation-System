@@ -11,6 +11,10 @@ import UtilisationPer from "../../components/images/AnalyticsPage/AnalyticsUtili
 import HomeChart from "../home/HomeChart";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
+import BarChart from "./BarChart";
+import AreaChart from "./AreaChart";
 
 
 const Analytics = () => {
@@ -271,12 +275,39 @@ const Analytics = () => {
                                     fontWeight={700}
                                     color="#212B36">
                                         75
-                                    </Typography>
-                                    <img
-                                    src={UserPer}
-                                    alt="userPer"
+                                    </Typography>                                    
+                                    <Box
+                                    display="flex"
+                                    flexDirection="row"
                                     height="22px"
-                                    width="61px"/>                                    
+                                    width="56px"
+                                    gap="4px">
+                                        <Box
+                                        display="flex"
+                                        flexDirection="column"
+                                        alignItems="center"
+                                        height= "22px"
+                                        width= "22px"
+                                        borderRadius="14px"
+                                        padding="4px"
+                                        bgcolor= "#2CA06626">
+                                            <ArrowUpwardIcon
+                                            sx={{
+                                                height: "14px",
+                                                width: "14px",
+                                                color: "#2CA066",
+                                            }}/>
+                                        </Box>
+                                        <Typography
+                                        paddingTop="2px"
+                                        fontSize="12px"
+                                        fontWeight={700}
+                                        lineHeight="18px"
+                                        color= "var(--Alert-Green, #2CA066)">
+                                            +34%
+                                        </Typography>
+
+                                    </Box>                                       
                                 </Box>
                             </Box>
 
@@ -330,11 +361,38 @@ const Analytics = () => {
                                     color="#212B36">
                                         214
                                     </Typography>
-                                    <img
-                                    src={ReservationPer}
-                                    alt="reservationPer"
+                                    <Box
+                                    display="flex"
+                                    flexDirection="row"
                                     height="22px"
-                                    width="61px"/>                                    
+                                    width="56px"
+                                    gap="4px">
+                                        <Box
+                                        display="flex"
+                                        flexDirection="column"
+                                        alignItems="center"
+                                        height= "22px"
+                                        width= "22px"
+                                        borderRadius="14px"
+                                        padding="4px"
+                                        bgcolor= "#D340401A">
+                                            <ArrowDownwardIcon
+                                            sx={{
+                                                height: "14px",
+                                                width: "14px",
+                                                color: "#D34040",
+                                            }}/>
+                                        </Box>
+                                        <Typography
+                                        paddingTop="2px"
+                                        fontSize="12px"
+                                        fontWeight={700}
+                                        lineHeight="18px"
+                                        color= "var(--Alert-Red, #D34040)">
+                                            -12%
+                                        </Typography>
+
+                                    </Box>                                  
                                 </Box>
                             </Box>
 
@@ -388,11 +446,23 @@ const Analytics = () => {
                                     color="#212B36">
                                         72%
                                     </Typography>
-                                    <img
-                                    src={UtilisationPer}
-                                    alt="utilisationPer"
-                                    height="22px"
-                                    width="61px"/>                                    
+
+                                    <Box
+                                    display="flex"
+                                    flexDirection="column"
+                                    alignItems="center"
+                                    height= "22px"
+                                    width= "22px"
+                                    borderRadius="14px"
+                                    padding="4px"
+                                    bgcolor= "#2CA06626">
+                                        <ArrowUpwardIcon
+                                        sx={{
+                                            height: "14px",
+                                            width: "14px",
+                                            color: "#2CA066",
+                                        }}/>
+                                    </Box>
                                 </Box>
                             </Box>
 
@@ -408,9 +478,10 @@ const Analytics = () => {
                     gap="20px"
                     >
                         
-                        <Box  // Bar chart
+                        <Box  // Users By Weekdays
                         display="flex"
                         flexDirection="column"
+                        justifyContent="space-between"
                         height="346px"
                         width="65%"
                         borderRadius="8px"
@@ -436,7 +507,7 @@ const Analytics = () => {
                                 fontWeight={700}
                                 lineHeight="24px"
                                 height="24px">
-                                    Attendance by Reservation
+                                    Users By Weekdays
                                 </Typography>
 
                                 <Box    // Attendence 1.1.2
@@ -463,13 +534,72 @@ const Analytics = () => {
                                 </Box>
                                 
                                 {/* <FilterByMonthSelect/>  */}
-                            </Box>
-                            
-                            <Box  // Attendence 2 - Area Chart
-                            height="296px"
-                            width="100%">
-                                <HomeChart/>
                             </Box>                            
+                            
+                            <Box height="200px">
+                                <BarChart/>
+                            </Box>
+
+
+                            
+                            <Box   // Body 4.3
+                            display="flex"
+                            justifyContent="space-between"
+                            flexDirection="row"
+                            height="34px"
+                            bgcolor="#E8EDF5"
+                            width="100%"
+                            borderRadius="6px"
+                            padding="8px"
+                            gap="8px">
+                                <ArrowBackIcon
+                                sx={{
+                                    height: "18px",
+                                    width: "18px",
+                                    borderRadius: "20px",
+                                    border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
+                                    padding: "3px",
+                                    bgcolor: "#F9FAFB",
+                                }}/>
+
+                                <Typography
+                                fontSize="12px"
+                                fontWeight={600}
+                                lineHeight="18px"
+                                color="#6C859B"
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                }}
+                                width="513px">
+                                    Week 1, Jan 2024
+                                </Typography>
+                                <Typography
+                                fontSize="12px"
+                                fontWeight={600}
+                                lineHeight="18px"
+                                color="#6C859B"
+                                sx={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "center",
+                                }}
+                                width="513px">
+                                    Week 2, Jan 2024
+                                </Typography>
+
+                                <ArrowForwardIcon
+                                sx={{
+                                    height: "18px",
+                                    width: "18px",
+                                    borderRadius: "20px",
+                                    border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
+                                    padding: "3px",
+                                    bgcolor: "#F9FAFB",
+                                }}/>
+                            </Box> 
+
                         </Box>
                         <Box  // Pie Chart
                         display="flex"
@@ -546,7 +676,7 @@ const Analytics = () => {
                         <Box  // Body 4.2 - Area Chart
                         height="296px"
                         width="100%">
-                            <HomeChart/>
+                            <AreaChart/>
                         </Box>  
                         <Box   // Body 4.3
                         display="flex"
