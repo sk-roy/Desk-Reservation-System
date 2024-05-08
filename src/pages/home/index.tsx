@@ -176,13 +176,8 @@ const Home = () => {
                     
                     <FilterByMonthSelect/> 
                   </Box>
-
-                  {/* <Box  display="flex" flexDirection="column" width="142px" borderRadius="4px" paddingLeft="8px" paddingRight="8px" paddingTop="5px" paddingBottom="5px" boxShadow= "0px 2px 14px 0px #3A414F29" gap="2px">
-                    <Typography fontSize="10px" fontWeight={500} lineHeight="14px" color="#6C859B"> Mon, 05 Jan, 2024 </Typography>
-                    <Typography fontSize="12px" fontWeight={700} lineHeight="18px" color="#2E4AAE"> Attendance: 126/205 </Typography>
-                  </Box> */}
                   
-                  <Box  // Area Chart
+                  <Box  // Attendence 2 - Area Chart
                   height="296px"
                   width="100%">
                     <HomeChart/>
