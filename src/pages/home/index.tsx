@@ -1,10 +1,7 @@
 import { Box, Button, Divider, Grid, MenuItem, Select, Typography } from "@mui/material";
 import React from "react";
 import Layout from "../../layout";
-import { red } from "@mui/material/colors";
 import GoToOfficeImg from "../../components/images/Group 33.svg";
-import HomeGraph from "../../components/images/HomeGraph.svg";
-import profileIcon from "../../assets/icons/profileIcon.svg"
 import { FirstReservation, NextReservation } from "./Reversations";
 import FilterByMonthSelect from "./FilterByMonthSelect";
 import HomeChart from "./HomeChart";
@@ -221,16 +218,8 @@ const Home = () => {
                       color="#212B36">
                         32
                       </Typography>
-                    </Box>                    
-
-                    <Typography
-                      fontSize="13px"
-                      fontWeight={600}
-                      color="#C7D3E1"
-                      lineHeight="50px"
-                      >|</Typography>
-                    {/* <Divider variant="middle"/> */}
-                    
+                    </Box>        
+                    <Divider orientation="vertical" flexItem />                    
                     <Box
                     display="flex"
                     flexDirection="column"
@@ -250,15 +239,7 @@ const Home = () => {
                         25
                       </Typography>
                     </Box>
-
-                    {/* <Divider variant="middle"/> */}
-                    <Typography
-                      fontSize="13px"
-                      fontWeight={600}
-                      color="#C7D3E1"
-                      lineHeight="50px"
-                      >|</Typography>
-                    
+                    <Divider orientation="vertical" flexItem />
                     <Box
                     display="flex"
                     flexDirection="column"
@@ -287,9 +268,6 @@ const Home = () => {
             item
             xs={4.5}>
               <Grid container
-              // display="flex"
-              // flexDirection="column"
-              // alignItems="flex-start"
               sx={{
                 height: "748px",
                 borderRadius: "8px",
@@ -317,18 +295,20 @@ const Home = () => {
                   </Box>
                 </Grid>
 
-                <Grid    // Upcoming reservation 2                
-                // sx={{ overflowY: 'scroll' }}
-                // overflowY="scroll"
-                overflow="hidden"
-                // sx={{ overflow: 'hidden' }}
+                <Grid    // Upcoming reservation 2     
                 item xs={12}>
                   <Box 
                   height="598px"
                   width="100%"
                   gap="12px"
                   display="flex"
-                  flexDirection="column">
+                  flexDirection="column"
+                  sx={{
+                    overflow: 'auto', // Hide the scrollbar
+                    '&::-webkit-scrollbar': {
+                      display: 'none', // Hide the scrollbar for Webkit browsers (Chrome, Safari)
+                    },
+                  }}>
                     <FirstReservation/>
                     <NextReservation/>
                     <NextReservation/>
