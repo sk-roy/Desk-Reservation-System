@@ -18,7 +18,7 @@ import Tooltip from '@mui/material/Tooltip';
 import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
-import { Button, Hidden, TableFooter } from '@mui/material';
+import { Button, Hidden, Select, TableFooter } from '@mui/material';
 import { Delete } from '@mui/icons-material';
 
 interface Data {
@@ -53,7 +53,7 @@ function createData(
 
 const rows = [
   createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
-  createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
+  createData(1, 'A23455', '2-5 March, 2023', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
   createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
   createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 0),
   createData(1, 'A23457', '2-5 March, 2024', 'Luxary', 'Chinmoy Saha', 'Yes', 1),
@@ -344,7 +344,7 @@ export default function EnhancedTable() {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+      <Paper sx={{ width: '100%', mb: 2,}}>
         {/* <EnhancedTableToolbar numSelected={selected.length} /> */}
         <TableContainer sx={{ height: 450 }}>
           <Table
@@ -440,7 +440,6 @@ export default function EnhancedTable() {
                             paddingTop: "7px",
                             paddingRight: "14px",
                             paddingBottom: "7px",
-                            color: "#4D667C",
                             borderColor: "transparent",
                             fontSize: "12px",
                             fontWeight: "600",
@@ -484,14 +483,64 @@ export default function EnhancedTable() {
         <TableFooter>
           <TableRow>
             <TableCell colSpan={10}>
-              <TablePagination
+              {/* <TablePagination
                 rowsPerPageOptions={[10, 25, 50]}
                 count={rows.length}
                 page={page}
                 onPageChange={handleChangePage}
                 rowsPerPage={rowsPerPage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
-              />
+              /> */}
+              <Box  width="100%" height="10px">
+              <Box
+                display="flex"
+                // justifyContent="space-between"
+                alignItems="row"
+                width="100%">
+                {/* Left side: "Showing [10, 20, 30] items per page" */}
+                <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="flex-start"
+                gap="10px">
+                  <Typography className='Semi Bold 13'>
+                    Showing
+                  </Typography>
+                  <select
+                    value={rowsPerPage}
+                    style={{
+                      height: "24px",
+                      width: "46px"
+
+                    }}
+                    // onChange={(e) => handleChangeRowsPerPage(e.target.value)}
+                  >
+                    {[10, 20, 30].map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>{' '}
+                  items per page
+                </Box>
+                {/* Right side: Pagination buttons */}
+                <Box
+                display="flex"
+                justifyContent="space-between"
+                alignItems="flex-end">
+                  {/* <button onClick={() => handleChangePage(page - 1)}>leftArrow</button> */}
+                  <button>leftArrow</button>
+                  {[...Array(10)].map((_, index) => (
+                    <button key={index} >
+                    {/* <button key={index} onClick={() => handleChangePage(index + 1)}> */}
+                      {index + 1}
+                    </button>
+                  ))}
+                  <button>rightArrow</button>
+                  {/* <button onClick={() => handleChangePage(page + 1)}>rightArrow</button> */}
+                </Box>
+              </Box>   
+              </Box>
             </TableCell>
           </TableRow>
         </TableFooter>

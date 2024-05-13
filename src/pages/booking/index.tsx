@@ -3,6 +3,7 @@ import Layout from "../../layout";
 import { Box, MenuItem, Select, Typography } from "@mui/material";
 import DateRangeFilter from "./DateRangeFilter";
 import EnhancedTable from "./EnhancedTable";
+import DataTable from "./DataTable";
 
 
 const Booking = () => {

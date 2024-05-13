@@ -49,13 +49,17 @@ const  BarChart = () => {
           formatter: function (val) {
             return val
           }
-        }
+        },
+        strokeDashArray: 4,
       },
       yaxis: {
+        min: 0,
         max: 100,
+        tickAmount: 5,
         title: {
           text: undefined
         },
+        strokeDashArray: 4,
       },
       tooltip: {
         y: {
@@ -91,7 +95,7 @@ const  BarChart = () => {
 
     return (
         <div className="bar-chart-container">
-            <ApexCharts options={options} series={series} type='bar' width="100%" height="210px"/>
+            <ApexCharts options={options} series={series} type='bar' width="100%" height="280px"/>
         </div>
       );
     

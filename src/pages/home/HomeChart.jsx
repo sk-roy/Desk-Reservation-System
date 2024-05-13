@@ -13,19 +13,7 @@ const HomeChart = () => {
       },
     },
     xaxis: {
-      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],    
-      // axisTicks: {
-      //   borderType: 'dotted', // Set to 'dotted' for dotted lines
-      //   color: '#78909C', // Customize the color if needed
-      //   width: 2, // Adjust the width of the lines
-      // },
-      axisTicks: {
-        borderType: 'dotted', // Set to 'dotted' for dotted lines
-        color: '#78909C', // Customize the color if needed
-        height: 6, // Adjust the height of the ticks
-        offsetX: 2, // Horizontal offset
-        offsetY: 2, // Vertical offset
-      },
+      categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"],  
     },
     colors: ["#2E4AAE"],
     yaxis: {
