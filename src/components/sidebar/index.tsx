@@ -17,7 +17,7 @@ const navLinks = [
         link: "/"
     },
     {
-        name: "Booking",
+        name: "Reservation",
         icon: bookingIcon,
         link: "/booking"
     },

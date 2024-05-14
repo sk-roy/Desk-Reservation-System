@@ -22,6 +22,7 @@ const theme = createTheme({
     shadows: [
         'none',
         '0px 2px 4px 0px #3A414F0F',
+        '0px 1px 4px 0px #4C577314',
         ...Array(19).fill('none'),
     ] as Shadows,
     

@@ -1,6 +1,6 @@
 import React from "react";
 import Layout from "../../layout";
-import { Box, Button, Divider, Typography, MenuItem, Select } from "@mui/material";
+import { Box, Button, Divider, Typography, MenuItem, Select, FormControl } from "@mui/material";
 import GiftIcon from "../../components/images/AnalyticsPage/AnalyticsGift.svg";
 import UserIcon from "../../components/images/AnalyticsPage/AnalyticsUserIcon.svg";
 import ReservationIcon from "../../components/images/AnalyticsPage/AnalyticsReservationIcon.svg";
@@ -16,28 +16,39 @@ import theme from "../../theme";
 import { green } from "@mui/material/colors";
 
 
-const SelectDept = () => {
-    return (        
-        <Select
-        sx={{
-            height: "38px",
-            width: "252px",
-            borderRadius: "6px",
-            paddingTop: "9px",
-            paddingRight: "16px",
-            paddingBottom: "9px",
-            paddingLeft: "16px",
-            gap: "6px",
-            bgcolor: "#EEF3FA",
-            color: "#4D667C",
-        }}>                                                    
-            <MenuItem value={1}>Human Research</MenuItem>
-            <MenuItem value={2}>Admin</MenuItem>
-            <MenuItem value={3}>Product</MenuItem>
-        </Select>
-    );
+interface SelectDeptProps {
+    department: string;
 }
+  
+const SelectDept: React.FC<SelectDeptProps> = ({ department }) => {
+    const renderValue = (value: any) => {
+        return value ? value : department;
+    };
 
+    return (
+        <FormControl>
+        <Select
+            renderValue={renderValue}
+            displayEmpty
+            sx={{
+            height: '38px',
+            width: '252px',
+            borderRadius: '6px',
+            paddingTop: '9px',
+            paddingRight: '16px',
+            paddingBottom: '9px',
+            paddingLeft: '16px',
+            gap: '6px',
+            bgcolor: '#EEF3FA',
+            color: '#4D667C',
+            }}
+        >
+            <MenuItem value={'Human Research'}>Human Research</MenuItem>
+        </Select>
+        </FormControl>
+    );
+};
+  
 
 const HeaderAnalysis = () => {
     return (   
@@ -70,10 +81,10 @@ const HeaderAnalysis = () => {
             border= "1px solid var(--Offwhite-Offwhite-3, #E8EDF5)"
             boxShadow= "0px 1px 4px 0px #4C577314"
             >
-                <SelectDept/>
-                <SelectDept/>
-                <SelectDept/>
-                <SelectDept/>
+                <SelectDept department="Select Department"/>
+                <SelectDept department="Select Date Range"/>
+                <SelectDept department="Select Weekdays"/>
+                <SelectDept department="Select Floor"/>
                 <Button
                 style={{
                     width: "100px",
