@@ -114,3 +114,19 @@ export const ReservationList = [
 ];
 
 
+export const TeamData = [
+  { name: "A.A. Fattah Islam", designation: "Software QA Technical Lead", email: "fattah.islam@enosisbd.com", image: "/A.A. Fattah Islam.png"},
+  { name: "Aminul Islam", designation: "Senior Software Development Manager", email: "aminul@enosisbd.com", image: "/Aminul Islam.png"},
+  { name: "Anik Islam Shimul", designation: "Software Project Lead", email: "anik.shimul@enosisbd.com", image: "/Anik Islam Shimul.png"},
+  { name: "Kazi Md. Munim", designation: "Software QA Lead", email: "kazi.munim@enosisbd.com", image: "/Kazi Md. Munim.png"},
+  { name: "Mohammad Ashfaq Islam Asif", designation: "Senior Software Engineer - Level 2", email: "mohammad.islam@enosisbd.com", image: "/Mohammad Ashfaq Islam Asif.png"},
+  { name: "Mohammad Rezaul Karim", designation: "Software Engineer - Level 1", email: "rezaul.karim@enosisbd.com", image: "/Mohammad Rezaul Karim.png"},
+  { name: "Nipun Paul", designation: "Software Engineer - Level 1", email: "nipun.paul@enosisbd.com", image: "/Nipun Paul.png"},
+  { name: "Rasheduzzaman", designation: "Software Architect", email: "rasheduzzaman.sourov@enosisbd.com", image: "/Rasheduzzaman.png"},
+  { name: "Shahadatul Hakim", designation: "Chief Operating Officer", email: "hakim@enosisbd.com", image: "/Shahadatul Hakim.png"},
+  { name: "Shariar Azad Riday", designation: "Senior Software Engineer - Level 2", email: "shariar.riday@enosisbd.com", image: "/Shariar Azad Riday.png"},
+  { name: "Suraka Iban Hanif", designation: "Software QA Engineer - Level 1", email: "suraka.hanif@enosisbd.com", image: "/Suraka Iban Hanif.png"},
+  { name: "Ujjal Suttra Dhar", designation: "Software Development Lead", email: "ujjal.dhar@enosisbd.com", image: "/Ujjal Suttra Dhar.png"},
+];
+
+
