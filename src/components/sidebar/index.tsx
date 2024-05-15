@@ -1,42 +1,46 @@
-import { Avatar, Box, Hidden, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Hidden, List, ListItem, ListItemButton, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
-import { useLocation } from "react-router";
-import homeIcon from "../../assets/icons/home.svg";
-import bookingIcon from "../../assets/icons/calendar-check-01.svg";
-import bookmarkIcon from "../../assets/icons/bar-chart-12.svg";
-import profileAvatar from "../../assets/icons/Avatar.svg"
+import { useLocation, useNavigate } from "react-router";
+import HomeIcon from "../../assets/icons/HomeIcon.svg";
+import ReservationIcon from "../../assets/icons/ReservationIcon.svg";
+import AnalyticsIcon from "../../assets/icons/AnalyticsIcon.svg";
+import TeamIcon from "../../assets/icons/TeamIcon.svg"
 import profileIcon from "../../assets/icons/profileIcon.svg"
 import logo from "../../assets/icons/logo.svg"
-import { Link } from "react-router-dom";
 
 
-const navLinks = [
-    {
-        name: "Home",
-        icon: homeIcon,
-        link: "/"
-    },
-    {
-        name: "Reservation",
-        icon: bookingIcon,
-        link: "/booking"
-    },
-    {
-        name: "Analytics",
-        icon: bookmarkIcon,
-        link: "/analytics"
-    },
-    {
-        name: "DRS Team",
-        icon: bookmarkIcon,
-        link: "/team"
-    },
-];
+const TabList = ["Home", "Reservation", "Analytics", "DRS Team"];
+
+const getIndex = (path: any) => {
+    const currentPage =  String(path).substring(1);
+    console.log(currentPage)
+
+    if (currentPage === "booking") return 1;
+    else if (currentPage === "analytics") return 2;
+    else if (currentPage === "team") return 3;
+    else return 0;
+}
 
 
 const Sidebar = () => {
-    const [selectedTab, updateSelectedTab] = useState("Home")
+    const nagigate = useNavigate();
+    const location = useLocation();
+    console.log(location.pathname);
+    const [selectedTab, updateSelectedTab] = useState(getIndex(location.pathname))
 
+    const navigateSelectedTab = (index: number) => {
+        if (index === 0) return nagigate("/");
+        if (index === 1) return nagigate("/booking");
+        if (index === 2) return nagigate("/analytics");
+        return nagigate("/team"); // index 3
+    };
+    
+    const getItemIcon = (index: number) => {
+        if (index === 0) return HomeIcon;
+        if (index === 1) return ReservationIcon;
+        if (index === 2) return AnalyticsIcon;
+        return TeamIcon;  // index 3
+    };
 
     return (
         <Box
@@ -114,119 +118,61 @@ const Sidebar = () => {
                     lg: "column",
                 },
                 gap: 5,
-                width: "196px",
+                width: "100%",
                 height: "100%",
                 justifyContent: "space-between",
                 // padding: "10px",
                 // backgroundColor: "gray"
             }}>
-                {/* <Box    // logo
-                flexDirection="row">
-                    <Box 
-                    display='flex'
-                    flexDirection='row'
-                    alignItems="center"
-                    paddingLeft={2}
-                    paddingRight={2}
-                    >
-                        <img
-                        src={logo}
-                        alt='enosis'/>
-
-                        <Typography 
-                        variant="h5" 
-                        component="h1"
-                        my={2}
-                        color="white"
-                        margin='5px'
-                        fontWeight={400}
-                        fontSize={18}>
-                            RAC
-                        </Typography>
-
-                        <Typography variant="h5" 
-                        component="h1"
-                        my={2}
-                        color="white"
-                        fontWeight={400}
-                        fontSize={18}
-                        >                        
-                            |
-                        </Typography>
-                        
-                        <Stack
-                        margin='5px'>                        
-                            <Typography  
-                            component="p"
-                            color="#B4C5D9"
-                            fontSize={8}>
-                                Rent-A
-                            </Typography>
-                            <Typography 
-                            component="p"
-                            color="#B4C5D9"
-                            fontSize={8}>
-                                Car
-                            </Typography>
-                        </Stack>
-                    </Box>
-                </Box> */}
-
-                <Box sx={{   // tabs
-                    alignItems: "start",
-                    display: "flex",
-                    flexDirection: "column",
+                <List
+                sx={{
                     gap: "10px",
-                    // color: '#B4C5D9',
-                    fontSize: '13px',
+                    height: `calc(100% - 48px)`,
+                    // bgcolor: "gray",
+                    px: "0",
                 }}
                 >
-                    {navLinks.map((item) => (
-                        <Link
-                        key={item.name}
-                        to={item.link}
-                        style={{ textDecoration: "none" }}
-                        onClick={() => {
-                            updateSelectedTab(item.name)
-                        }}
+                {TabList.map((tabName, index) => (
+                    <ListItem key={tabName} disablePadding={true} sx={{ gap: "14px" }}>
+                        <ListItemButton
+                            alignItems="center"
+                            onClick={() => {
+                                updateSelectedTab(index)
+                                navigateSelectedTab(index)
+                            }}
+                            disableRipple={true}
+                            sx={{
+                            width: "100%",
+                            maxHeight: "46px",
+                            borderRadius: "6px",
+                            mt: 1,
+                            }}             
                         >
                             <Box
-                            sx={{
-                            display: "flex",
-                            alignItems: "center",
-                            gap: 2,
-                            color: "#B4C5D9",
-                            // textDecoration: "none",
-                            height: "46px",
-                            width: "196px",
-                            // borderRadius: "6px",
-                            paddingLeft: "16px",
-                            paddingTop: "12px",
-                            paddingBottom: "12px",
-                            paddingRight: "16px",
-                            borderRadius: "6px",
-                            // backgroundColor: {{selectedTab === item.name ? "#2E4AAE" : "#212B36"}},
-                            }}
-                            bgcolor={selectedTab === item.name ? "#2E4AAE" : "#212B36"}
-                            // bgcolor= {row.status === 1 ? '#2E4AAE' : '#C7D3E1'}
-                            >
-                                <img
-                                src={item.icon}
-                                alt={item.name}
-                                color="#B4C5D9"
-                                style={{
-                                    width: "16.5px",
-                                    height: "16.5px",
-                                }}/>
-                                <Hidden mdDown>
-                                    <Typography fontSize="13px">{item.name}</Typography>
-                                </Hidden>
+                                sx={{
+                                display: "flex",
+                                alignItems: "center",
+                                gap: 2,
+                                color: "#B4C5D9",
+                                // textDecoration: "none",
+                                height: "46px",
+                                width: "100%",
+                                // borderRadius: "6px",
+                                px: "16px",
+                                py: "12px",
+                                borderRadius: "6px",
+                                }}
+                                bgcolor={selectedTab === index ? "#2E4AAE" : "#212B36"}
+                                >
+                                    <img src={getItemIcon(index)} alt={tabName}/>
+                                    <Typography fontSize="13px">{tabName}</Typography>
                             </Box>
-                        </Link>
-                    ))}
-                </Box>
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+                </List>
 
-                <Box // profile
+                <Box // profile */}
                 sx={{
                     display: "flex",
                     alignItems: "center",
