@@ -4,7 +4,6 @@ import { Box, Button, FormControl, MenuItem, Select, TablePaginationProps, Typog
 import MuiPagination from '@mui/material/Pagination';
 import CustomFooter from './CustomFooter';
 import DeleteIcon from '@mui/icons-material/Delete';
-import HomeIcon from "../../assets/icons/HomeIcon.svg";
 
 
 const CustomButtonCell = ({ value }: { value: string }) => {
