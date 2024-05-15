@@ -3,8 +3,6 @@ import Layout from "../../layout";
 import theme from "../../theme";
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
 import { TeamData } from "../../assets/data";
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 
@@ -66,7 +64,7 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
             
             <CardMedia 
             component="img" 
-            image={require("./../../assets/drsTeam/A.A. Fattah Islam.png")}             
+            image={member.image}             
             // image={require("./../../assets/drsTeam${member.image}")} 
             alt="Your Image" 
             sx={{
@@ -74,7 +72,7 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
                 width: "72px",
                 borderRadius: '30px',
                 border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)"
-            }}/>
+            }}/> 
 
             <Typography
             className="Bold 16"
