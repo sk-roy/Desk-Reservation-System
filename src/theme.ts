@@ -23,13 +23,9 @@ const theme = createTheme({
         'none',
         '0px 2px 4px 0px #3A414F0F',
         '0px 1px 4px 0px #4C577314',
+        '0px 1px 4px 0px #4D526421', // 3
         ...Array(19).fill('none'),
     ] as Shadows,
-    
-    // shadows: [
-    //     'none',
-    //     '0px 2px 4px 0px #3A414F0F',
-    // ] as Shadows,
 
     components: {
         MuiTypography : {
@@ -53,6 +49,16 @@ const theme = createTheme({
                         fontWeight: 700,
                         lineHeight: '18px',
                         textAlign: 'left',
+                    }
+                }, {
+                    props: {
+                        className: 'Regular 12',
+                    },
+                    style: {
+                        fontSize: '12px',
+                        fontWeight: 400,
+                        lineHeight: '18px',
+                        textAlign: 'center',
                     }
                 }, {
                     props: {
@@ -84,11 +90,17 @@ const theme = createTheme({
                         fontSize: "16px",
                         fontWeight: 500,
                         lineHeight: "24px",
-                        letterSpacing: "-0.01em",
-                        textAlign: 'left',
+                    },
+                }, {
+                    props: {
+                        className: "Medium 13",
+                    },
+                    style: {
+                        fontSize: "13px",
+                        fontWeight: 500,
+                        lineHeight: "20px",
                     },
                 },
-
             ]
         },
     }
