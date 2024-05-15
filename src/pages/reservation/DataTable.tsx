@@ -1,152 +1,192 @@
 import * as React from 'react';
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
-import { Box } from '@mui/material';
+import { DataGrid, GridColDef, GridFooterContainer, GridPagination, gridPageCountSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
+import { Box, Button, FormControl, MenuItem, Select, TablePaginationProps, Typography } from '@mui/material';
+import MuiPagination from '@mui/material/Pagination';
+import CustomFooter from './CustomFooter';
+import DeleteIcon from '@mui/icons-material/Delete';
+import HomeIcon from "../../assets/icons/HomeIcon.svg";
+
+
+const CustomButtonCell = ({ value }: { value: string }) => {
+  const handleButtonClick = () => {
+    // Handle button click logic here (e.g., open a modal, perform an action, etc.)
+    console.log(value);
+  };
+
+  return (
+    
+    <Box>
+    {value !== 'Cancel' ? (
+      <button 
+      style={{
+        borderRadius: "6px",
+        paddingLeft: "14px",
+        paddingTop: "7px",
+        paddingRight: "14px",
+        paddingBottom: "7px",
+        borderColor: "transparent",
+        fontSize: "12px",
+        fontWeight: "600",
+        backgroundColor: "#EEF3FA",
+      }}
+      onClick={handleButtonClick}>
+        Cancel
+      </button>
+    ) :
+     (
+      <Button
+      variant="outlined"
+      color="secondary"
+      style={{
+        color: 'red',
+        borderColor: 'transparent',
+        fontSize: '10px',
+        fontWeight: 600,
+        backgroundColor: "#EEF3FA",
+      }}
+      startIcon={<DeleteIcon />}
+      onClick={handleButtonClick}
+      >
+        Delete
+      </Button>
+    )}
+  </Box>
+  );
+};
 
 const columns: GridColDef[] = [
-  { field: 'id', headerName: 'ID', width: 70 },
-  { field: 'firstName', headerName: 'First name', width: 130 },
-  { field: 'lastName', headerName: 'Last name', width: 130 },
-  {
-    field: 'age',
-    headerName: 'Age',
-    type: 'number',
-    width: 90,
-  },
-  {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
-    width: 160,
-    valueGetter: (value, row) => `${row.firstName || ''} ${row.lastName || ''}`,
+  { field: 'reservedOn', headerName: 'Reserved On', width: 150 },
+  { field: 'desk', headerName: 'Desk', width: 130 },
+  { field: 'status', headerName: 'Status', width: 130 },
+  { field: 'madeReservedOn', headerName: 'Made Reserved On', width: 130 },
+  { field: 'button', headerName: '', width: 130 ,    
+    renderCell: (params) => <CustomButtonCell value={params.value} />,
   },
 ];
 
 const rows = [
-  { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-  { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-  { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-  { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-  { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-  { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-  { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-  { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-  { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
+  { id: 3, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Wednesday, 21 Aug 2023', desk: 'Desk 501-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Thursday, 12 Aug 2023', desk: 'Desk 701-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
+  { id: 3, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
+  { id: 3, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Wednesday, 21 Aug 2023', desk: 'Desk 501-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Thursday, 12 Aug 2023', desk: 'Desk 701-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
+  { id: 3, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
+  { id: 3, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Wednesday, 21 Aug 2023', desk: 'Desk 501-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Thursday, 12 Aug 2023', desk: 'Desk 701-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
+  { id: 3, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
+  { id: 3, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
+ 
 ];
 
 
-const CustomPagination: React.FC = () => {
-    // You can implement your own pagination logic here
-    // For simplicity, I'll just display page numbers
-    const totalPages = 50; // Example: Total pages from your data
+export default function DataTable() {
+  const initialPage = 0;
+  const initialRowsPerPage = 10;
+  const rowsPerPageOptions = [10, 15, 20];
+
+  const [page, setPage] = React.useState<number>(initialPage);
+  const [rowsPerPage, setRowsPerPage] = React.useState<number>(initialRowsPerPage);
+
+
   
-    const handlePageChange = (newPage: number) => {
-      // Handle page change (e.g., fetch data for the new page)
-      console.log(`Go to page ${newPage + 1}`);
-    };
-  
-    return (
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "gray"}}>
-        <Box display= 'flex' justifyContent= 'space-between' alignItems= 'left' >
-          Showing 10 items per page
-        </Box>
-        <div>
-          <button onClick={() => handlePageChange(0)}>A</button>
-          {[...Array(totalPages)].map((_, index) => (
-            <button
-              key={index}
-              onClick={() => handlePageChange(index)}
-              style={{ fontWeight: 'bold' }}
-            >
-              {index + 1}
-            </button>
-          ))}
-          <button onClick={() => handlePageChange(totalPages - 1)}>B</button>
-        </div>
-      </div>
-    );
+  const datagridSx = {
+    border: 0,
+    '& .MuiDataGrid-columnHeader': {
+        outline: 'none !important',
+        // color: theme.palette.text.secondary,
+        fontSize: '12px',
+        fontFamily: 'Inter',
+        fontWeight: '800',
+        lineHeight: '18px',
+        wordWrap: 'break-word',
+        paddingLeft: '20px',
+    },
+    '& .MuiDataGrid-columnSeparator': {
+        display: 'none',
+    },
+    '& .MuiDataGrid-cell': {
+        outline: 'none !important',
+    },
+    '& .MuiDataGrid-row:hover': {
+        cursor: 'pointer',
+        backgroundColor: "#E8EDF5",
+        boxShadow: 1,
+        borderRadius: 2,
+    },
+    '& .MuiDataGrid-iconButtonContainer': {
+        marginTop: '3px',
+        visibility: 'visible !important',
+    },
+    '& .MuiDataGrid-row': {
+        backgroundColor: "#EEF3FA",
+    },
+};
+
+
+
+
+  const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
+    setPage(newPage - 1);
   };
 
-export default function DataTable() {
+  const handlePageSizeChange = (newPageSize: number) => {
+      setPage(initialPage);
+      setRowsPerPage(newPageSize);
+  };
+
+  const Footer = () => {
+    return (
+        <GridFooterContainer>
+            <CustomFooter
+                totalRows={rows.length}
+                page={page}
+                rowsPerPageOptions={rowsPerPageOptions}
+                pageSize={rowsPerPage}
+                onPageSizeChangeCallback={handlePageSizeChange}
+                onPageChangeCallback={handlePageChange}
+            />
+        </GridFooterContainer>
+    );
+};
   return (
-    <div style={{ height: 400, width: '100%' }}>
+    <Box sx={{ height: "500px", width: '100%' }}>
       <DataGrid
+        sx={datagridSx}
         rows={rows}
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 5 },
+            paginationModel: { page: initialPage, pageSize: initialRowsPerPage },
           },
         }}
+        pagination={true}
         slots={{
-            pagination: CustomPagination
+            footer: Footer,
         }}
-        pageSizeOptions={[5, 10]}
+        autoPageSize={true}
+        sortingOrder={['asc', 'desc', null]}
+        autoHeight={true}
+        disableRowSelectionOnClick
+        paginationModel={{
+            pageSize: rowsPerPage,
+            page: page,
+        }}
+        // pageSizeOptions={[5, 10, 15]}
         checkboxSelection
       />
-    </div>
+    </Box>
   );
 }
 
 
-
-// import React from 'react';
-// import { DataGrid, GridColDef } from '@mui/x-data-grid';
-// import { Box } from '@mui/material';
-
-// const columns: GridColDef[] = [
-//   { field: 'id', headerName: 'ID' },
-//   { field: 'title', headerName: 'Title', width: 300 },
-//   { field: 'body', headerName: 'Body', width: 600 },
-// ];
-
-// const CustomPagination: React.FC = () => {
-//   // You can implement your own pagination logic here
-//   // For simplicity, I'll just display page numbers
-//   const totalPages = 50; // Example: Total pages from your data
-
-//   const handlePageChange = (newPage: number) => {
-//     // Handle page change (e.g., fetch data for the new page)
-//     console.log(`Go to page ${newPage + 1}`);
-//   };
-
-//   return (
-//     <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: "gray"}}>
-//       <Box display= 'flex' justifyContent= 'space-between' alignItems= 'left' >
-//         Showing 10 items per page
-//       </Box>
-//       <div>
-//         <button onClick={() => handlePageChange(0)}>A</button>
-//         {[...Array(totalPages)].map((_, index) => (
-//           <button
-//             key={index}
-//             onClick={() => handlePageChange(index)}
-//             style={{ fontWeight: 'bold' }}
-//           >
-//             {index + 1}
-//           </button>
-//         ))}
-//         <button onClick={() => handlePageChange(totalPages - 1)}>B</button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// const DataTable: React.FC = () => {
-//   // Assume you have fetched data and set it to `tableData`
-//   const tableData: any[] = []; // Example: Fetch data from API
-
-//   return (
-//     <div style={{ height: 400, width: '100%' }}>
-//       <DataGrid
-//         rows={tableData}
-//         columns={columns}
-//         slots={{ pagination: CustomPagination }}
-//         // pagination
-//         // pageSize={10}
-//       />
-//     </div>
-//   );
-// };
-
-// export default DataTable;

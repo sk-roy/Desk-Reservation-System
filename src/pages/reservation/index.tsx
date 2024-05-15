@@ -57,7 +57,7 @@ const Header = () => {
             display="flex"
             flexDirection="column"
             height="72px"
-            width="1156px"
+            width="100%"
             paddingBottom="8px"
             gap="6px"
             >          
@@ -87,11 +87,11 @@ const Header = () => {
             <Box   // Booking action bar
             display="flex"
             flexDirection="row"
-            width="1156px"
+            width="100%"
             gap="32px"
-            alignItems="space-between"
+            // alignItems="space-between"
             // bgcolor="gray"
-            // justifyContent='space-between'
+            justifyContent='space-between'
             >
                 <Box   // select date to filter - this month
                 display="flex"
@@ -181,7 +181,7 @@ const Booking = () => {
             paddingLeft="32px"
             paddingTop="32px"
             paddingRight="32px"
-            width="1220px"
+            width="100%"
             height='900px'
             gap="12px"
             >
@@ -189,7 +189,7 @@ const Booking = () => {
                 <Box
                     height='1000px'
                 >
-                    <EnhancedTable/>
+                    <DataTable/>
                 </Box>
             </Box>
         </Layout>

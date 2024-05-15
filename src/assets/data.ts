@@ -9,6 +9,40 @@ export const ReservationList = [
 ];
 
 
+export const ReservationTableData = [
+  { id: 1, ReservedOn: 'Friday, 26 Oct 2023', Desk: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 2, ReservedOn: 'Saturday, 27 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 3, ReservedOn: 'Friday, 28 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 4, ReservedOn: 'Friday, 29 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 5, ReservedOn: 'Friday, 30 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 6, ReservedOn: 'Friday, 31 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 7, ReservedOn: 'Friday, 01 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 8, ReservedOn: 'Friday, 02 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 9, ReservedOn: 'Friday, 03 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 10, ReservedOn: 'Friday, 04 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 11, ReservedOn: 'Friday, 26 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 12, ReservedOn: 'Saturday, 27 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 13, ReservedOn: 'Friday, 28 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 14, ReservedOn: 'Friday, 29 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 15, ReservedOn: 'Friday, 30 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 16, ReservedOn: 'Friday, 31 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 17, ReservedOn: 'Friday, 01 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 18, ReservedOn: 'Friday, 02 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 19, ReservedOn: 'Friday, 03 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 20, ReservedOn: 'Friday, 04 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 21, ReservedOn: 'Friday, 26 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 22, ReservedOn: 'Saturday, 27 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 23, ReservedOn: 'Friday, 28 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 24, ReservedOn: 'Friday, 29 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 25, ReservedOn: 'Friday, 30 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 26, ReservedOn: 'Friday, 31 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 27, ReservedOn: 'Friday, 01 Oct 2023', col2: 'Desk 301-03', Status: 'Attended', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Delete' },
+  { id: 28, ReservedOn: 'Friday, 02 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 29, ReservedOn: 'Friday, 03 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+  { id: 30, ReservedOn: 'Friday, 04 Oct 2023', col2: 'Desk 301-03', Status: 'Upcoming', MadeReservationOn: '27 Oct 2022 6:22 AM', Button: 'Cancel' },
+];
+
+
 export const TeamData = [
   { name: "A.A. Fattah Islam", designation: "Software QA Technical Lead", email: "fattah.islam@enosisbd.com", image: "./../../assets/drsTeam/A.A. Fattah Islam.png"},
   { name: "Aminul Islam", designation: "Senior Software Development Manager", email: "aminul@enosisbd.com", image: "./../../assets/drsTeam/Aminul Islam.png"},
