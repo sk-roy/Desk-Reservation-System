@@ -1,50 +1,65 @@
 import * as React from 'react';
 import { DataGrid, GridColDef, GridFooterContainer, GridPagination, gridPageCountSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
-import { Box, Button, FormControl, MenuItem, Select, TablePaginationProps, Typography } from '@mui/material';
+import { Box, Button, FormControl, MenuItem, Select, TablePaginationProps, Typography, colors } from '@mui/material';
 import MuiPagination from '@mui/material/Pagination';
 import CustomFooter from './CustomFooter';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { ClassNames, useTheme } from '@emotion/react';
+import theme from '../../theme';
+import { DataGridRows } from '../../assets/data';
+import { BorderBottom, Padding } from '@mui/icons-material';
 
 
-const CustomButtonCell = ({ value }: { value: string }) => {
-  const handleButtonClick = () => {
-    // Handle button click logic here (e.g., open a modal, perform an action, etc.)
-    console.log(value);
-  };
+const StatusCell = ({ status }: {status: number}) => {
+  return (    
+    <Box sx={{      
+      borderRadius: '6px',
+      height: '24px',
+      width: '75px',
+      py: "3px",
+      px: "8px",
+      marginY: "14px",
+    }}      
+    bgcolor= {status === 1 ? '#3E61DE26' : '#8092A326'}
+    >
+        {status === 1 ? <Typography className='Semi Bold 12' color='#3E61DE'>Upcoming</Typography>
+                      : <Typography className='Semi Bold 12' color={theme.palette.grey[200]}>Attended</Typography>}
+    </Box>
+  );
+}
 
-  return (
-    
+const CustomButtonCell = ({ status }: { status: number }) => {
+  return (    
     <Box>
-    {value !== 'Cancel' ? (
-      <button 
-      style={{
+    {status === 1 ? (
+      <Button 
+      sx={{
         borderRadius: "6px",
         paddingLeft: "14px",
         paddingTop: "7px",
         paddingRight: "14px",
         paddingBottom: "7px",
-        borderColor: "transparent",
+        // borderColor: "transparent",
+        textTransform: "none",
         fontSize: "12px",
         fontWeight: "600",
         backgroundColor: "#EEF3FA",
-      }}
-      onClick={handleButtonClick}>
-        Cancel
-      </button>
+      }}>
+        <Typography className='Semi Bold 12' color={theme.palette.grey[400]}>Cancel</Typography>
+      </Button>
     ) :
      (
       <Button
       variant="outlined"
-      color="secondary"
-      style={{
+      sx={{
         color: 'red',
-        borderColor: 'transparent',
+        textTransform: "none",
+        paddingBottom: "7px",
         fontSize: '10px',
         fontWeight: 600,
         backgroundColor: "#EEF3FA",
       }}
       startIcon={<DeleteIcon />}
-      onClick={handleButtonClick}
       >
         Delete
       </Button>
@@ -53,41 +68,55 @@ const CustomButtonCell = ({ value }: { value: string }) => {
   );
 };
 
+
+const DeskCell = ({ status, desk }: {status: number, desk: string}) => {
+  return (    
+    <Box marginY= "14px">
+        {status === 1 ? <Typography className='Semi Bold 13' color='#2E4AAE'>{desk}</Typography>
+                      : <Typography className='Semi Bold 13' color={theme.palette.grey[300]}>{desk}</Typography>}
+                      
+    </Box>
+  );
+}
+
+const ReservedOnCell = ({ status, reservedOn }: {status: number, reservedOn: string}) => {
+  return (    
+    <Box marginY= "14px">
+        {status === 1 ? <Typography className='Semi Bold 14' color={theme.palette.primary.dark}>{reservedOn}</Typography>
+                      : <Typography className='Semi Bold 14' color={theme.palette.grey[300]}>{reservedOn}</Typography>}
+                      
+    </Box>
+  );
+}
+const MadeReservedOnCell = ({ status, madeReservedOn }: {status: number, madeReservedOn: string}) => {
+  return (    
+    <Box marginY= "14px">
+        {status === 1 ? <Typography className='Medium 13' color={theme.palette.grey[400]}>{madeReservedOn}</Typography>
+                      : <Typography className='Medium 13' color={theme.palette.grey[300]}>{madeReservedOn}</Typography>}
+                      
+    </Box>
+  );
+}
+
+const columnLenth = 5;
+
 const columns: GridColDef[] = [
-  { field: 'reservedOn', headerName: 'Reserved On', width: 150 },
-  { field: 'desk', headerName: 'Desk', width: 130 },
-  { field: 'status', headerName: 'Status', width: 130 },
-  { field: 'madeReservedOn', headerName: 'Made Reserved On', width: 130 },
-  { field: 'button', headerName: '', width: 130 ,    
-    renderCell: (params) => <CustomButtonCell value={params.value} />,
+  { field: 'reservedOn', headerName: 'Reserved On', flex: (1/columnLenth), sortable: true,
+    renderCell: (params) => <ReservedOnCell {...params.row} />
+  },
+  { field: 'desk', headerName: 'Desk', flex: (1/columnLenth), sortable: true,
+    renderCell: (params) => <DeskCell {...params.row} />
+  },
+  { field: 'status', headerName: 'Status', flex: (1/columnLenth), sortable: true,
+    renderCell: (params) => <StatusCell status={params.value} />,
+  },
+  { field: 'madeReservedOn', headerName: 'Made Reserved On', flex: (1/columnLenth), sortable: true,
+    renderCell: (params) => <MadeReservedOnCell {...params.row} />
+  },
+  { field: 'button', headerName: '', flex: (1/columnLenth), sortable: true,
+    renderCell: (params) => <CustomButtonCell {...params.row} />,
   },
 ];
-
-const rows = [
-  { id: 3, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Wednesday, 21 Aug 2023', desk: 'Desk 501-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Thursday, 12 Aug 2023', desk: 'Desk 701-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
-  { id: 3, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
-  { id: 3, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Wednesday, 21 Aug 2023', desk: 'Desk 501-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Thursday, 12 Aug 2023', desk: 'Desk 701-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
-  { id: 3, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
-  { id: 3, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Wednesday, 21 Aug 2023', desk: 'Desk 501-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Thursday, 12 Aug 2023', desk: 'Desk 701-03', status: 'Upcoming', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Cancel'  },
-  { id: 3, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
-  { id: 3, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 'Attended', madeReservedOn: '27 Oct 2022 6:22 AM', button: 'Delete'  },
- 
-];
-
 
 export default function DataTable() {
   const initialPage = 0;
@@ -101,39 +130,17 @@ export default function DataTable() {
   
   const datagridSx = {
     border: 0,
+    paddingLeft: "50px",
     '& .MuiDataGrid-columnHeader': {
-        outline: 'none !important',
-        // color: theme.palette.text.secondary,
-        fontSize: '12px',
-        fontFamily: 'Inter',
-        fontWeight: '800',
-        lineHeight: '18px',
+        ClassName: "Medium 12",
+        colors: "#8092A3",
         wordWrap: 'break-word',
-        paddingLeft: '20px',
-    },
-    '& .MuiDataGrid-columnSeparator': {
-        display: 'none',
-    },
-    '& .MuiDataGrid-cell': {
-        outline: 'none !important',
-    },
-    '& .MuiDataGrid-row:hover': {
-        cursor: 'pointer',
-        backgroundColor: "#E8EDF5",
-        boxShadow: 1,
-        borderRadius: 2,
-    },
-    '& .MuiDataGrid-iconButtonContainer': {
-        marginTop: '3px',
-        visibility: 'visible !important',
+        
     },
     '& .MuiDataGrid-row': {
-        backgroundColor: "#EEF3FA",
+        BorderBottom: "1px solid var(--Offwhite-Offwhite-3, #E8EDF5)",
     },
-};
-
-
-
+  };  
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
@@ -148,7 +155,7 @@ export default function DataTable() {
     return (
         <GridFooterContainer>
             <CustomFooter
-                totalRows={rows.length}
+                totalRows={DataGridRows.length}
                 page={page}
                 rowsPerPageOptions={rowsPerPageOptions}
                 pageSize={rowsPerPage}
@@ -159,10 +166,10 @@ export default function DataTable() {
     );
 };
   return (
-    <Box sx={{ height: "500px", width: '100%' }}>
+    <Box sx={{ height: "530px", width: '100%' }}>
       <DataGrid
         sx={datagridSx}
-        rows={rows}
+        rows={DataGridRows}
         columns={columns}
         initialState={{
           pagination: {
@@ -174,8 +181,8 @@ export default function DataTable() {
             footer: Footer,
         }}
         autoPageSize={true}
-        sortingOrder={['asc', 'desc', null]}
-        autoHeight={true}
+        // sortingOrder={['asc', 'desc', null]}
+        // autoHeight={true}
         disableRowSelectionOnClick
         paginationModel={{
             pageSize: rowsPerPage,

@@ -42,6 +42,26 @@ const theme = createTheme({
                     }
                 }, {
                     props: {
+                        className: 'Semi Bold 13',
+                    },
+                    style: {
+                        fontSize: '13px',
+                        fontWeight: 600,
+                        lineHeight: '20px',
+                        textAlign: 'left',
+                    }
+                }, {
+                    props: {
+                        className: 'Semi Bold 14',
+                    },
+                    style: {
+                        fontSize: '14px',
+                        fontWeight: 600,
+                        lineHeight: '20px',
+                        textAlign: 'left',
+                    }
+                }, {
+                    props: {
                         className: 'Bold 12',
                     },
                     style: {
@@ -84,12 +104,12 @@ const theme = createTheme({
                     }
                 }, {
                     props: {
-                        className: "Medium 16",
+                        className: "Medium 12",
                     },
                     style: {
-                        fontSize: "16px",
+                        fontSize: "12px",
                         fontWeight: 500,
-                        lineHeight: "24px",
+                        lineHeight: "18px",
                     },
                 }, {
                     props: {
@@ -100,9 +120,41 @@ const theme = createTheme({
                         fontWeight: 500,
                         lineHeight: "20px",
                     },
+                }, {
+                    props: {
+                        className: "Medium 16",
+                    },
+                    style: {
+                        fontSize: "16px",
+                        fontWeight: 500,
+                        lineHeight: "24px",
+                    },
                 },
             ]
         },
+        MuiButton: {
+            variants: [
+                {
+                    props: {
+                        className: 'Cancel',
+                    },
+                    style: {
+                        borderRadius: "6px",
+                        px: "14px",
+                        py: "7px",
+                    }
+                }, {
+                    props: {
+                        className: 'Delete',
+                    },
+                    style: {
+                        borderRadius: "6px",
+                        px: "14px",
+                        py: "7px",
+                    }
+                },
+            ]
+        }
     }
 });
 

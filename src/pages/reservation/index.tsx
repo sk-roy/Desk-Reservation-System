@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../../layout";
 import { Box, Button, FormControl, MenuItem, Select, Typography } from "@mui/material";
-import DateRangeFilter from "./DateRangeFilter";
-import EnhancedTable from "./EnhancedTable";
 import DataTable from "./DataTable";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Height } from "@mui/icons-material";
 
 
 
@@ -38,7 +32,7 @@ const SelectDept: React.FC<SelectDeptProps> = ({ department }) => {
                     color: "#6C859B",
                 }}
             >
-                <MenuItem value={'Human Research'}>Human Research</MenuItem>
+                {/* <MenuItem value={'Human Research'}>Human Research</MenuItem> */}
             </Select>
         </FormControl>
     );
@@ -50,6 +44,7 @@ const Header = () => {
         display="flex"
         flexDirection="column"
         alignItems='space-between'
+        px="32px"
         // height="214px"
         gap='6px'
         >
@@ -89,6 +84,7 @@ const Header = () => {
             flexDirection="row"
             width="100%"
             gap="32px"
+            px="32px"
             // alignItems="space-between"
             // bgcolor="gray"
             justifyContent='space-between'
@@ -178,9 +174,9 @@ const Booking = () => {
             // alignItems='flex-start'
             justifyContent='space-between'
             // spacing={1
-            paddingLeft="32px"
+            // paddingLeft="32px"
             paddingTop="32px"
-            paddingRight="32px"
+            // paddingRight="32px"
             width="100%"
             height='900px'
             gap="12px"
@@ -188,6 +184,7 @@ const Booking = () => {
                 <Header/>
                 <Box
                     height='1000px'
+                    bgcolor="#F9FAFB"
                 >
                     <DataTable/>
                 </Box>
