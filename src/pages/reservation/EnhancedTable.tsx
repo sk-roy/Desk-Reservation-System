@@ -233,7 +233,7 @@ function EnhancedTableToolbar(props: EnhancedTableToolbarProps) {
         pr: { xs: 1, sm: 1 },
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
+            alpha("#FFFFFF", theme.palette.action.activatedOpacity),
         }),
       }}
     >

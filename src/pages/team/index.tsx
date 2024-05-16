@@ -16,10 +16,10 @@ const Header = () => {
         borderBottom= "1px solid var(--Offwhite-Offwhite-3, #E8EDF5)"
         padding= "32px"
         gap= "12px"
-        bgcolor= {theme.palette.primary.main}
+        bgcolor= "#FFFFFF"
         boxShadow= {theme.shadows[1]}
         >
-            <Typography className="Bold 24" color={theme.palette.primary.dark}>
+            <Typography className="Bold 24" color="#212B36">
                 DRS Tech Team
             </Typography>
             <Typography className="Medium 16" color={theme.palette.grey[400]}>
@@ -76,7 +76,7 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
 
             <Typography
             className="Bold 16"
-            color={theme.palette.primary.dark}>
+            color="#212B36">
                 {member.name}
             </Typography>
             <Typography

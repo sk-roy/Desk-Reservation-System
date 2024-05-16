@@ -5,10 +5,6 @@ import { Shadows, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-        primary: {
-            main: "#FFFFFF",
-            dark: "#212B36",
-        },
         grey: {
             200: '#8092A3',
             300: '#6C859B',
