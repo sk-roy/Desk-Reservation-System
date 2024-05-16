@@ -58,6 +58,7 @@ const CustomButtonCell = ({ status }: { status: number }) => {
         fontSize: '10px',
         fontWeight: 600,
         backgroundColor: "#EEF3FA",
+        borderColor: "transparent"
       }}
       startIcon={<DeleteIcon />}
       >
@@ -98,22 +99,28 @@ const MadeReservedOnCell = ({ status, madeReservedOn }: {status: number, madeRes
   );
 }
 
-const columnLenth = 5;
+const columnLenth = 6;
 
 const columns: GridColDef[] = [
-  { field: 'reservedOn', headerName: 'Reserved On', flex: (1/columnLenth), sortable: true,
+  { 
+    field: 'reservedOn', headerName: 'Reserved On', flex: (1/columnLenth), sortable: true,
+    disableColumnMenu: true,
     renderCell: (params) => <ReservedOnCell {...params.row} />
-  },
-  { field: 'desk', headerName: 'Desk', flex: (1/columnLenth), sortable: true,
+  }, {
+    field: 'desk', headerName: 'Desk', flex: (1/columnLenth), sortable: true,
+    disableColumnMenu: true,
     renderCell: (params) => <DeskCell {...params.row} />
-  },
-  { field: 'status', headerName: 'Status', flex: (1/columnLenth), sortable: true,
+  }, { 
+    field: 'status', headerName: 'Status', flex: (1/columnLenth), sortable: true,
+    disableColumnMenu: true,
     renderCell: (params) => <StatusCell status={params.value} />,
-  },
-  { field: 'madeReservedOn', headerName: 'Made Reserved On', flex: (1/columnLenth), sortable: true,
+  },{ 
+    field: 'madeReservedOn', headerName: 'Made Reserved On', flex: (1/columnLenth), sortable: true,
+    disableColumnMenu: true,
     renderCell: (params) => <MadeReservedOnCell {...params.row} />
-  },
-  { field: 'button', headerName: '', flex: (1/columnLenth), sortable: true,
+  },{
+    field: 'button', headerName: '', flex: (1/columnLenth), sortable: true,
+    disableColumnMenu: true,
     renderCell: (params) => <CustomButtonCell {...params.row} />,
   },
 ];
@@ -130,15 +137,19 @@ export default function DataTable() {
   
   const datagridSx = {
     border: 0,
-    paddingLeft: "50px",
     '& .MuiDataGrid-columnHeader': {
         ClassName: "Medium 12",
         colors: "#8092A3",
         wordWrap: 'break-word',
-        
+        paddingLeft: "20px",
     },
     '& .MuiDataGrid-row': {
         BorderBottom: "1px solid var(--Offwhite-Offwhite-3, #E8EDF5)",
+        backgroundcolor: "#E8EDF5",
+        paddingLeft: "18px",
+    },
+    '& .hideRightSeparator > .MuiDataGrid-columnSeparator': {
+        display: 'none',
     },
   };  
 

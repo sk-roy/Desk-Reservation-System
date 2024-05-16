@@ -137,22 +137,22 @@ const Header = () => {
                         <MenuItem value={1}>Status</MenuItem>
                     </Select>
                 </Box>
+                {/* <Button>Reserve a Desk</Button> */}
                 <Box>                                
-                    <Button   // Book-A-Car button
-                    style={{
-                        backgroundColor: "#2E4AAE",
-                        fontSize: "14px",
-                        fontWeight: "600",
-                        color: "#FFFFFF",
-                        paddingLeft: "14px",
-                        paddingRight: "14px",
-                        paddingTop: "7px",
-                        paddingBottom: "7px",
+                    <Button
+                    sx={{
                         borderRadius: "8px",
-                        borderColor: "transparent",
+                        px: "16px",
+                        py: "9px",
+                        backgroundColor: "#2E4AAE",
                         textTransform: "none",
-                    }}>  
-                        Book A Desk
+                        '&:hover': {
+                          backgroundColor: '#2E4AAE',
+                          boxShadow: "0px 1px 2px 1px #2E4AAE",
+                        },
+                    }}
+                    >  
+                        <Typography className="Semi Bold 13" color="#FFFFFF">Reserve a Desk</Typography>
                     </Button>
                 </Box>
             </Box>
@@ -171,23 +171,14 @@ const Booking = () => {
             <Box 
             display='flex'
             flexDirection='column'
-            // alignItems='flex-start'
             justifyContent='space-between'
-            // spacing={1
-            // paddingLeft="32px"
             paddingTop="32px"
-            // paddingRight="32px"
             width="100%"
-            height='900px'
+            height="100vh"
             gap="12px"
             >
                 <Header/>
-                <Box
-                    height='1000px'
-                    bgcolor="#F9FAFB"
-                >
-                    <DataTable/>
-                </Box>
+                <DataTable/>
             </Box>
         </Layout>
     );
