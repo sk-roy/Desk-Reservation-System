@@ -136,7 +136,7 @@ const Team = () => {
         <Layout>
             <Box
             width="100%"
-            height="900px"
+            // height="900px"
             display="flex"
             flexDirection="column"
             bgcolor="#F9FAFB"

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridFooterContainer, GridPagination, gridPageCountSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
-import { Box, Button, FormControl, MenuItem, Select, TablePaginationProps, Typography, colors } from '@mui/material';
+import { DataGrid, GridColDef, GridFooterContainer, GridPagination, GridRowParams, gridPageCountSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
+import { Box, Button, FormControl, MenuItem, Select, Stack, TablePaginationProps, Typography, colors } from '@mui/material';
 import MuiPagination from '@mui/material/Pagination';
 import CustomFooter from './CustomFooter';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -8,6 +8,7 @@ import { ClassNames, useTheme } from '@emotion/react';
 import theme from '../../theme';
 import { DataGridRows } from '../../assets/data';
 import { BorderBottom, Padding } from '@mui/icons-material';
+import IconUnsorted from "../../assets/icons/chevron-selector-vertical.svg"
 
 
 const StatusCell = ({ status }: {status: number}) => {
@@ -111,16 +112,16 @@ const columns: GridColDef[] = [
     disableColumnMenu: true,
     renderCell: (params) => <DeskCell {...params.row} />
   }, { 
-    field: 'status', headerName: 'Status', flex: (1/columnLenth), sortable: true,
-    disableColumnMenu: true,
+    field: 'status', headerName: 'Status', flex: (1/columnLenth),
+    disableColumnMenu: true, headerClassName: 'status-header',
     renderCell: (params) => <StatusCell status={params.value} />,
   },{ 
     field: 'madeReservedOn', headerName: 'Made Reserved On', flex: (1/columnLenth), sortable: true,
     disableColumnMenu: true,
     renderCell: (params) => <MadeReservedOnCell {...params.row} />
   },{
-    field: 'button', headerName: '', flex: (1/columnLenth), sortable: true,
-    disableColumnMenu: true,
+    field: 'button', headerName: '', flex: (1/columnLenth),
+    disableColumnMenu: true, headerClassName: 'button-header',
     renderCell: (params) => <CustomButtonCell {...params.row} />,
   },
 ];
@@ -138,6 +139,7 @@ export default function DataTable() {
   const datagridSx = {
     border: 0,
     '& .MuiDataGrid-columnHeader': {
+        outline: 'none !important',
         ClassName: "Medium 12",
         colors: "#8092A3",
         wordWrap: 'break-word',
@@ -147,11 +149,38 @@ export default function DataTable() {
         BorderBottom: "1px solid var(--Offwhite-Offwhite-3, #E8EDF5)",
         backgroundcolor: "#E8EDF5",
         paddingLeft: "18px",
+        alignItems: 'center',
     },
     '& .hideRightSeparator > .MuiDataGrid-columnSeparator': {
         display: 'none',
     },
+    '& .MuiDataGrid-columnSeparator': {
+        display: 'none',
+    },
+    '& .MuiDataGrid-columnHeaderTitleContainer': {
+        display: 'flex',
+        ClassNames: "Medium 12",
+    },
+    '& .MuiDataGrid-cell': {
+        outline: 'none !important',
+        Padding: '0px !important'
+    },
+    '& .MuiDataGrid-iconButtonContainer': {
+        marginTop: '3px',
+        visibility: 'visible !important',
+      },
+      '& .status-header .MuiDataGrid-iconButtonContainer': {
+          display: 'none',
+      },
+      '& .button-header .MuiDataGrid-iconButtonContainer': {
+          display: 'none',
+      },
   };  
+
+  const rowClicked = (params: GridRowParams<any>) => {
+      console.log('Row clicked');
+     // if (rowClick) rowClick(params.row);
+  };
 
   const handlePageChange = (event: React.ChangeEvent<unknown>, newPage: number) => {
     setPage(newPage - 1);
@@ -176,8 +205,38 @@ export default function DataTable() {
         </GridFooterContainer>
     );
 };
+
+const UnsortedIcon = () => {
   return (
-    <Box sx={{ height: "530px", width: '100%' }}>
+      <Box>
+          <img src={IconUnsorted} alt='UnsortedIcon'></img>
+      </Box>
+  );
+};
+
+const AscendingIcon = () => {
+    return (
+        <Box>
+            <img src={IconUnsorted} alt='AscendingIcon'></img>
+        </Box>
+    );
+};
+
+const DescendingIcon = () => {
+    return (
+        <Box>
+            <img src={IconUnsorted} alt='DescendingIcon'></img>
+        </Box>
+    );
+};
+
+const CustomNoRowsOverlay = () => {
+    return <Stack></Stack>;
+};
+
+
+  return (
+    <Box sx={{ height: 'calc(100vh - 174px)', width: '100%' }}>
       <DataGrid
         sx={datagridSx}
         rows={DataGridRows}
@@ -187,19 +246,23 @@ export default function DataTable() {
             paginationModel: { page: initialPage, pageSize: initialRowsPerPage },
           },
         }}
+        onRowClick={rowClicked}
+        disableRowSelectionOnClick
+        // sortingOrder={['asc', 'desc', null]}
         pagination={true}
+        rowHeight={66}
         slots={{
-            footer: Footer,
+          columnSortedDescendingIcon: DescendingIcon,
+          columnSortedAscendingIcon: AscendingIcon,
+          columnUnsortedIcon: UnsortedIcon,
+          footer: Footer,
+          noRowsOverlay: CustomNoRowsOverlay,
         }}
         autoPageSize={true}
-        // sortingOrder={['asc', 'desc', null]}
-        // autoHeight={true}
-        disableRowSelectionOnClick
         paginationModel={{
             pageSize: rowsPerPage,
             page: page,
         }}
-        // pageSizeOptions={[5, 10, 15]}
         checkboxSelection
       />
     </Box>

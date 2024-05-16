@@ -198,7 +198,7 @@ const Sidebar = () => {
             flexDirection: "column",
             alignItems: "center",
             width: "100%",
-            height: "900px",
+            height: "100vh",
             gap: 5
         }}>
             <Logo/>

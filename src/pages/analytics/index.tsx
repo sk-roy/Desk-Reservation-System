@@ -8,12 +8,12 @@ import UtilisationIcon from "../../components/images/AnalyticsPage/AnalyticsUtil
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import BarChart from "./BarChart";
-import PieChart2 from "./PieChart";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AreaChart from "./AreaChart";
 import theme from "../../theme";
 import { green } from "@mui/material/colors";
+import PieChart from "./PieChart";
 
 
 interface SelectDeptProps {
@@ -367,62 +367,7 @@ const BodyPart3ChartsAnalysis = () => {
                     </Box>                            
                     
                     <BarChart/>
-{/*                     
-                    <Box   // Body 4.3
-                    display="flex"
-                    justifyContent="space-between"
-                    flexDirection="row"
-                    height="34px"
-                    bgcolor="#E8EDF5"
-                    width="100%"
-                    borderRadius="6px"
-                    padding="8px"
-                    gap="8px">
-                        <ArrowBackIcon
-                        sx={{
-                            height: "18px",
-                            width: "18px",
-                            borderRadius: "20px",
-                            border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
-                            padding: "3px",
-                            bgcolor: "#F9FAFB",
-                        }}/>
-
-                        <Typography
-                        fontSize="12px"
-                        fontWeight={600}
-                        lineHeight="18px"
-                        color={theme.palette.grey[300]}
-                        sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                        }}>
-                            Week 1, Jan 2024
-                        </Typography>
-                        <Typography
-                        fontSize="12px"
-                        fontWeight={600}
-                        lineHeight="18px"
-                        color={theme.palette.grey[300]}
-                        sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                        }}>
-                            Week 2, Jan 2024
-                        </Typography>
-
-                        <ArrowForwardIcon
-                        sx={{
-                            height: "18px",
-                            width: "18px",
-                            borderRadius: "20px",
-                            border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
-                            padding: "3px",
-                            bgcolor: "#F9FAFB",
-                        }}/>
-                    </Box>  */}
+                    
                     <WeekBar/>
 
                 </Box>
@@ -484,7 +429,7 @@ const BodyPart3ChartsAnalysis = () => {
                         </Box>
                     </Box>   
 
-                    <PieChart2/>
+                    <PieChart/>
                 </Box>
             </Box>
         </>

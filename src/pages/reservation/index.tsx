@@ -45,7 +45,7 @@ const Header = () => {
         flexDirection="column"
         alignItems='space-between'
         px="32px"
-        // height="214px"
+        //height="130px"
         gap='6px'
         >
             <Box // Frame 45 - Booking
@@ -84,7 +84,7 @@ const Header = () => {
             flexDirection="row"
             width="100%"
             gap="32px"
-            px="32px"
+            // px="32px"
             // alignItems="space-between"
             // bgcolor="gray"
             justifyContent='space-between'
@@ -175,7 +175,7 @@ const Booking = () => {
             paddingTop="32px"
             width="100%"
             height="100vh"
-            gap="12px"
+            maxHeight="100vh"
             >
                 <Header/>
                 <DataTable/>
