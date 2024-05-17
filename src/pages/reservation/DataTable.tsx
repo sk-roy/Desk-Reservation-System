@@ -163,7 +163,10 @@ export default function DataTable() {
     },
     '& .MuiDataGrid-cell': {
         outline: 'none !important',
-        Padding: '0px !important'
+        // Padding: '0px !important'
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
     },
     '& .MuiDataGrid-iconButtonContainer': {
         marginTop: '3px',
