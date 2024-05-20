@@ -48,9 +48,9 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
     };
 
     return (
-        <Card
-        // bgcolor= {theme.palette.primary.main}
-        // boxShadow= {theme.shadows[3]}
+        <Box        
+        bgcolor= "#FFFFFF"
+        boxShadow= {theme.shadows[3]}
         sx={{
             borderRadius: "8px",
             py: "28px",
@@ -59,13 +59,10 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-
-        }}>
-            
+        }}>            
             <CardMedia 
             component="img" 
             image={member.image}             
-            // image={require("./../../assets/drsTeam${member.image}")} 
             alt="Your Image" 
             sx={{
                 height: "72px",
@@ -104,7 +101,7 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
                     {member.email}
                 </Typography>
             </Button>
-        </Card>
+        </Box>
     );
 }
 
