@@ -49,7 +49,7 @@ export const DataGridRows = [
 ];
 
 export const DataTableRows = [
-  { key: 1, reservedOn: 'Frkeyay, 26 Oct 2023', desk: 'Desk 301-03', status: 1, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
+  { key: 1, reservedOn: 'First Row', desk: 'Desk 301-03', status: 1, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
   { key: 2, reservedOn: 'Frkeyay, 26 Oct 2023', desk: 'Desk 303-03', status: 0, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
   { key: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 1, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
   { key: 4, reservedOn: 'Tuesday, 27 Aug 2023', desk: 'Desk 303-22', status: 1, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },

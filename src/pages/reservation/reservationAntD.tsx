@@ -1,12 +1,13 @@
 import React from "react";
 import Layout from "../../layout";
-import { Button, Col, DatePicker, DatePickerProps, Row, Select, Space, Typography, theme } from "antd";
-import DataTable from "./Table-AntD";
+import { Button, Col, DatePicker, DatePickerProps, Empty, Row, Select, Space, Typography, theme } from "antd";
 import { Dayjs } from "dayjs";
 import SelectIcon from "../../assets/icons/chevron-selector-vertical.svg"
 import { GridFooterContainer } from "@mui/x-data-grid";
 import CustomFooter from "./CustomFooter";
 import { DataTableRows } from "../../assets/data";
+import DataTableAntD from "./DataTableAntD";
+import { CalendarOutlined } from "@ant-design/icons";
 
 const { Text } = Typography;
 
@@ -33,8 +34,17 @@ const DateRangePicker: React.FC = () => {
         </div>
       );
     };
+
+    const placeholder = (
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          <CalendarOutlined style={{ marginRight: '8px' }} />
+          <span style={{ color: 'rgba(0, 0, 0, 0.45)', marginRight: '8px' }}>Select Date Range</span>
+        </div>
+      );
+      
     return (
-        <DatePicker.RangePicker cellRender={cellRender} />
+        <DatePicker.RangePicker cellRender={cellRender}   />
+        // suffixIcon={placeholder} 
     );
   };
 
@@ -147,6 +157,7 @@ const Booking = () => {
                 height: "100vh",
                 maxHeight: "100vh",
             }}>
+                
                 <div    // Header
                 style = {{
                     display: "flex",
@@ -155,6 +166,7 @@ const Booking = () => {
                     paddingLeft: "32px",
                     paddingRight: "32px",
                     height: "146px",
+                    maxHeight: "146px",
                     gap: '12px',
                 }}>
                     <Header/>
@@ -162,9 +174,10 @@ const Booking = () => {
                 <div
                 style={{
                     paddingLeft: "32px",
-                    height: 'calc(100vh - 146px)',
+                    height: 'calc(100%)',
+                    maxHeight: 'calc(100%)',
                 }}>
-                    <DataTable/>
+                    <DataTableAntD/>
                 </div>
             </div>
         </Layout>
