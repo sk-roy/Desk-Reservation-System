@@ -1,9 +1,6 @@
 import React from 'react';
-import theme from '../../theme';
-import ArrowBack from "../../assets/icons/ArrowBackIcon.svg";
-import ArrowForward from "../../assets/icons/ArrowForwardIcon.svg";
 import { Pagination, Select, Typography } from 'antd';
-// import { Option } from 'antd/es/mentions';
+import { CustomStyles } from '../../theme';
 const { Option } = Select;
 
 interface Props {
@@ -38,7 +35,7 @@ const CustomFooterAntD = ({ totalRows, page, rowsPerPageOptions, pageSize, onPag
                 height: "24px",
                 gap: "8px",
             }}>
-                <Typography className='Semi Bold 13' color={theme.palette.grey[300]}>Showing</Typography>
+                <Typography className='Semi Bold 13' color={CustomStyles.Color.grey[3]}>Showing</Typography>
                 <Select 
                 style={{
                     height: "24px",
@@ -54,7 +51,7 @@ const CustomFooterAntD = ({ totalRows, page, rowsPerPageOptions, pageSize, onPag
                         </Option>
                     ))}
                 </Select>
-                <Typography className='Semi Bold 13' color={theme.palette.grey[300]}>per page</Typography>
+                <Typography className='Semi Bold 13' color={CustomStyles.Color.grey[3]}>per page</Typography>
             </div>
         );
     };

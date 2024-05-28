@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
-import { Button, ConfigProvider, Pagination, Space, Table, Typography } from 'antd';
+import { Button, ConfigProvider, Table, Typography } from 'antd';
 import type { TableColumnsType, TableProps } from 'antd';
-import { DataGridRows, DataTableRows } from '../../assets/data';
-import CustomFooter from './CustomFooter';
+import {  DataTableRows } from '../../assets/data';
 import CustomFooterAntD from './CustomFooterAntD';
-import DeleteIcon from '@mui/icons-material/Delete';
-import theme from '../../theme';
 import { DeleteOutlined } from '@ant-design/icons';
-import { ThemeProvider } from 'styled-components';
-// import { ThemeProvider } from 'styled-components';
 
 const { Text } = Typography;
 

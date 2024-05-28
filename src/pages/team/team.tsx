@@ -1,11 +1,9 @@
-import {Card, CardContent, CardMedia } from "@mui/material";
 import Layout from "../../layout";
 import { CustomStyles } from "../../theme";
 import * as React from 'react';
-import Grid from '@mui/material/Grid';
 import { TeamData } from "../../assets/data";
-import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
-import { Button, Image, Typography } from "antd";
+import { Button, Col, Image, Row, Typography } from "antd";
+import { MailOutlined } from "@ant-design/icons";
 
 
 const Header = () => {
@@ -53,17 +51,15 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
 
     return (
         <div        
-        // divShadow= {theme.shadows[3]}
         style={{
             borderRadius: "8px",
             padding: "28px 14px 28px 14px",
-            boxShadow: '0px 1px 4px 0px #4D526421',
-            // boxShadow: {theme.shadows[3]},
+            boxShadow: CustomStyles.Shadows[3],
             gap: "14px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
-            backgroundColor: "#FFFFFF",
+            backgroundColor: CustomStyles.Color.Primary.White,
         }}>            
             <Image 
             alt={member.name}
@@ -98,10 +94,9 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
                     justifyContent: "space-between",
                     gap: "2px",
                 }}>
-                    
-                <MailOutlinedIcon 
+                <MailOutlined 
                 style={{paddingTop: "2px", height: "16px", width: "16px"}}
-                htmlColor='#4D667C'/>
+                color='#4D667C'/>
 
                 <Typography
                 style={CustomStyles.Typography.Regular12}
@@ -115,23 +110,19 @@ const PersonCard: React.FC<PersonProps> = ({member}) => {
 }
 
 const Body = () => {
-    return (  
-        <Grid
-        container
-        spacing="14px"
-        style={{
-            padding: "28px 32px 28px 32px"
-        }}>             
-            {TeamData.map((member, index) => {
+    return ( 
+        <div style={{ padding: "28px 32px 28px 32px" }}>            
+        <Row gutter={[14, 14]}>       
+             {TeamData.map((member, index) => {
                 return (
-                    <Grid
-                    item
-                    xs={3}>   
-                        <PersonCard key={index} member={member} />                
-                    </Grid>
+                    <Col span={6}>
+                        <PersonCard key={index} member={member} />    
+                    </Col>
                 );
             })}
-        </Grid>
+        </Row>
+        </div>
+
     );
 }
 

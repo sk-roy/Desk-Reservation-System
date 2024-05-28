@@ -1,11 +1,7 @@
 import React from "react";
 import Layout from "../../layout";
-import { Button, Col, DatePicker, DatePickerProps, Empty, Row, Select, Space, Typography, theme } from "antd";
+import { Button,  DatePicker, DatePickerProps, Select, Typography, theme } from "antd";
 import { Dayjs } from "dayjs";
-import SelectIcon from "../../assets/icons/chevron-selector-vertical.svg"
-import { GridFooterContainer } from "@mui/x-data-grid";
-import CustomFooter from "./CustomFooter";
-import { DataTableRows } from "../../assets/data";
 import DataTableAntD from "./DataTableAntD";
 import { CalendarOutlined } from "@ant-design/icons";
 

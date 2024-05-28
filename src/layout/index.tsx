@@ -1,8 +1,4 @@
-import { Box, CssBaseline, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography, makeStyles } from "@mui/material";
 import { ReactNode } from "react";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
 import React from "react";
 import Sidebar from "../components/sidebar";
 
@@ -18,25 +14,25 @@ const Layout = ({ children }: LayoutProps) => {
 
     return (
         
-    <Box sx={{ display: 'flex' }}>
-    <CssBaseline />
-    <Drawer
-      sx={{
+    <div style={{ display: 'flex' }}>
+    {/* <CssBaseline /> */}
+    <div
+      style={{
         width: drawerWidth,
         flexShrink: 0,
         
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-        },
+        // '& .MuiDrawer-paper': {
+        //   width: drawerWidth,
+        //   boxSizing: 'border-box',
+        // },
       }}
-      variant="permanent"
-      anchor="left">
+      // variant="permanent"
+      >
       <Sidebar/>
-    </Drawer>
+    </div>
     
-    <Box sx={{ width: "100%", overflowY: "hidden" }}>{children}</Box>
-  </Box>
+    <div style={{ width: "100%", overflowY: "hidden" }}>{children}</div>
+  </div>
   );
 }
 

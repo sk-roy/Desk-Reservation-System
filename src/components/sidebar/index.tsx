@@ -1,4 +1,3 @@
-import { Avatar, Box, Hidden, List, ListItem, ListItemButton, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import HomeIcon from "../../assets/icons/HomeIcon.svg";
@@ -7,65 +6,82 @@ import AnalyticsIcon from "../../assets/icons/AnalyticsIcon.svg";
 import TeamIcon from "../../assets/icons/TeamIcon.svg"
 import profileIcon from "../../assets/icons/profileIcon.svg"
 import logo from "../../assets/icons/logo.svg"
+import { Avatar, Image, List, Typography } from "antd";
+import { CustomStyles } from "../../theme";
+import { HomeOutlined } from "@ant-design/icons";
 
 
 const Logo = () => {
-    return (        
-        <Box    // logo
-        flexDirection="row">
-            <Box 
-            display='flex'
-            flexDirection='row'
-            alignItems="center"
-            paddingLeft={2}
-            paddingRight={2}
+    return (       
+        <div
+        style={{ display: "flex", flexDirection: "row", }}>
+            <div 
+            style={{
+                display:'flex',
+                flexDirection:'row',
+                alignItems:"center",
+                paddingLeft:2,
+                paddingRight:2,
+
+            }}
             >
                 <img
                 src={logo}
                 alt='enosis'/>
 
                 <Typography 
-                variant="h5" 
-                component="h1"
-                my={2}
-                color="white"
-                margin='5px'
-                fontWeight={400}
-                fontSize={18}>
-                    RAC
+                style={{
+                    fontWeight: 400,
+                    fontSize: "18px",
+                    margin: '2px',
+                    color: CustomStyles.Color.Primary.White,
+                }}>
+                    DRS
                 </Typography>
 
-                <Typography variant="h5" 
-                component="h1"
-                my={2}
-                color="white"
-                fontWeight={400}
-                fontSize={18}
-                > | </Typography>
+                <Typography
+                
+                style={{
+
+                    fontWeight: 400,
+                    fontSize: "18px",
+                    margin: '2px',
+                    color: CustomStyles.Color.OffWhite[5],
+                    justifyItems: "center",
+
+                }}> | </Typography>
                     
-                <Stack margin='5px' >                        
+                <div 
+                style={{
+                    display: "flex", 
+                    flexDirection: "column", 
+                    justifyItems: "flex-start", 
+                    margin: "5px"
+                }} >                        
                     <Typography  
-                    component="p"
-                    color="#B4C5D9"
-                    fontSize={8}>
-                        Rent-A
+                    style={{ 
+                        color: "#B4C5D9",
+                        fontSize: 8
+                    }}>
+                        Desk Reservation
                     </Typography>
                     <Typography 
-                    component="p"
-                    color="#B4C5D9"
-                    fontSize={8}>
-                        Car
+                    style={{ 
+                        color: "#B4C5D9",
+                        fontSize: 8,
+                    }}>
+                        System
                     </Typography>
-                </Stack>
-            </Box>
-        </Box>
+                </div>
+            </div>
+        </div>
     );
 }
 
 const Profile = () => {
     return (        
-    <Box // profile */}
-    sx={{
+    <div // profile */}
+    style={{
         display: "flex",
         alignItems: "center",
         color: "black",
@@ -76,37 +92,44 @@ const Profile = () => {
         height: "48px",
         width: "180px",
     }}>
-        <Box
-        display="flex"
-        alignItems="center"
-        gap={1}>
-            <Avatar
-            sx={{
+        <div
+        style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            gap: 8,
+        }}>
+            <Avatar 
+            style={{ 
+                backgroundColor: CustomStyles.Color.Alert.Green,
+                verticalAlign: 'middle',
                 width: "24px",
                 height: "24px",
-                bgcolor: "#2CA066"
-            }}>
-                <Typography fontSize="14" fontWeight={600} color='#FFFFFF'>B</Typography>
-            </Avatar>
-            <Hidden mdDown>
-                <Typography fontSize="13px">Brian O'Conor</Typography>
-            </Hidden>                    
-        </Box>    
-        <Box
-        display="flex"
-        padding={1}>         
-        <img
-            src={profileIcon}
-            alt="Brian O'Conor"
-            style={{
-                width: "10px",
-        }}/>   </Box>                
-    </Box>
+            }}> B </Avatar>
+            <Typography.Text>Brian O'Conor</Typography.Text>
+        </div>    
+        <div
+        style={{
+            display: "flex",
+            padding: "1px",
+        }}>         
+            <img
+                src={profileIcon}
+                alt="Brian O'Conor"
+                style={{
+                    width: "10px",
+            }}/>   
+        </div>                
+    </div>
     );
 }
 
 
 const TabList = ["Home", "Reservation", "Analytics", "DRS Team"];
+
+const GetIcon = (tabName: string) => {
+    if (tabName === 'Home') return <HomeOutlined/>;
+    return <HomeOutlined/>;
+}
 
 const getIndex = (path: any) => {
     const currentPage =  String(path).substring(1);
@@ -140,48 +163,52 @@ const TabBox = () => {
 
     return (
         <List
-        sx={{
+        style={{
             gap: "10px",
             height: `calc(100% - 48px)`,
         }}
         >
         {TabList.map((tabName, index) => (
-            <ListItem key={tabName} disablePadding={true} sx={{ gap: "14px" }}>
-                <ListItemButton
-                    alignItems="center"
+            <List.Item key={tabName}
                     onClick={() => {
                         updateSelectedTab(index)
                         navigateSelectedTab(index)
                     }}
-                    disableRipple={true}
-                    sx={{
+                    style={{
                     width: "210px",
                     maxHeight: "46px",
                     borderRadius: "6px",
-                    mt: 1,
                     }}             
                 >
-                    <Box
-                        sx={{
+                    <div
+                    style={{
                         display: "flex",
                         alignItems: "center",
-                        gap: 2,
-                        color: "#B4C5D9",
-                        // textDecoration: "none",
+                        gap: 14,
                         height: "46px",
                         width: "100%",
                         // borderRadius: "6px",
-                        px: "16px",
-                        py: "12px",
+                        padding: "12px 16px 12px 16px",
                         borderRadius: "6px",
-                        }}
-                        bgcolor={selectedTab === index ? "#2E4AAE" : "#212B36"}
-                        >
-                            <img src={getItemIcon(index)} alt={tabName}/>
-                            <Typography fontSize="13px">{tabName}</Typography>
-                    </Box>
-                </ListItemButton>
-            </ListItem>
+                        backgroundColor: selectedTab === index ? CustomStyles.Color.Primary.Blue : "#212B36",
+                    }}>
+                        <img src={getItemIcon(index)} alt={tabName}/>
+                        {/* <GetIcon tabname="Home"/> */}
+                        {/* <HomeOutlined 
+                        style={{
+                            height: "22px",
+                            width: "22px",
+                            color: CustomStyles.Color.OffWhite[5],
+                        }}/> */}
+                        <Typography 
+                        style={{ 
+                            fontSize: "13px",
+                            color: selectedTab === index ? CustomStyles.Color.Primary.White : CustomStyles.Color.OffWhite[5],
+                        }}>
+                            {tabName}
+                        </Typography>
+                    </div>
+            </List.Item>
         ))}
         </List>
     );
@@ -190,31 +217,30 @@ const TabBox = () => {
 
 const Sidebar = () => {
     return (
-        <Box
-        sx={{
-            backgroundColor: "#212B36",
-            py: "10px",
+        <div
+        style={{
+            backgroundColor: CustomStyles.Color.Primary.Dark,
+            padding: "16px 12px 16px 12px",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
             width: "100%",
             height: "100vh",
-            gap: 5
+            gap: 32,
         }}>
             <Logo/>
 
-            <Box sx={{
+            <div style={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                gap: 5,
                 width: "100%",
                 height: "100%",
             }}>
                 <TabBox/>                
                 <Profile/>
-            </Box>
-         </Box>
+            </div>
+         </div>
     );
 }
 
