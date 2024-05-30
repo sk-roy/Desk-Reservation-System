@@ -3,6 +3,11 @@
 
 export const CustomStyles = {
     Typography: {
+        Regular12: {
+            fontSize: '12px',
+            fontWeight: 400,
+            lineHeight: '18px',
+        },
         SemiBold12: {
             fontSize: '12px',
             fontWeight: 600,
@@ -23,15 +28,15 @@ export const CustomStyles = {
             fontWeight: 700,
             lineHeight: '18px',
         },
-        Regular12: {
-            fontSize: '12px',
-            fontWeight: 400,
-            lineHeight: '18px',
-        },
         Bold16: {
             fontSize: '16px',
             fontWeight: 700,
             lineHeight: '24px',
+        },
+        Bold18: {
+            fontSize: '18px',
+            fontWeight: 700,
+            lineHeight: '28px',
         },
         Bold24: {
             fontSize: '24px',
@@ -66,6 +71,9 @@ export const CustomStyles = {
             4: '#4D667C',
         },
         OffWhite: {
+            1: '#F9FAFB',
+            3: '#E8EDF5',
+            4: '#C7D3E1',
             5: '#B4C5D9',
         },
         Alert: {
@@ -74,9 +82,11 @@ export const CustomStyles = {
     },
     Shadows: {
         0: 'none',
-        1: '0px 2px 4px 0px #3A414F0F',
+        1: '0px 2px 4px 0px #3A414F0F', 
+        Elevation1: '0px 2px 4px 0px #3A414F0F', 
         2: '0px 1px 4px 0px #4C577314',
         3: '0px 1px 4px 0px #4D526421',
+
     },
     Button: {
         Cancel: {

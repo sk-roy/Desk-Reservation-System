@@ -4,6 +4,7 @@ import HomeIcon from "../../assets/icons/HomeIcon.svg";
 import ReservationIcon from "../../assets/icons/ReservationIcon.svg";
 import AnalyticsIcon from "../../assets/icons/AnalyticsIcon.svg";
 import TeamIcon from "../../assets/icons/TeamIcon.svg"
+import LocationIcon from "../../assets/icons/LocationIcon.svg"
 import profileIcon from "../../assets/icons/profileIcon.svg"
 import logo from "../../assets/icons/logo.svg"
 import { Avatar, Image, List, Typography } from "antd";
@@ -124,7 +125,7 @@ const Profile = () => {
 }
 
 
-const TabList = ["Home", "Reservation", "Analytics", "DRS Team"];
+const TabList = ["Home", "Reservation", "Analytics", "DRS Team", "Location"];
 
 const GetIcon = (tabName: string) => {
     if (tabName === 'Home') return <HomeOutlined/>;
@@ -138,6 +139,7 @@ const getIndex = (path: any) => {
     if (currentPage === "booking") return 1;
     else if (currentPage === "analytics") return 2;
     else if (currentPage === "team") return 3;
+    else if (currentPage === "location") return 4;
     else return 0;
 }
 
@@ -148,17 +150,19 @@ const TabBox = () => {
     const [selectedTab, updateSelectedTab] = useState(getIndex(location.pathname))
 
     const navigateSelectedTab = (index: number) => {
-        if (index === 0) return nagigate("/");
         if (index === 1) return nagigate("/booking");
         if (index === 2) return nagigate("/analytics");
-        return nagigate("/team"); // index 3
+        if (index === 3) return nagigate("/team");
+        if (index === 4) return nagigate("/location");
+        return nagigate("/"); // index 0 for Home
     };
     
     const getItemIcon = (index: number) => {
-        if (index === 0) return HomeIcon;
         if (index === 1) return ReservationIcon;
         if (index === 2) return AnalyticsIcon;
-        return TeamIcon;  // index 3
+        if (index === 3) return TeamIcon;
+        if (index === 4) return LocationIcon;
+        return HomeIcon;  // index 0 for Home
     };
 
     return (
