@@ -13,17 +13,21 @@ import { HomeOutlined } from "@ant-design/icons";
 
 
 export const Logo = () => {
-    return (       
+    return (  
+             
         <div
-        style={{ display: "flex", flexDirection: "row", }}>
+        style={{ 
+            display: "flex", 
+            flexDirection: "row",
+            justifyContent: "center",
+            height: 60,
+            padding: "14px 0px 14px 0px",
+        }}>
             <div 
             style={{
                 display:'flex',
                 flexDirection:'row',
                 alignItems:"center",
-                paddingLeft:2,
-                paddingRight:2,
-
             }}
             >
                 <img
@@ -40,10 +44,8 @@ export const Logo = () => {
                     DRS
                 </Typography>
 
-                <Typography
-                
+                <Typography                
                 style={{
-
                     fontWeight: 400,
                     fontSize: "18px",
                     margin: '2px',

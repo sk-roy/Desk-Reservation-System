@@ -1,7 +1,7 @@
 import { ReactNode, useState } from "react";
 import React from "react";
 import { Logo } from "../components/sidebar";
-import { Layout, Menu, MenuProps, theme } from "antd";
+import { ConfigProvider, Layout, Menu, MenuProps, theme } from "antd";
 import { HomeOutlined, PieChartOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router";
 import Icon from "@ant-design/icons/lib/components/Icon";
@@ -11,6 +11,7 @@ import { icons } from "antd/es/image/PreviewGroup";
 import AnalyticsIcon from "../components/icons/AnalyticsIcon";
 import TeamIcon from "../components/icons/TeamIcon";
 import LocationIcon from "../components/icons/LocationIcon";
+import { CustomStyles } from "../theme";
 const { Content, Sider } = Layout;
 
 
@@ -39,10 +40,6 @@ const getIndex = (path: any) => {
 
 const CustomLayout = ({ children }: LayoutProps) => {
   const [collapsed, setCollapsed] = useState(false);
-  const {
-    token: { colorBgContainer, borderRadiusLG },
-  } = theme.useToken();
-
   const nagigate = useNavigate();
   const location = useLocation();
   console.log(location.pathname);
@@ -59,16 +56,18 @@ const CustomLayout = ({ children }: LayoutProps) => {
 
   return (
     <Layout style={{ minHeight: '100vh' }}>        
-      <Sider collapsible>
-        <div
+      <Sider collapsible
+      style={{
+        padding: '16px 12px 16px 12px',
+      }}>
+        <Logo/>
+        <Menu 
+        theme="dark" 
+        defaultSelectedKeys={[selectedTab]} 
+        mode="inline"
         style={{
-          marginTop: 10,
-          marginBottom: 10,
-          padding: 10,
+          gap: 6,
         }}>
-          <Logo/>
-        </div>
-        <Menu theme="dark" defaultSelectedKeys={[selectedTab]} mode="inline">
           {menuItems.map((item) => (
             <Menu.Item key={item.key} 
               onClick={() => {
@@ -76,7 +75,10 @@ const CustomLayout = ({ children }: LayoutProps) => {
                 navigateSelectedTab(Number(item.key));
               }}>
               <Icon component={item.icon} />
-              <span>{item.label}</span>
+              <span style={{
+                fontSize: 13,
+                fontWeight: selectedTab === item.key ? 600 : 500,
+              }}>{item.label}</span>
             </Menu.Item>
           ))}
         </Menu>
@@ -87,7 +89,7 @@ const CustomLayout = ({ children }: LayoutProps) => {
           <div style={{ width: "100%", overflowY: "hidden" }}>{children}</div>
         </Content>
       </Layout>
-  </Layout>
+    </Layout>
   );
 }
 

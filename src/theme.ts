@@ -1,3 +1,4 @@
+import { Menu } from "antd";
 
 
 
@@ -102,3 +103,18 @@ export const CustomStyles = {
     },
 };
 
+
+export const theme = {
+    token: {
+        fontFamily: 'Inter',
+        colorPrimary: CustomStyles.Color.Primary.Blue,
+    },     
+    components: {
+        Layout: {
+            siderBg: CustomStyles.Color.Primary.Dark,
+        },
+        Menu: {
+            darkItemBg: CustomStyles.Color.Primary.Dark,
+        }
+    },
+};
