@@ -1,39 +1,94 @@
-import { ReactNode } from "react";
+import { ReactNode, useState } from "react";
 import React from "react";
-import Sidebar from "../components/sidebar";
+import { Logo } from "../components/sidebar";
+import { Layout, Menu, MenuProps, theme } from "antd";
+import { HomeOutlined, PieChartOutlined } from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router";
+import Icon from "@ant-design/icons/lib/components/Icon";
+import HomeIcon from "../components/icons/HomeIcon";
+import ReservationIcon from "../components/icons/ReservationIcon";
+import { icons } from "antd/es/image/PreviewGroup";
+import AnalyticsIcon from "../components/icons/AnalyticsIcon";
+import TeamIcon from "../components/icons/TeamIcon";
+import LocationIcon from "../components/icons/LocationIcon";
+const { Content, Sider } = Layout;
 
 
 interface LayoutProps {
     children: ReactNode
 }
 
-const drawerWidth = 220
+const menuItems = [
+  { key: '0', label: 'Home', icon: HomeIcon },
+  { key: '1', label: 'Reservation', icon: ReservationIcon },
+  { key: '2', label: 'Analytics', icon: AnalyticsIcon },
+  { key: '3', label: 'DRS Team', icon: TeamIcon },
+  { key: '4', label: 'Location', icon: LocationIcon },
+];
 
+const getIndex = (path: any) => {
+    const currentPage =  String(path).substring(1);
+    console.log(currentPage)
 
-const Layout = ({ children }: LayoutProps) => {
+    if (currentPage === "booking") return '1';
+    else if (currentPage === "analytics") return '2';
+    else if (currentPage === "team") return '3';
+    else if (currentPage === "location") return '4';
+    else return '0';
+}
 
-    return (
-        
-    <div style={{ display: 'flex' }}>
-    {/* <CssBaseline /> */}
-    <div
-      style={{
-        width: drawerWidth,
-        flexShrink: 0,
-        
-        // '& .MuiDrawer-paper': {
-        //   width: drawerWidth,
-        //   boxSizing: 'border-box',
-        // },
-      }}
-      // variant="permanent"
-      >
-      <Sidebar/>
-    </div>
-    
-    <div style={{ width: "100%", overflowY: "hidden" }}>{children}</div>
-  </div>
+const CustomLayout = ({ children }: LayoutProps) => {
+  const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer, borderRadiusLG },
+  } = theme.useToken();
+
+  const nagigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
+  
+  const [selectedTab, updateSelectedTab] = useState(getIndex(location.pathname))
+
+  const navigateSelectedTab = (index: number) => {
+      if (index === 1) return nagigate("/booking");
+      if (index === 2) return nagigate("/analytics");
+      if (index === 3) return nagigate("/team");
+      if (index === 4) return nagigate("/location");
+      return nagigate("/"); // index 0 for Home
+  };
+
+  return (
+    <Layout style={{ minHeight: '100vh' }}>        
+      <Sider collapsible>
+        <div
+        style={{
+          marginTop: 10,
+          marginBottom: 10,
+          padding: 10,
+        }}>
+          <Logo/>
+        </div>
+        <Menu theme="dark" defaultSelectedKeys={[selectedTab]} mode="inline">
+          {menuItems.map((item) => (
+            <Menu.Item key={item.key} 
+              onClick={() => {
+                updateSelectedTab(item.key);
+                navigateSelectedTab(Number(item.key));
+              }}>
+              <Icon component={item.icon} />
+              <span>{item.label}</span>
+            </Menu.Item>
+          ))}
+        </Menu>
+      </Sider>
+      
+      <Layout>
+        <Content>
+          <div style={{ width: "100%", overflowY: "hidden" }}>{children}</div>
+        </Content>
+      </Layout>
+  </Layout>
   );
 }
 
-export default Layout;
+export default CustomLayout;

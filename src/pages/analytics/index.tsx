@@ -1,11 +1,11 @@
 import React from "react";
-import Layout from "../../layout";
+import CustomLayout from "../../layout";
 
 
 const Analytics = () => {
-    return <Layout>
+    return <CustomLayout>
          <div>Analytics</div>
-    </Layout>
+    </CustomLayout>
 }
 
 export default Analytics;

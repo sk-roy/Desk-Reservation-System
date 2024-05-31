@@ -1,9 +1,9 @@
 import React from "react";
-import Layout from "../../layout";
 import { Button,  DatePicker, DatePickerProps, Select, Typography, theme } from "antd";
 import { Dayjs } from "dayjs";
 import DataTableAntD from "./DataTableAntD";
 import { CalendarOutlined } from "@ant-design/icons";
+import CustomLayout from "../../layout";
 
 const { Text } = Typography;
 
@@ -142,7 +142,7 @@ const Header = () => {
 const Booking = () => {
 
     return (
-        <Layout>
+        <CustomLayout>
             <div
             style={{
                 display: 'flex',
@@ -176,7 +176,7 @@ const Booking = () => {
                     <DataTableAntD/>
                 </div>
             </div>
-        </Layout>
+        </CustomLayout>
     );
 }
 

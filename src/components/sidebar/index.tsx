@@ -12,7 +12,7 @@ import { CustomStyles } from "../../theme";
 import { HomeOutlined } from "@ant-design/icons";
 
 
-const Logo = () => {
+export const Logo = () => {
     return (       
         <div
         style={{ display: "flex", flexDirection: "row", }}>
@@ -167,10 +167,10 @@ const TabBox = () => {
 
     return (
         <List
-        style={{
-            gap: "10px",
-            height: `calc(100% - 48px)`,
-        }}
+        // style={{
+        //     gap: "10px",
+        //     height: `calc(100% - 48px)`,
+        // }}
         >
         {TabList.map((tabName, index) => (
             <List.Item key={tabName}
@@ -178,37 +178,31 @@ const TabBox = () => {
                         updateSelectedTab(index)
                         navigateSelectedTab(index)
                     }}
-                    style={{
-                    width: "210px",
-                    maxHeight: "46px",
-                    borderRadius: "6px",
-                    }}             
+                    // style={{
+                    // width: "210px",
+                    // maxHeight: "46px",
+                    // borderRadius: "6px",
+                    // }}             
                 >
                     <div
                     style={{
-                        display: "flex",
-                        alignItems: "center",
-                        gap: 14,
-                        height: "46px",
-                        width: "100%",
+                        // display: "flex",
+                        // alignItems: "center",
+                        // gap: 14,
+                        // height: "46px",
+                        // width: "100%",
+                        // // borderRadius: "6px",
+                        // padding: "12px 16px 12px 16px",
                         // borderRadius: "6px",
-                        padding: "12px 16px 12px 16px",
-                        borderRadius: "6px",
-                        backgroundColor: selectedTab === index ? CustomStyles.Color.Primary.Blue : "#212B36",
+                        // backgroundColor: selectedTab === index ? CustomStyles.Color.Primary.Blue : "#212B36",
                     }}>
                         <img src={getItemIcon(index)} alt={tabName}/>
-                        {/* <GetIcon tabname="Home"/> */}
-                        {/* <HomeOutlined 
-                        style={{
-                            height: "22px",
-                            width: "22px",
-                            color: CustomStyles.Color.OffWhite[5],
-                        }}/> */}
                         <Typography 
-                        style={{ 
-                            fontSize: "13px",
-                            color: selectedTab === index ? CustomStyles.Color.Primary.White : CustomStyles.Color.OffWhite[5],
-                        }}>
+                        // style={{ 
+                        //     fontSize: "13px",
+                        //     color: selectedTab === index ? CustomStyles.Color.Primary.White : CustomStyles.Color.OffWhite[5],
+                        // }}
+                        >
                             {tabName}
                         </Typography>
                     </div>

@@ -1,4 +1,4 @@
-import Layout from "../layout";
+import CustomLayout from "../layout";
 import { CustomStyles } from "../theme";
 import * as React from 'react';
 import { TeamData } from "../assets/data";
@@ -237,7 +237,7 @@ const Body = () => {
 
 const Location = () => {
     return (
-        <Layout>
+        <CustomLayout>
             <div
             style = {{
                 width: "100%",
@@ -250,7 +250,7 @@ const Location = () => {
                 <Header />
                 <Body/>
             </div>
-        </Layout>
+        </CustomLayout>
     );
 }
 

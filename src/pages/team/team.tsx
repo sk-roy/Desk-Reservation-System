@@ -1,9 +1,10 @@
-import Layout from "../../layout";
+
 import { CustomStyles } from "../../theme";
 import * as React from 'react';
 import { TeamData } from "../../assets/data";
 import { Button, Col, Image, Row, Typography } from "antd";
 import { MailOutlined } from "@ant-design/icons";
+import CustomLayout from "../../layout";
 
 
 const Header = () => {
@@ -129,7 +130,7 @@ const Body = () => {
 
 const Team = () => {
     return (
-        <Layout>
+        <CustomLayout>
             <div
             style = {{
                 width: "100%",
@@ -142,7 +143,7 @@ const Team = () => {
                 <Header/>
                 <Body/>
             </div>
-        </Layout>
+        </CustomLayout>
     );
 }
 
