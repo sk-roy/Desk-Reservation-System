@@ -1,8 +1,7 @@
 import { ReactNode, useState } from "react";
 import React from "react";
-import { Logo } from "../components/sidebar";
-import { ConfigProvider, Layout, Menu, MenuProps, theme } from "antd";
-import { HomeOutlined, PieChartOutlined } from "@ant-design/icons";
+import { Button, ConfigProvider, Layout, Menu, MenuProps, Typography, theme } from "antd";
+import { ArrowLeftOutlined, ArrowRightOutlined, HomeOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined } from "@ant-design/icons";
 import { useLocation, useNavigate } from "react-router";
 import Icon from "@ant-design/icons/lib/components/Icon";
 import HomeIcon from "../components/icons/HomeIcon";
@@ -12,6 +11,9 @@ import AnalyticsIcon from "../components/icons/AnalyticsIcon";
 import TeamIcon from "../components/icons/TeamIcon";
 import LocationIcon from "../components/icons/LocationIcon";
 import { CustomStyles } from "../theme";
+import { Logo } from "../components/sidebar";
+import RightArrowIcon from "../components/icons/RightArrowIcon";
+import LeftArrowIcon from "../components/icons/LeftArrowIcon";
 const { Content, Sider } = Layout;
 
 
@@ -38,8 +40,11 @@ const getIndex = (path: any) => {
     else return '0';
 }
 
+
 const CustomLayout = ({ children }: LayoutProps) => {
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
+
   const nagigate = useNavigate();
   const location = useLocation();
   console.log(location.pathname);
@@ -54,13 +59,50 @@ const CustomLayout = ({ children }: LayoutProps) => {
       return nagigate("/"); // index 0 for Home
   };
 
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
+  };
+
+    // Custom trigger button
+    const customTrigger = (
+      <Button onClick={toggleCollapse}
+      style={{
+        backgroundColor: "transparent",
+        height: "22px",
+        width: "22px",
+        border: "transparent",
+        padding: "2px",
+      }}>
+        {collapsed ? <RightArrowIcon/> : <LeftArrowIcon/>}
+      </Button>
+    );
+  
+
   return (
     <Layout style={{ minHeight: '100vh' }}>        
-      <Sider collapsible
+      <Sider collapsible collapsed={collapsed} trigger={null}
       style={{
         padding: '16px 12px 16px 12px',
       }}>
-        <Logo/>
+        <Logo collapsed={collapsed}/>
+        
+        <div 
+        style = {{ 
+          position: "absolute",
+          top: "35px",
+          right: "-11px",
+          zIndex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "22px", 
+          width: "22px", 
+          backgroundColor: CustomStyles.Color.Primary.Dark, 
+          borderRadius: "40px",
+          border: "1px solid var(--Offwhite-Offwhite-1, #F9FAFB)"
+        }}>
+          {customTrigger}
+        </div>
         <Menu 
         theme="dark" 
         defaultSelectedKeys={[selectedTab]} 

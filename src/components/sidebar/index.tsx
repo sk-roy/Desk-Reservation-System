@@ -12,7 +12,11 @@ import { CustomStyles } from "../../theme";
 import { HomeOutlined } from "@ant-design/icons";
 
 
-export const Logo = () => {
+interface LogoProps {
+    collapsed: boolean;
+}
+
+export const Logo: React.FC<LogoProps> = ({collapsed}) => {
     return (  
              
         <div
@@ -33,8 +37,9 @@ export const Logo = () => {
                 <img
                 src={logo}
                 alt='enosis'/>
-
-                <Typography 
+                
+                {!collapsed && 
+                ( <Typography
                 style={{
                     fontWeight: 400,
                     fontSize: "18px",
@@ -42,9 +47,10 @@ export const Logo = () => {
                     color: CustomStyles.Color.Primary.White,
                 }}>
                     DRS
-                </Typography>
+                </Typography>)}
 
-                <Typography                
+                {!collapsed && 
+                (<Typography                
                 style={{
                     fontWeight: 400,
                     fontSize: "18px",
@@ -52,9 +58,9 @@ export const Logo = () => {
                     color: CustomStyles.Color.OffWhite[5],
                     justifyItems: "center",
 
-                }}> | </Typography>
+                }}> | </Typography>)}
                     
-                <div 
+                {!collapsed && (<div 
                 style={{
                     display: "flex", 
                     flexDirection: "column", 
@@ -75,7 +81,7 @@ export const Logo = () => {
                     }}>
                         System
                     </Typography>
-                </div>
+                </div>)}
             </div>
         </div>
     );
@@ -228,7 +234,7 @@ const Sidebar = () => {
             height: "100vh",
             gap: 32,
         }}>
-            <Logo/>
+            <Logo collapsed={false}/>
 
             <div style={{
                 display: "flex",
