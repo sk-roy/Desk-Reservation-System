@@ -81,8 +81,10 @@ const CustomLayout = ({ children }: LayoutProps) => {
   return (
     <Layout style={{ minHeight: '100vh' }}>        
       <Sider collapsible collapsed={collapsed} trigger={null}
+      width={210}
       style={{
         padding: '16px 12px 16px 12px',
+        // gap: '24px',   // not working
       }}>
         <Logo collapsed={collapsed}/>
         
@@ -103,23 +105,30 @@ const CustomLayout = ({ children }: LayoutProps) => {
         }}>
           {customTrigger}
         </div>
+
         <Menu 
         theme="dark" 
         defaultSelectedKeys={[selectedTab]} 
-        mode="inline"
-        style={{
-          gap: 6,
-        }}>
+        // mode="inline"
+        style={{ marginTop: 24 }}>
           {menuItems.map((item) => (
+            // <div>
             <Menu.Item key={item.key} 
+              style={{marginTop: 0, marginBottom: 6, marginLeft: 0, marginRight: 0, 
+                height: 40,
+                padding: '10px, 14px, 10px, 14px'
+              }}
               onClick={() => {
                 updateSelectedTab(item.key);
                 navigateSelectedTab(Number(item.key));
-              }}>
-              <Icon component={item.icon} />
+              }}
+              icon={<Icon component={item.icon}/> }>
               <span style={{
                 fontSize: 13,
                 fontWeight: selectedTab === item.key ? 600 : 500,
+                letterSpacing: '-0.01em',
+                textAlign: 'left',
+
               }}>{item.label}</span>
             </Menu.Item>
           ))}
