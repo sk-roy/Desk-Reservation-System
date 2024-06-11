@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/charts": "^2.1.1",
     "@ant-design/icons": "^5.3.7",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
@@ -16,6 +17,7 @@
     "antd": "^5.17.4",
     "apexcharts": "^3.49.0",
     "dayjs": "^1.11.11",
+    "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
@@ -52,6 +54,7 @@
     ]
   },
   "devDependencies": {
+    "@types/lodash-es": "^4.17.12",
     "@types/react-date-range": "^1.4.9"
   }
 }

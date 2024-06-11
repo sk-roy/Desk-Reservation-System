@@ -25,6 +25,7 @@ export const Logo: React.FC<LogoProps> = ({collapsed}) => {
             flexDirection: "row",
             justifyContent: "center",
             height: 60,
+            maxHeight: 60,
             padding: "14px 0px 14px 0px",
         }}>
             <div 

@@ -104,3 +104,25 @@ export const TeamData = [
 ];
 
 
+export const ColumnChartData = [
+  { "weekday": "Mon", "level": 2, "reservation": 5 },
+  { "weekday": "Mon", "level": 3, "reservation": 7 },
+  { "weekday": "Mon", "level": 4, "reservation": 10 },
+  { "weekday": "Mon", "level": 5, "reservation": 3 },
+  { "weekday": "Tue", "level": 2, "reservation": 8 },
+  { "weekday": "Tue", "level": 3, "reservation": 6 },
+  { "weekday": "Tue", "level": 4, "reservation": 9 },
+  { "weekday": "Tue", "level": 5, "reservation": 4 },
+  { "weekday": "Wed", "level": 2, "reservation": 4 },
+  { "weekday": "Wed", "level": 3, "reservation": 9 },
+  { "weekday": "Wed", "level": 4, "reservation": 8 },
+  { "weekday": "Wed", "level": 5, "reservation": 5 },
+  { "weekday": "Thu", "level": 2, "reservation": 6 },
+  { "weekday": "Thu", "level": 3, "reservation": 8 },
+  { "weekday": "Thu", "level": 4, "reservation": 7 },
+  { "weekday": "Thu", "level": 5, "reservation": 2 },
+  { "weekday": "Fri", "level": 2, "reservation": 7 },
+  { "weekday": "Fri", "level": 3, "reservation": 5 },
+  { "weekday": "Fri", "level": 4, "reservation": 6 },
+  { "weekday": "Fri", "level": 5, "reservation": 4 }
+]
