@@ -1,9 +1,8 @@
 import CustomLayout from "../../layout";
 import { CustomStyles } from "../../theme";
 import * as React from 'react';
-import { TeamData } from "../../assets/data";
-import { Avatar, Button, Col, ConfigProvider, Drawer, Image, Row, Space, Table, TableProps, Tag, Typography } from "antd";
-import { MailOutlined, PlusCircleFilled } from "@ant-design/icons";
+import { Avatar, Button, Col, ConfigProvider, Space, Table, TableProps, Typography } from "antd";
+import { PlusCircleFilled } from "@ant-design/icons";
 import InfoCircleIcon from "../../components/icons/InfoCircle";
 import CalenderIcon from "../../components/icons/CalenderIcon";
 import Edit03Icon from "../../components/icons/Edit03Icon";
@@ -11,18 +10,18 @@ import PlusCircleIcon from "../../components/icons/PlusCircleIcon";
 import DeleteButton from "../../components/buttons/DeleteButton";
 import EditButton from "../../components/buttons/EditButton";
 import UpDownArrowIcon from "../../components/icons/UpDownArrowIcon";
+import { NewLocationDrawer } from "./Drawers";
 const { Text } = Typography;
 
 const Header = () => {
-    const [open, setOpen] = React.useState<boolean>(false);
-    const [loading, setLoading] = React.useState<boolean>(true);
+    const [open, setOpen] = React.useState(false);
   
-    const showLoading = () => {
+    const showDrawer = () => {
       setOpen(true);
     };
-    
+  
     const onClose = () => {
-        setOpen(false);
+      setOpen(false);
     };
 
     return (
@@ -118,7 +117,7 @@ const Header = () => {
                         height: "36px",
                         gap: "6px",
                     }}
-                    onClick={showLoading}>
+                    onClick={showDrawer}>
                         <PlusCircleFilled 
                         style={{
                             height: "18px",
@@ -131,23 +130,8 @@ const Header = () => {
                         <Typography style={CustomStyles.Typography.SemiBold13} color={CustomStyles.Color.Primary.Blue}>
                             New Location
                         </Typography>
-                    </Button>               
-                    <Drawer
-                        closable
-                        destroyOnClose
-                        title={<p>Loading Drawer</p>}
-                        placement="right"
-                        open={open}
-                        loading={loading}
-                        onClose={() => setOpen(false)}
-                    >
-                        <Button type="primary" style={{ marginBottom: 16 }} onClick={showLoading}>
-                        Reload
-                        </Button>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                        <p>Some contents...</p>
-                    </Drawer>
+                    </Button>   
+                    <NewLocationDrawer onClose={onClose} open={open}/>
                 </>
 
             </div>

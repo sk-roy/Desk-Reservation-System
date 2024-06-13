@@ -73,6 +73,7 @@ export const CustomStyles = {
         },
         OffWhite: {
             1: '#F9FAFB',
+            2: '#E4EAF2',
             3: '#E8EDF5',
             4: '#C7D3E1',
             5: '#B4C5D9',
