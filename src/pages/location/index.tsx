@@ -97,6 +97,18 @@ const Header = () => {
                 style={{
                     padding: "4px 0px 12px 0px",
                     border: "0px",
+                    borderRadius: "0px",
+                    borderBottom: "2px solid var(--Primary-Blue, #2E4AAE)",
+                    height: "36px",
+                }}>
+                    <Typography style={CustomStyles.Typography.SemiBold13} color={CustomStyles.Color.Primary.Blue}>
+                        Headquarter (76)
+                    </Typography>
+                </Button>
+                <Button 
+                style={{
+                    padding: "4px 0px 12px 0px",
+                    border: "0px",
                     // borderBottom: "2px solid var(--Primary-Blue, #2E4AAE)",
                     height: "36px",
                 }}>
@@ -135,7 +147,6 @@ const Header = () => {
                 </>
 
             </div>
-
         </div>
     );
 }
@@ -325,7 +336,7 @@ const TableHeader = () => {
                     border: `1px solid ${CustomStyles.Color.Primary.Blue}`,
                     boxShadow: CustomStyles.Shadows.Elevation1,
                 }}>
-                    <PlusCircleIcon />                    
+                    <PlusCircleIcon color={CustomStyles.Color.Primary.Blue} fill={CustomStyles.Color.Primary.Blue}/>                    
                     <Typography 
                     style={{
                         font: 'Inter',

@@ -1,6 +1,13 @@
 import React from "react";
 
-const PlusCircleIcon = () => {
+
+interface Props {
+  color: string;
+  fill: string;
+}
+
+
+const PlusCircleIcon = ({color, fill} : Props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -14,8 +21,8 @@ const PlusCircleIcon = () => {
           cx="8.001"
           cy="8"
           r="6.667"
-          fill="#2E4AAE"
-          stroke="#2E4AAE"
+          fill={fill}
+          stroke={color}
         ></circle>
         <path
           stroke="#fff"

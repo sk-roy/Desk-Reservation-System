@@ -87,6 +87,7 @@ export const CustomStyles = {
         0: 'none',
         1: '0px 2px 4px 0px #3A414F0F', 
         Elevation1: '0px 2px 4px 0px #3A414F0F', 
+        Elevation2: '0px 6px 16px 0px #3A414F14',
         2: '0px 1px 4px 0px #4C577314',
         3: '0px 1px 4px 0px #4D526421',
 
