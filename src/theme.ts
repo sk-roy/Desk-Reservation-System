@@ -79,6 +79,7 @@ export const CustomStyles = {
         },
         Alert: {
             Green: '#2CA066',
+            Red: '#D34040',
         }
     },
     Shadows: {

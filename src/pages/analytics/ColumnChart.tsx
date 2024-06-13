@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { forEach, groupBy } from 'lodash-es';
 import { ColumnChartData } from '../../assets/data';
+import { CustomStyles } from '../../theme';
 
 
 
@@ -29,17 +30,24 @@ const ColumnChart: React.FC = () => {
     });
   });
 
+
   const config = {
     data: ColumnChartData,
     xField: 'weekday',
     yField: 'reservation',
     stack: true,
     colorField: 'level',
-    label: {
-      content: ['reservation'],
-      position: 'inside',
+    color: ['#19CDD7', '#DDB27C', '#DDB27C', '#DDB27C', '#DDB27C'], // Specify your custom colors here
+    // label: {
+    //   content: ['reservation'],
+    //   position: 'inside',
+    // },
+    style: {
+        stroke: CustomStyles.Color.Primary.White,
+        inset: 1,
+        radius: 6,
     },
-    annotations,
+    // annotations,
   };
 
   return <Column {...config} />;

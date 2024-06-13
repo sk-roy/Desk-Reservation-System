@@ -21,3 +21,12 @@
 .ant-table-tbody {
   background-color: #fafafa;
 }
+
+.transparent-row {
+  background-color: #fff !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #1890ff; /* Customize this color as needed */
+  color: #fff; /* Change text color to white */
+}
