@@ -17,6 +17,7 @@ const Home = Loader(lazy(() => import("./pages/home")));
 const Booking = Loader(lazy(() => import("./pages/reservation")));
 const Analytics = Loader(lazy(() => import("./pages/analytics")));
 const Team = Loader(lazy(() => import("./pages/team")));
+const Location = Loader(lazy(() => import("./pages/location")));
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
     {
       path: "/team",
       element: <Team />,
+    },
+    {
+      path: "/location",
+      element: <Location />,
     },
 ]);
   
