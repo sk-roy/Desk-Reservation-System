@@ -33,7 +33,7 @@ const Layout = ({ children }: LayoutProps) => {
       variant="permanent"
       anchor="left"
     >
-      <Sidebar/>
+      {/* <Sidebar/> */}
     </Drawer>
     <Box sx={{ width: "100%", overflowY: "scroll" }}>{children}</Box>
   </Box>

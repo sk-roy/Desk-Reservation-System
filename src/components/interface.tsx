@@ -18,3 +18,11 @@ export interface NewLocationProps {
     open?: boolean;
 }
 
+
+export interface SidebarProps {
+    children: ReactNode
+}
+
+export interface LogoProps {
+    collapsed: boolean;
+}

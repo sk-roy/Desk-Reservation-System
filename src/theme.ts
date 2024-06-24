@@ -50,6 +50,7 @@ const theme = createTheme({
                 2: '#EEF3FA',
                 3: '#E8EDF5',
                 4: "#EBEDF7",
+                5: '#B4C5D9',
             },
         },
         Shadows: {

@@ -14,6 +14,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AreaChart from "./AreaChart";
 import theme from "../../theme";
 import { green } from "@mui/material/colors";
+import Sidebar from "../../components/sidebar";
 
 
 interface SelectDeptProps {
@@ -744,7 +745,7 @@ const UserTimeline = () => {
 
 const Analytics = () => {
     return (
-        <Layout>
+        <Sidebar>
             <Box
             display="flex"
             flexDirection="column">
@@ -781,7 +782,7 @@ const Analytics = () => {
                     <UserTimeline/>  {/* Body Part 4 */}
                 </Box>
             </Box>
-        </Layout>
+        </Sidebar>
     );
 }
 

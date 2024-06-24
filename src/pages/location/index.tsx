@@ -10,6 +10,7 @@ import UpDownArrowIcon from "../../components/icons/UpDownArrowIcon";
 import TertiaryButton from "../../components/buttons/TertiaryButton";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 import { NewLocationDrawer } from "./Drawers";
+import Sidebar from "../../components/sidebar";
 
 
 
@@ -516,7 +517,7 @@ const Body = () => {
 
 const Location = () => {
     return (
-        <Layout>            
+        <Sidebar>            
             <div
             style = {{
                 width: "100%",
@@ -529,7 +530,7 @@ const Location = () => {
                 <Header />
                 <Body/>
             </div>
-        </Layout>
+        </Sidebar>
     );
 }
 

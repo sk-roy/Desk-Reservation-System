@@ -5,6 +5,7 @@ import * as React from 'react';
 import Grid from '@mui/material/Grid';
 import { TeamData } from "../../assets/data";
 import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
+import Sidebar from "../../components/sidebar";
 
 
 const Header = () => {
@@ -130,7 +131,7 @@ const Body = () => {
 
 const Team = () => {
     return (
-        <Layout>
+        <Sidebar>
             <Box
             width="100%"
             height="900px"
@@ -141,7 +142,7 @@ const Team = () => {
                 <Header/>
                 <Body/>
             </Box>
-        </Layout>
+        </Sidebar>
     );
 }
 

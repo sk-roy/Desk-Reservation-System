@@ -1,10 +1,10 @@
 import { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
-// import Booking from "./pages/reservation";
-// import Home from "./pages/home";
-// import Error from "./pages/error";
-// import Analytics from "./pages/analytics";
-// import Team from "./pages/team";
+import HomeIcon from "./components/icons/HomeIcon";
+import ReservationIcon from "./components/icons/ReservationIcon";
+import AnalyticsIcon from "./components/icons/AnalyticsIcon";
+import TeamIcon from "./components/icons/TeamIcon";
+import LocationIcon from "./components/icons/LocationIcon";
 
 const Loader = (Component: any) => (props: any) =>
   (
@@ -42,4 +42,33 @@ export const router = createBrowserRouter([
       element: <Location />,
     },
 ]);
+
+
+export const tablist = [
+  {
+    name: "Home",
+    path: "/",
+    icon: <HomeIcon />,
+  },
+  {
+    name: "Booking",
+    path: "/booking",
+    icon: <ReservationIcon />,
+  },
+  {
+    name: "Analytics",
+    path: "/analytics",
+    icon: <AnalyticsIcon />,
+  },
+  {
+    name: "Team",
+    path: "/team",
+    icon: <TeamIcon />,
+  },
+  {
+    name: "Location",
+    path: "/location",
+    icon: <LocationIcon />,
+  },
+];
   
