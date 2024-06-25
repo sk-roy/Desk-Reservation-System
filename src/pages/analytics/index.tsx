@@ -15,11 +15,9 @@ import AreaChart from "./AreaChart";
 import theme from "../../theme";
 import { green } from "@mui/material/colors";
 import Sidebar from "../../components/sidebar";
+import { SelectDeptProps, StringComponentProps, UserCardProps } from "../../components/interface";
 
 
-interface SelectDeptProps {
-    department: string;
-}
   
 const SelectDept: React.FC<SelectDeptProps> = ({ department }) => {
     const renderValue = (value: any) => {
@@ -159,11 +157,6 @@ const BodyPart1Analysis = () => {
 }
 
 
-interface UserCardProps {
-    text: String;
-    data: number;
-    data2: number;
-}
 
 const UserCard: React.FC<UserCardProps> = ({text, data, data2}) => {
     return (        
@@ -368,62 +361,6 @@ const BodyPart3ChartsAnalysis = () => {
                     </Box>                            
                     
                     <BarChart/>
-{/*                     
-                    <Box   // Body 4.3
-                    display="flex"
-                    justifyContent="space-between"
-                    flexDirection="row"
-                    height="34px"
-                    bgcolor="#E8EDF5"
-                    width="100%"
-                    borderRadius="6px"
-                    padding="8px"
-                    gap="8px">
-                        <ArrowBackIcon
-                        sx={{
-                            height: "18px",
-                            width: "18px",
-                            borderRadius: "20px",
-                            border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
-                            padding: "3px",
-                            bgcolor: "#F9FAFB",
-                        }}/>
-
-                        <Typography
-                        fontSize="12px"
-                        fontWeight={600}
-                        lineHeight="18px"
-                        color={theme.palette.grey[300]}
-                        sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                        }}>
-                            Week 1, Jan 2024
-                        </Typography>
-                        <Typography
-                        fontSize="12px"
-                        fontWeight={600}
-                        lineHeight="18px"
-                        color={theme.palette.grey[300]}
-                        sx={{
-                            display: "flex",
-                            flexDirection: "row",
-                            justifyContent: "center",
-                        }}>
-                            Week 2, Jan 2024
-                        </Typography>
-
-                        <ArrowForwardIcon
-                        sx={{
-                            height: "18px",
-                            width: "18px",
-                            borderRadius: "20px",
-                            border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
-                            padding: "3px",
-                            bgcolor: "#F9FAFB",
-                        }}/>
-                    </Box>  */}
                     <WeekBar/>
 
                 </Box>
@@ -492,9 +429,6 @@ const BodyPart3ChartsAnalysis = () => {
     );
 }
 
-interface StringComponentProps {
-    text: string;
-}
 
 const ButtonUserTimeLine: React.FC<StringComponentProps> = ({text}) => {
     return (    

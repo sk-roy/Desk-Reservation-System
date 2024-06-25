@@ -55,7 +55,6 @@ const PieChart2 = () => {
           
     return (
         <div className="pie-chart-container">
-            {/* <ApexCharts options={options} width="100%" height="100%"/> */}
             <ApexCharts options={options} series={options.series} type='donut' />
         </div>
     );

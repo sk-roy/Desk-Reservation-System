@@ -26,3 +26,17 @@ export interface SidebarProps {
 export interface LogoProps {
     collapsed: boolean;
 }
+
+export interface SelectDeptProps {
+    department: string;
+}
+
+export interface UserCardProps {
+    text: String;
+    data: number;
+    data2: number;
+}
+
+export interface StringComponentProps {
+    text: string;
+}

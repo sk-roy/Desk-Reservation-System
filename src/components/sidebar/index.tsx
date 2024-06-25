@@ -27,13 +27,7 @@ import theme from '../../theme';
 import logo from "../../assets/icons/logo.svg"
 
 
-const drawerWidth = 240;
-
-
-// const getDrawerWidth = () => {    
-//     const defaultDrawerWidth = 240;
-//     const [drawerWidth, setDrawerWidth] = React.useState(defaultDrawerWidth)
-// }
+const drawerWidth = 210;
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -56,35 +50,31 @@ const closedMixin = (theme: Theme): CSSObject => ({
   },
 });
 
-const DrawerHeader = styled('div')(({ theme }) => ({
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-end',
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-}));
-
-
 const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({
     width: drawerWidth,
-    flexShrink: 0,
+    backgroundColor: theme.customTheme.Color.Primary.Dark,
     whiteSpace: 'nowrap',
     boxSizing: 'border-box',
     ...(open && {
       ...openedMixin(theme),
-      '& .MuiDrawer-paper': openedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...openedMixin(theme),
+        backgroundColor: theme.customTheme.Color.Primary.Dark,
+      },
     }),
     ...(!open && {
       ...closedMixin(theme),
-      '& .MuiDrawer-paper': closedMixin(theme),
+      '& .MuiDrawer-paper': {
+        ...closedMixin(theme),
+        backgroundColor: theme.customTheme.Color.Primary.Dark,
+      },
     }),
   }),
 );
 
 
-export const Logo: React.FC<LogoProps> = ({collapsed}) => {
+const Logo: React.FC<LogoProps> = ({collapsed}) => {
     return (  
              
         <div
@@ -211,7 +201,14 @@ export default function Sidebar({ children }: SidebarProps) {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.name} sx={{ opacity: open ? 1 : 0 }} />
+                <ListItemText 
+                  primary={item.name} 
+                  className='Medium 13'
+                  sx={{ 
+                    opacity: open ? 1 : 0, 
+                    color: theme.customTheme.Color.OffWhite[5],
+                  }} 
+                />
               </ListItemButton>
             </ListItem>
           ))}

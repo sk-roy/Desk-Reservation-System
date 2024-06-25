@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Layout from "../../layout";
 import theme from "../../theme";
-import { Avatar, Button, Typography } from "@mui/material";
+import { Avatar, Box, Button, Typography } from "@mui/material";
 import PlusCircleIcon from "../../components/icons/PlusCircleIcon";
 import InfoCircleIcon from "../../components/icons/InfoCircle";
 import CalenderIcon from "../../components/icons/CalenderIcon";
@@ -518,8 +518,8 @@ const Body = () => {
 const Location = () => {
     return (
         <Sidebar>            
-            <div
-            style = {{
+            <Box
+            sx = {{
                 width: "100%",
                 // heightL "900px",
                 display: "flex",
@@ -529,7 +529,7 @@ const Location = () => {
             >
                 <Header />
                 <Body/>
-            </div>
+            </Box>
         </Sidebar>
     );
 }
