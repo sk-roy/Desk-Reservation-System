@@ -7,158 +7,78 @@ import TertiaryButton from "../../components/buttons/TertiaryButton";
 import PlusCircleIcon from "../../components/icons/PlusCircleIcon";
 import DownloadCloudIcon from "../../components/icons/DownloadCloudIcon";
 import theme from "../../theme";
-import { Box, Button, Drawer, FormControl, FormHelperText, Grid, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, Typography, styled } from "@mui/material";
+import { Box, Button, Drawer, FilledInput, FormControl, FormHelperText, Grid, IconButton, Input, InputAdornment, InputBase, InputLabel, OutlinedInput, TextField, Typography, styled } from "@mui/material";
 import CalenderImage from "../../components/images/CalenderImage";
-import { NewLocationProps } from "../../components/interface";
+import { DrawerInputFieldProps, LocationData, LocationProps } from "../../components/interface";
 import CloseIcon from '@mui/icons-material/Close';
+import { TypeSpecimenOutlined } from "@mui/icons-material";
+import { CalendarIcon } from "@mui/x-date-pickers";
+import CalenderIcon from "../../components/icons/CalenderIcon";
 
 
-const BootstrapInput = styled(InputBase)(({ theme }) => ({
-    'label + &': {
-      marginTop: theme.spacing(3),
-    },
-    '& .MuiInputBase-input': {
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: theme.palette.mode === 'light' ? '#F3F6F9' : '#1A2027',
-      border: '1px solid',
-      borderColor: theme.palette.mode === 'light' ? '#E0E3E7' : '#2D3843',
-      fontSize: 16,
-      width: 'auto',
-      padding: '10px 12px',
-      transition: theme.transitions.create([
-        'border-color',
-        'background-color',
-        'box-shadow',
-      ]),
-      // Use the system font instead of the default Roboto font.
-      fontFamily: [
-        '-apple-system',
-        'BlinkMacSystemFont',
-        '"Segoe UI"',
-        'Roboto',
-        '"Helvetica Neue"',
-        'Arial',
-        'sans-serif',
-        '"Apple Color Emoji"',
-        '"Segoe UI Emoji"',
-        '"Segoe UI Symbol"',
-      ].join(','),
-      '&:focus': {
-        // boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  }));
-  
 
-const InputForm = () => {
-    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    return (
-        <Grid container>
-            <Grid item xs={6} height={60} spacing={14}>
-                
-                <FormControl sx={{ m: 1, width: '25ch' }} variant="outlined">
-                <FormHelperText>Weight</FormHelperText>
-                <OutlinedInput
-                    // id="outlined-adornment-weight"
-                    // // endAdornment={<InputAdornment position="end">kg</InputAdornment>}
-                    // aria-describedby="outlined-weight-helper-text"
-                    // inputProps={{
-                    // 'aria-label': 'weight',
-                    // }}
-                    sx={{
-                        "& fieldset": {
-                        border: "#FFFFFF",
-                        },
-                    }}
-                />
-                </FormControl>
+const InputFieldMedium = styled('div')({
+    borderRadius: "8px",
+    gap: "10px",
+    padding: "9px 14px 9px 14px",
+    border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
+    boxShadow: "0px 1px 4px 0px #4C577314",
+    backgroundColor: theme.customTheme.Color.Primary.White,
+});
 
-            {/* <FormControl variant="standard">
-            <InputLabel shrink htmlFor="bootstrap-input">
-                Bootstrap
-            </InputLabel>
-            <BootstrapInput defaultValue="react-bootstrap" id="bootstrap-input" /> */}
-        {/* </FormControl> */}
-            </Grid>
-        </Grid>
-        // <Form layout="vertical">
-        //     <Row gutter={24}>
-        //         <Col span={17}>
-        //         <Form.Item
-        //             name="locationName"
-        //             label={<label className="drawer-label">Location Name</label>}
-        //             rules={[{ message: 'Location Name' }]}
-        //         >
-        //             <Input sx={{height: '38px'}} placeholder="Type here"/>
-        //         </Form.Item>
-        //         </Col>
-        //         <Col span={7}>
-        //         <Form.Item
-        //             name="shortName"
-        //             label={<label className="drawer-label">Short Name</label>}
-        //             rules={[{ message: 'Short Name' }]}
-        //         >
-        //             <Input sx={{height: '38px'}} placeholder="Type here"/>
-        //         </Form.Item>
-        //         </Col>
-        //     </Row>
-        //     <Row>
-        //         <Col span={24}>
-        //         <Form.Item
-        //             name="address"
-        //             label={<label className="drawer-label">Address</label>}
-        //             rules={[{ message: 'Address' }]}
-        //         >
-        //             <Input sx={{height: '38px'}} placeholder="Type here"/>
-        //         </Form.Item>
-        //         </Col>
-        //     </Row>
-        //     <Row>
-        //         <Col span={24}>
-        //             <Form.Item
-        //                 name="timeZone"
-        //                 label={<label className="drawer-label">Time Zone</label>}
-        //                 rules={[{ message: 'Time Zone' }]}
-        //             >
-        //                 <Select sx={{height: '38px'}} placeholder="Select Time Zone"/>
-        //             <Box
-        //             sx={{
-        //                 display: "flex",
-        //                 justifyContent: "flex-start",
-        //                 alignItems: "center",
-        //                 marginTop: "4px",
-        //                 gap: "4px",
-        //             }}>
-        //                 <FiInfoIcon/>
-        //                 <Text className="drawer-label"> Time zone will be auto detected from address </Text>
-        //             </Box>
-        //             </Form.Item>
-        //         </Col>
-        //     </Row>
-        //     <Row>
-        //         <Col span={24}>
-        //         <Form.Item
-        //             name="weekdays"
-        //             label={<label className="drawer-label">Weekdays</label>}
-        //             rules={[{ message: 'Weekdays' }]}
-        //         >                        
-        //             <Radio.Group sx={{ width: '100%', display: "flex", flexDirection: "row", gap: "6px"}}>
-        //                 {weekdays.map((weekday) => (
-        //                     <Box key={weekday}>
-        //                         <Radio.Button value={weekday}>{weekday}</Radio.Button>
-        //                     </Box>
-        //                 ))}
-        //             </Radio.Group>
-        //         </Form.Item>
-        //         </Col>
-        //     </Row>
-        // </Form>
+
+
+const DrawerInputField = (props: DrawerInputFieldProps) => {
+    return (        
+        <Box
+        sx={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "space-between",
+            width: props.width,
+            gap: "4px",
+        }}>
+            <Typography className="Medium 12" color={theme.customTheme.Color.grey[2]}>{props.labelName}</Typography>
+            <input style={{
+                height: "38px",
+                width: props.widthType === "fixed" ? props.width : "100%",
+                border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)",
+                borderRadius: "8px",
+                padding: "9px 14px 9px 14px",
+                backgroundColor: props.inputBoxBG,
+            }} name={props.labelName} placeholder = {props.placeHolder ? props.placeHolder : "Type here"}
+            value={props.value} />
+            {props.endLabel}
+        </Box>
     );
 }
 
-const AddHolidays = () => {
+
+const InputForm = (props: LocationProps) => {
+    const weekdays = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+    return (
+      <Box sx={{ display: 'flex', flexDirection: "column", gap: "14px", }}>
+        <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "space-between", width: 504}}>
+            <DrawerInputField labelName="Location Name" width="364px" value={props.data?.locationName}/>
+            <DrawerInputField labelName="Short Name" width="130px" value={props.data?.shortName}/>
+        </Box>
+        <DrawerInputField labelName="Address" width="100%" value={props.data?.address}/>
+        <DrawerInputField labelName="Time Zone" width="100%" placeHolder="Select Time Zone" value={props.data?.timeZone}
+        inputBoxBG={theme.customTheme.Color.OffWhite[1]}
+        endLabel={
+            <Box sx={{ display: 'flex', flexDirection: "row", justifyContent: "flex-start", gap: "4px", textAlign: "center" }}>
+                <FiInfoIcon />
+                <Typography className="Medium 12" color={theme.customTheme.Color.grey[2]}>Time zone will be auto detected from address</Typography>
+            </Box>
+        }
+        />
+        <DrawerInputField labelName="Weekdays" width="100%"/>
+      </Box>
+    );
+}
+
+const AddHolidaysBanner = () => {
     return (
         <Box
         sx={{
@@ -206,7 +126,7 @@ const AddHolidays = () => {
     );
 }
 
-const DrawerHeader: React.FC<NewLocationProps> = (props) => {
+const DrawerHeader: React.FC<LocationProps> = (props) => {
     return (
         <Box
         sx={{
@@ -215,12 +135,13 @@ const DrawerHeader: React.FC<NewLocationProps> = (props) => {
             justifyContent: "space-between",
             alignItems: "center",
             height: 64,
+            width: "100%",
             padding: "18px 28px 18px 28px",
             gap: 12,
             backgroundColor: theme.customTheme.Color.Primary.White,
             borderBottom: `1px solid ${theme.customTheme.Color.OffWhite[3]}`,
         }}>
-            <Typography className="Bold 18" color={theme.customTheme.Color.grey[4]}> New Location </Typography>
+            <Typography className="Bold 18" color={theme.customTheme.Color.grey[4]}> {props.title} </Typography>
             
             <Button
             sx={{
@@ -239,7 +160,36 @@ const DrawerHeader: React.FC<NewLocationProps> = (props) => {
     );
 }
 
-const DrawerBody = () => {
+
+const Holidays = (props: LocationProps) => {
+    return (
+        <Box sx={{ display: "flex", flexDirection: "column", width: "504px", gap: "14px" }}>
+            <Box sx={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-between" }}>
+                <Typography className="Bold 16" color={theme.customTheme.Color.Primary.Dark}> All Holidays </Typography>                
+                <TertiaryButton title="Import from Excel" icon={<DownloadCloudIcon color={theme.customTheme.Color.grey[3]}/>} />
+            </Box>
+            {props.data?.holidays?.map((holiday, index) => (
+                <Box sx={{ display: "flex", flexDirection: "row", width: "100%", justifyContent: "space-between", gap: "10px" }}>
+                    <InputFieldMedium style={{ display: "flex", flexDirection: "row", width: "196px", justifyContent: "space-between", alignItems: "center", gap: "4px"}}>
+                        <CalenderIcon/>
+                        <Typography className="Medium 13" color={theme.customTheme.Color.Primary.Dark}> {holiday.date} </Typography>
+                        <UpDownArrowIcon/>
+                    </InputFieldMedium>
+                    <InputFieldMedium style={{ width: "298px", display: "flex", alignItems: "center" }}>
+                        <Typography className="Medium 13" color={theme.customTheme.Color.Primary.Dark}> {holiday.date} </Typography>
+                    </InputFieldMedium>
+                </Box>
+            ))}
+            <InputFieldMedium style={{ display: "flex", flexDirection: "row", width: "78px", justifyContent: "space-between", alignItems: "center", gap: "4px"}}>
+                <PlusCircleIcon color={theme.customTheme.Color.Primary.White} fill={theme.customTheme.Color.Primary.Blue}/>
+                <Typography className="Semi Bold 13" color={theme.customTheme.Color.Primary.Blue}> Add </Typography>
+            </InputFieldMedium>
+        </Box>
+    );
+}
+
+const DrawerBody = (props: LocationProps) => {
+    const hasHolidays = props.data?.holidays && props.data.holidays.length > 0;
     return (        
         <Box 
         sx={{
@@ -250,13 +200,14 @@ const DrawerBody = () => {
             padding: "20px 28px 20px 28px",
             gap: "40px",
         }}>
-            <InputForm/>
-            <AddHolidays/>
+            <InputForm {...props}/>
+            {hasHolidays && <Holidays {...props}/>}
+            {!hasHolidays && <AddHolidaysBanner/>}
         </Box>
     );
 }
 
-const DrawerFooter: React.FC<NewLocationProps> = (props) => {
+const DrawerFooter: React.FC<LocationProps> = (props) => {
     return (        
         <Box
         sx={{
@@ -264,6 +215,7 @@ const DrawerFooter: React.FC<NewLocationProps> = (props) => {
             flexDirection: "row",
             justifyContent: "flex-end",
             height: "78px",
+            width: "100%",
             padding: '20px 28px 20px 28px',
             gap: "10px",
             borderTop: `1px solid ${theme.customTheme.Color.OffWhite[3]}`,
@@ -276,21 +228,21 @@ const DrawerFooter: React.FC<NewLocationProps> = (props) => {
     );
 }
 
-export const NewLocationDrawer: React.FC<NewLocationProps> = (props) => {
+export const LocationDrawer: React.FC<LocationProps> = (props) => {
     return (                    
         <Drawer
         onClose={props.onClose} 
         open={props.open}
         anchor="right"
-        PaperProps={{ sx: { width: 560 } }}>
+        PaperProps={{ sx: { width: 560,  } }}>
             <Box sx={{
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
             }}>
-                <DrawerHeader onClose={props.onClose} />
-                <DrawerBody />
-                <DrawerFooter onClose={props.onClose} />
+                <DrawerHeader {...props} />
+                <DrawerBody {...props} />
+                <DrawerFooter {...props} />
             </Box>
         </Drawer>
     );

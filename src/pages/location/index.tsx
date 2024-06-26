@@ -9,7 +9,7 @@ import Edit03Icon from "../../components/icons/Edit03Icon";
 import UpDownArrowIcon from "../../components/icons/UpDownArrowIcon";
 import TertiaryButton from "../../components/buttons/TertiaryButton";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
-import { NewLocationDrawer } from "./Drawers";
+import { LocationDrawer } from "./Drawers";
 import Sidebar from "../../components/sidebar";
 
 
@@ -124,24 +124,24 @@ const Header = () => {
                 
                 <>
                     <Button 
-                    style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: "space-between",
-                        padding: "4px 0px 12px 0px",
-                        border: "0px",
-                        // borderBottom: "2px solid var(--Primary-Blue, #2E4AAE)",
-                        height: "36px",
-                        gap: "6px",
-                        textTransform: "none",
-                    }}
-                    onClick={showDrawer}>
-                        <PlusCircleIcon color={theme.customTheme.Color.Primary.Blue} fill={theme.customTheme.Color.Primary.Blue}/>
-                        <Typography className="Semi Bold 12" color={theme.customTheme.Color.Primary.Blue}>
-                            New Location
-                        </Typography>
+                        style={{
+                            display: "flex",
+                            flexDirection: "row",
+                            justifyContent: "space-between",
+                            padding: "4px 0px 12px 0px",
+                            border: "0px",
+                            // borderBottom: "2px solid var(--Primary-Blue, #2E4AAE)",
+                            height: "36px",
+                            gap: "6px",
+                            textTransform: "none",
+                        }}
+                        onClick={showDrawer}>
+                            <PlusCircleIcon color={theme.customTheme.Color.Primary.Blue} fill={theme.customTheme.Color.Primary.Blue}/>
+                            <Typography className="Semi Bold 12" color={theme.customTheme.Color.Primary.Blue}>
+                                New Location
+                            </Typography>
                     </Button>   
-                    <NewLocationDrawer onClose={onClose} open={open}/>
+                    <LocationDrawer title="New Location" onClose={onClose} open={open}/>
                 </>
 
             </div>
@@ -150,6 +150,17 @@ const Header = () => {
 }
 
 const HeadquarterHeader = () => {
+    const [EditLocationDrawerOpen, setEditLocationDrawerOpen] = useState(false);
+  
+    const EditLocationDrawerOnClick = () => {
+        setEditLocationDrawerOpen(true);
+    };
+  
+    const EditLocationDrawerOnClose = () => {
+        setEditLocationDrawerOpen(false);
+    };
+
+
     return (
         <div
         style={{
@@ -250,7 +261,21 @@ const HeadquarterHeader = () => {
                 gap: "10px",
             }}>                
                 <TertiaryButton title="Update Holidays" icon={<CalenderIcon/>} height={38}/>                   
-                <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.palette.primary.main}/>}/> 
+                <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.palette.primary.main}/>}  onClick={EditLocationDrawerOnClick}
+                /> 
+                <LocationDrawer title="Edit Location" onClose={EditLocationDrawerOnClose} open={EditLocationDrawerOpen}
+                data={{
+
+                    locationName: "Headquarter",
+                    shortName: "HQ",
+                    holidays: [
+                        { date: "Wed, 21 Feb 2024", title: "Int. Mother Language Day" },
+                        { date: "Tue, 26 Mar 2024", title: "Independence Day" },
+                        { date: "Sun, 07 Apr 2024", title: "Shab-E-Qadr" },
+                        { date: "Wed, 10 Apr 2024", title: "Eid-Ul-Fitr" },
+                    ]
+                }
+                }/>
             </div>
         </div>
     );

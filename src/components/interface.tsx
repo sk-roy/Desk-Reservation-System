@@ -13,9 +13,34 @@ export interface ButtonProps {
     onClick?: () => void;
 }
 
-export interface NewLocationProps {
+
+export interface DrawerInputFieldProps {
+    labelName: string;
+    width?: string;
+    widthType?: string;
+    inputBoxBG?: string;
+    endLabel?: ReactNode;
+    placeHolder?: string;
+    value?: string;
+}
+
+export interface LocationData {
+    locationName?: string;
+    shortName?: string;
+    address?: string;
+    timeZone?: string;
+    weekdays?: Array<string>;
+    holidays?: Array<{
+        date: string;
+        title: string;
+    }>;
+}
+
+export interface LocationProps {
+    title: string;
     onClose?: () => void;
     open?: boolean;
+    data?: LocationData;
 }
 
 

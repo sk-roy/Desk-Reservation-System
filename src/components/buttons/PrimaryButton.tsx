@@ -17,7 +17,8 @@ const PrimaryButton: React.FC<ButtonProps> = (props) => {
             gap: "6px",
             backgroundColor: theme.customTheme.Color.Primary.Blue,
             textTransform: "none",
-        }}> 
+        }}
+        onClick={props.onClick}> 
             {props.icon}
             <Typography
             style={{
