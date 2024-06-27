@@ -5,10 +5,6 @@ import { Shadows, createTheme } from '@mui/material/styles';
 
 const theme = createTheme({
     palette: {
-        primary: {
-            main: "#FFFFFF",
-            dark: "#212B36",
-        },
         grey: {
             200: '#8092A3',
             300: '#6C859B',
@@ -199,11 +195,27 @@ const theme = createTheme({
             ]
         },
         MuiButton: {
-            styleOverrides : {
-                root: {
-                    minWidth: 0,
-                }
-            }
+            variants: [
+                {
+                    props: {
+                        className: 'Cancel',
+                    },
+                    style: {
+                        borderRadius: "6px",
+                        px: "14px",
+                        py: "7px",
+                    }
+                }, {
+                    props: {
+                        className: 'Delete',
+                    },
+                    style: {
+                        borderRadius: "6px",
+                        px: "14px",
+                        py: "7px",
+                    }
+                },
+            ]
         }
     }
 });

@@ -2,7 +2,7 @@
 import ApexCharts from 'react-apexcharts';
 
 
-const PieChart2 = () => {
+const PieChart = () => {
     const options = {
         series: [44, 55, 41, 180],
         chart: {
@@ -62,4 +62,4 @@ const PieChart2 = () => {
 
 
 
-export default PieChart2;
+export default PieChart;

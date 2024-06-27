@@ -1,13 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import Layout from "../../layout";
 import { Box, Button, FormControl, MenuItem, Select, Typography } from "@mui/material";
-import DateRangeFilter from "./DateRangeFilter";
-import EnhancedTable from "./EnhancedTable";
 import DataTable from "./DataTable";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
-import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { Height } from "@mui/icons-material";
 import Sidebar from "../../components/sidebar";
 
 
@@ -39,7 +33,7 @@ const SelectDept: React.FC<SelectDeptProps> = ({ department }) => {
                     color: "#6C859B",
                 }}
             >
-                <MenuItem value={'Human Research'}>Human Research</MenuItem>
+                {/* <MenuItem value={'Human Research'}>Human Research</MenuItem> */}
             </Select>
         </FormControl>
     );
@@ -51,14 +45,15 @@ const Header = () => {
         display="flex"
         flexDirection="column"
         alignItems='space-between'
-        // height="214px"
+        px="32px"
+        //height="130px"
         gap='6px'
         >
             <Box // Frame 45 - Booking
             display="flex"
             flexDirection="column"
             height="72px"
-            width="1156px"
+            width="100%"
             paddingBottom="8px"
             gap="6px"
             >          
@@ -88,11 +83,12 @@ const Header = () => {
             <Box   // Booking action bar
             display="flex"
             flexDirection="row"
-            width="1156px"
+            width="100%"
             gap="32px"
-            alignItems="space-between"
+            // px="32px"
+            // alignItems="space-between"
             // bgcolor="gray"
-            // justifyContent='space-between'
+            justifyContent='space-between'
             >
                 <Box   // select date to filter - this month
                 display="flex"
@@ -142,22 +138,22 @@ const Header = () => {
                         <MenuItem value={1}>Status</MenuItem>
                     </Select>
                 </Box>
+                {/* <Button>Reserve a Desk</Button> */}
                 <Box>                                
-                    <Button   // Book-A-Car button
-                    style={{
-                        backgroundColor: "#2E4AAE",
-                        fontSize: "14px",
-                        fontWeight: "600",
-                        color: "#FFFFFF",
-                        paddingLeft: "14px",
-                        paddingRight: "14px",
-                        paddingTop: "7px",
-                        paddingBottom: "7px",
+                    <Button
+                    sx={{
                         borderRadius: "8px",
-                        borderColor: "transparent",
+                        px: "16px",
+                        py: "9px",
+                        backgroundColor: "#2E4AAE",
                         textTransform: "none",
-                    }}>  
-                        Book A Desk
+                        '&:hover': {
+                          backgroundColor: '#2E4AAE',
+                          boxShadow: "0px 1px 2px 1px #2E4AAE",
+                        },
+                    }}
+                    >  
+                        <Typography className="Semi Bold 13" color="#FFFFFF">Reserve a Desk</Typography>
                     </Button>
                 </Box>
             </Box>
@@ -176,22 +172,14 @@ const Booking = () => {
             <Box 
             display='flex'
             flexDirection='column'
-            // alignItems='flex-start'
             justifyContent='space-between'
-            // spacing={1
-            paddingLeft="32px"
             paddingTop="32px"
-            paddingRight="32px"
-            width="1220px"
-            height='900px'
-            gap="12px"
+            width="100%"
+            height="100vh"
+            maxHeight="100vh"
             >
                 <Header/>
-                <Box
-                    height='1000px'
-                >
-                    <EnhancedTable/>
-                </Box>
+                <DataTable/>
             </Box>
         </Sidebar>
     );

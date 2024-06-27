@@ -8,7 +8,7 @@ import UtilisationIcon from "../../components/images/AnalyticsPage/AnalyticsUtil
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import BarChart from "./BarChart";
-import PieChart2 from "./PieChart";
+import PieChart from "./PieChart";
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AreaChart from "./AreaChart";
@@ -422,7 +422,7 @@ const BodyPart3ChartsAnalysis = () => {
                         </Box>
                     </Box>   
 
-                    <PieChart2/>
+                    <PieChart/>
                 </Box>
             </Box>
         </>

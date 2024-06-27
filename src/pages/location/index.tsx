@@ -71,7 +71,7 @@ const Header = () => {
                     height: "36px",
                     borderRadius: "24px",
                     border: `1px solid ${theme.customTheme.Color.OffWhite[4]}`,
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: theme.customTheme.Color.Primary.White,
                     padding: "6px 10px 6px 6px",
                     gap: "6px",
                 }}>
@@ -94,7 +94,7 @@ const Header = () => {
                 padding: "0px 28px 0px 28px",
                 gap: "24px",
                 opacity: "0px",
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: theme.customTheme.Color.Primary.White,
             }}>
                 <Button 
                 style={{
@@ -189,7 +189,7 @@ const HeadquarterHeader = () => {
                     fontSize: "28px",
                     fontWeight: 700,
                     textAlign: "center",
-                    color: theme.palette.primary.main,
+                    color: theme.customTheme.Color.Primary.White,
                 }}>HQ</Typography>
             </div>
             <div 
@@ -261,7 +261,7 @@ const HeadquarterHeader = () => {
                 gap: "10px",
             }}>                
                 <TertiaryButton title="Update Holidays" icon={<CalenderIcon/>} height={38}/>                   
-                <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.palette.primary.main}/>}  onClick={EditLocationDrawerOnClick}
+                <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.customTheme.Color.Primary.White}/>}  onClick={EditLocationDrawerOnClick}
                 /> 
                 <LocationDrawer title="Edit Location" onClose={EditLocationDrawerOnClose} open={EditLocationDrawerOpen} newLocation={false}
                 data={{
@@ -304,7 +304,7 @@ const TableHeader = () => {
                     borderRadius: "6px",
                     padding: "7px 12px 7px 10px",
                     gap: "6px",
-                    backgroundColor: theme.palette.primary.main,
+                    backgroundColor: theme.customTheme.Color.Primary.White,
                     border: `1px solid ${theme.customTheme.Color.Primary.Blue}`,
                     boxShadow: theme.customTheme.Shadows.Elevation1,
                 }}>
@@ -482,7 +482,7 @@ interface MyRecord {
 //                 },
 //                 components: {
 //                     Table: {                
-//                         headerBg: theme.palette.primary.main,
+//                         headerBg: theme.customTheme.Color.Primary.White,
 //                         headerColor: theme.customTheme.Color.grey[2],
 //                     }
 //                 }
@@ -525,7 +525,7 @@ const Body = () => {
                 borderRadius: '8px',
                 boxShadow: theme.customTheme.Shadows.Elevation1,
                 border: `1px solid ${theme.customTheme.Color.OffWhite[4]}`,
-                backgroundColor: theme.palette.primary.main,
+                backgroundColor: theme.customTheme.Color.Primary.White,
             }}>
                 <HeadquarterHeader/>
                 <TableHeader/>
