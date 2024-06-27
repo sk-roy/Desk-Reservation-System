@@ -2,29 +2,20 @@ import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import Home from '../../pages/home';
-import { Link, RouterProvider, useLocation } from 'react-router-dom';
-import { router, tablist } from '../../route';
+import { Link, useLocation } from 'react-router-dom';
+import { tablist } from '../../route';
 import { LogoProps, SidebarProps } from '../interface';
 import { Button } from '@mui/material';
 import theme from '../../theme';
 import logo from "../../assets/icons/logo.svg"
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
 
 const drawerWidth = 210;
@@ -156,89 +147,88 @@ export default function Sidebar({ children }: SidebarProps) {
     setOpen(!open);
   };
 
-  const customTrigger = (
-    <Button 
-    onClick={toggleCollapse}
-    style={{
-      backgroundColor: "transparent",
-      height: "22px",
-      width: "22px",
-      border: "transparent",
-      padding: "2px",
-    }}>
-      {open ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-    </Button>
-  );
-
   return (
-    <Box sx={{ display: 'flex' }}>
-      <Drawer variant="permanent" open={open}>
-        
-        <Logo collapsed={!open}/>
-
-        <List>
-          {tablist.map((item, index) => (
-            <ListItem 
+  <Box sx={{ display: 'flex', position: 'relative' }}>
+    <Drawer variant="permanent" open={open} sx={{ zIndex: 2 }}>
+      <Logo collapsed={!open} />
+  
+      <List>
+        {tablist.map((item, index) => (
+          <ListItem 
             key={item.name} 
             disablePadding 
             sx={{ display: 'block' }}
             component={Link}
             to={item.path}
-            selected={location.pathname === item.path}>
-              <ListItemButton
+            selected={location.pathname === item.path}
+          >
+            <ListItemButton
+              sx={{
+                minHeight: 48,
+                justifyContent: open ? 'initial' : 'center',
+                px: 2.5,
+              }}
+            >
+              <ListItemIcon
                 sx={{
-                  minHeight: 48,
-                  justifyContent: open ? 'initial' : 'center',
-                  px: 2.5,
+                  minWidth: 0,
+                  mr: open ? 3 : 'auto',
+                  justifyContent: 'center',
                 }}
               >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : 'auto',
-                    justifyContent: 'center',
-                  }}
-                >
-                  {item.icon}
-                </ListItemIcon>
-                <ListItemText 
-                  primary={item.name} 
-                  className='Medium 13'
-                  sx={{ 
-                    opacity: open ? 1 : 0, 
-                    color: theme.customTheme.Color.OffWhite[5],
-                  }} 
-                />
-              </ListItemButton>
-            </ListItem>
-          ))}
-        </List>
-        
-        <Box 
-            sx = {{ 
-            position: "absolute",
-            top: "35px",
-            right: "-11px",
-            zIndex: 1,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "22px", 
-            width: "22px", 
-            backgroundColor: theme.customTheme.Color.Primary.Dark, 
-            borderRadius: "40px",
-            border: "1px solid var(--Offwhite-Offwhite-1, #F9FAFB)"
-            }}>
-            {customTrigger}
-        </Box>
-        
-      </Drawer>
-      
-        
-      <Box component="main" sx={{ flexGrow: 1, p: 3, }}>
+                {item.icon}
+              </ListItemIcon>
+              <ListItemText 
+                primary={item.name} 
+                className='Medium 13'
+                sx={{ 
+                  opacity: open ? 1 : 0, 
+                  color: theme.customTheme.Color.OffWhite[5],
+                }} 
+              />
+            </ListItemButton>
+          </ListItem>
+        ))}
+      </List>
+  
+    </Drawer>
+  
+    <Box sx={{ flexGrow: 1, position: 'relative' }}>
+      <Box component="main" sx={{zIndex: 1 }}>
         {children}
       </Box>
 
+      <Box  
+      sx={{ 
+        position: "absolute",
+        top: "35px",
+        left: -11,
+        zIndex: 3,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: "22px", 
+        width: "22px", 
+        backgroundColor: theme.customTheme.Color.Primary.Dark, 
+        borderRadius: "40px",
+        border: "1px solid var(--Offwhite-Offwhite-1, #F9FAFB)"
+      }}
+    >
+      <Button 
+        onClick={toggleCollapse}
+        style={{
+          backgroundColor: "transparent",
+          height: "22px",
+          width: "22px",
+          border: "transparent",
+          padding: "2px",
+        }}
+      >
+        {open ? <ArrowBackIcon sx={{color: theme.customTheme.Color.grey[3], height: "14px", width: "14px"}}/> 
+              : <ArrowForwardIcon sx={{color: theme.customTheme.Color.grey[3], height: "14px", width: "14px"}}/>}
+      </Button>
+    </Box>
+  </Box>
       
     </Box>
   );
