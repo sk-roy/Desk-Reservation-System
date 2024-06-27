@@ -15,7 +15,7 @@ const PrimaryButton: React.FC<ButtonProps> = (props) => {
             borderRadius: "8px",
             padding: "9px 16px 9px 14px",
             gap: "6px",
-            backgroundColor: theme.customTheme.Color.Primary.Blue,
+            backgroundColor: props.bgColor ? props.bgColor : theme.customTheme.Color.Primary.Blue,
             textTransform: "none",
         }}
         onClick={props.onClick}> 

@@ -14,6 +14,8 @@ import CloseIcon from '@mui/icons-material/Close';
 import { TypeSpecimenOutlined } from "@mui/icons-material";
 import { CalendarIcon } from "@mui/x-date-pickers";
 import CalenderIcon from "../../components/icons/CalenderIcon";
+import DeleteButton from "../../components/buttons/DeleteButton";
+import DeleteIcon from "../../components/icons/DeleteIcon";
 
 
 
@@ -213,7 +215,7 @@ const DrawerFooter: React.FC<LocationProps> = (props) => {
         sx={{
             display: "flex",
             flexDirection: "row",
-            justifyContent: "flex-end",
+            justifyContent: props.newLocation ? "flex-end" : "space-between",
             height: "78px",
             width: "100%",
             padding: '20px 28px 20px 28px',
@@ -222,8 +224,18 @@ const DrawerFooter: React.FC<LocationProps> = (props) => {
             boxShadow: theme.customTheme.Shadows.Elevation2,
             backgroundColor: theme.customTheme.Color.Primary.White,
         }}>
-            <SecondaryButton onClick={props.onClose} title="Cancel" />
-            <PrimaryButton title="Create Location"/>
+            {!props.newLocation && <DeleteButton title="Delete" icon={<DeleteIcon/>}/>}
+            <Box 
+            sx={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "flex-end",
+                gap: "10px",
+            }}>
+                <SecondaryButton onClick={props.onClose} title= {props.newLocation ? "Cancel" : "Discard Changes"} />
+                <PrimaryButton title= {props.newLocation ? "Create Location" : "Save Changes"} 
+                    bgColor={props.newLocation ? theme.customTheme.Color.Primary.Blue : theme.customTheme.Color.Alert.Green}/>
+            </Box>
         </Box>
     );
 }

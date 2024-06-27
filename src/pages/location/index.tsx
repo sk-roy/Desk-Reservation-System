@@ -141,7 +141,7 @@ const Header = () => {
                                 New Location
                             </Typography>
                     </Button>   
-                    <LocationDrawer title="New Location" onClose={onClose} open={open}/>
+                    <LocationDrawer title="New Location" onClose={onClose} open={open} newLocation={true}/>
                 </>
 
             </div>
@@ -263,9 +263,8 @@ const HeadquarterHeader = () => {
                 <TertiaryButton title="Update Holidays" icon={<CalenderIcon/>} height={38}/>                   
                 <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.palette.primary.main}/>}  onClick={EditLocationDrawerOnClick}
                 /> 
-                <LocationDrawer title="Edit Location" onClose={EditLocationDrawerOnClose} open={EditLocationDrawerOpen}
+                <LocationDrawer title="Edit Location" onClose={EditLocationDrawerOnClose} open={EditLocationDrawerOpen} newLocation={false}
                 data={{
-
                     locationName: "Headquarter",
                     shortName: "HQ",
                     holidays: [

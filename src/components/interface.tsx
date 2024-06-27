@@ -10,6 +10,7 @@ export interface ButtonProps {
     title: string;
     icon?: ReactNode;
     height?: number;
+    bgColor?: string;
     onClick?: () => void;
 }
 
@@ -41,6 +42,7 @@ export interface LocationProps {
     onClose?: () => void;
     open?: boolean;
     data?: LocationData;
+    newLocation: boolean;
 }
 
 
