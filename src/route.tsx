@@ -14,9 +14,10 @@ const Loader = (Component: any) => (props: any) =>
   );
 
 const Home = Loader(lazy(() => import("./pages/home")));
-const Booking = Loader(lazy(() => import("./pages/reservation")));
+const Booking = Loader(lazy(() => import("./pages/reservation/reservationAntD")));
 const Analytics = Loader(lazy(() => import("./pages/analytics")));
-const Team = Loader(lazy(() => import("./pages/team")));
+const Team = Loader(lazy(() => import("./pages/team/team")));
+const Location = Loader(lazy(() => import("./pages/location")));
 
 
 export const router = createBrowserRouter([
@@ -35,6 +36,10 @@ export const router = createBrowserRouter([
     {
       path: "/team",
       element: <Team />,
+    },
+    {
+      path: "/location",
+      element: <Location />,
     },
 ]);
   

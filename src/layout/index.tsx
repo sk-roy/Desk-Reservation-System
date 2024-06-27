@@ -1,43 +1,147 @@
-import { Box, CssBaseline, Divider, Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar, Typography, makeStyles } from "@mui/material";
-import { ReactNode } from "react";
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-
+import { ReactNode, useState } from "react";
 import React from "react";
-import Sidebar from "../components/sidebar";
+import { Button, ConfigProvider, Layout, Menu, MenuProps, Typography, theme } from "antd";
+import { ArrowLeftOutlined, ArrowRightOutlined, HomeOutlined, MenuFoldOutlined, MenuUnfoldOutlined, PieChartOutlined } from "@ant-design/icons";
+import { useLocation, useNavigate } from "react-router";
+import Icon from "@ant-design/icons/lib/components/Icon";
+import HomeIcon from "../components/icons/HomeIcon";
+import ReservationIcon from "../components/icons/ReservationIcon";
+import { icons } from "antd/es/image/PreviewGroup";
+import AnalyticsIcon from "../components/icons/AnalyticsIcon";
+import TeamIcon from "../components/icons/TeamIcon";
+import LocationIcon from "../components/icons/LocationIcon";
+import { CustomStyles } from "../theme";
+import { Logo } from "../components/sidebar";
+import RightArrowIcon from "../components/icons/RightArrowIcon";
+import LeftArrowIcon from "../components/icons/LeftArrowIcon";
+const { Content, Sider } = Layout;
 
 
 interface LayoutProps {
     children: ReactNode
 }
 
-const drawerWidth = 220
+const menuItems = [
+  { key: '0', label: 'Home', icon: HomeIcon },
+  { key: '1', label: 'Reservation', icon: ReservationIcon },
+  { key: '2', label: 'Analytics', icon: AnalyticsIcon },
+  { key: '3', label: 'DRS Team', icon: TeamIcon },
+  { key: '4', label: 'Location', icon: LocationIcon },
+];
+
+const getIndex = (path: any) => {
+    const currentPage =  String(path).substring(1);
+    console.log(currentPage)
+
+    if (currentPage === "booking") return '1';
+    else if (currentPage === "analytics") return '2';
+    else if (currentPage === "team") return '3';
+    else if (currentPage === "location") return '4';
+    else return '0';
+}
 
 
-const Layout = ({ children }: LayoutProps) => {
+const CustomLayout = ({ children }: LayoutProps) => {
+  // const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState<boolean>(false);
 
-    return (
+  const nagigate = useNavigate();
+  const location = useLocation();
+  console.log(location.pathname);
+  
+  const [selectedTab, updateSelectedTab] = useState(getIndex(location.pathname))
+
+  const navigateSelectedTab = (index: number) => {
+      if (index === 1) return nagigate("/booking");
+      if (index === 2) return nagigate("/analytics");
+      if (index === 3) return nagigate("/team");
+      if (index === 4) return nagigate("/location");
+      return nagigate("/"); // index 0 for Home
+  };
+
+  const toggleCollapse = () => {
+    setCollapsed(!collapsed);
+  };
+
+    // Custom trigger button
+    const customTrigger = (
+      <Button onClick={toggleCollapse}
+      style={{
+        backgroundColor: "transparent",
+        height: "22px",
+        width: "22px",
+        border: "transparent",
+        padding: "2px",
+      }}>
+        {collapsed ? <RightArrowIcon/> : <LeftArrowIcon/>}
+      </Button>
+    );
+  
+
+  return (
+    <Layout style={{ minHeight: '100vh' }}>        
+      <Sider collapsible collapsed={collapsed} trigger={null}
+      width={210}
+      style={{
+        padding: '16px 12px 16px 12px',
+        // gap: '24px',   // not working
+      }}>
+        <Logo collapsed={collapsed}/>
         
-    <Box sx={{ display: 'flex' }}>
-    <CssBaseline />
-    <Drawer
-      sx={{
-        width: drawerWidth,
-        flexShrink: 0,
-        
-        '& .MuiDrawer-paper': {
-          width: drawerWidth,
-          boxSizing: 'border-box',
-        },
-      }}
-      variant="permanent"
-      anchor="left">
-      <Sidebar/>
-    </Drawer>
-    
-    <Box sx={{ width: "100%", overflowY: "hidden" }}>{children}</Box>
-  </Box>
+        <div 
+        style = {{ 
+          position: "absolute",
+          top: "35px",
+          right: "-11px",
+          zIndex: 1,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "22px", 
+          width: "22px", 
+          backgroundColor: CustomStyles.Color.Primary.Dark, 
+          borderRadius: "40px",
+          border: "1px solid var(--Offwhite-Offwhite-1, #F9FAFB)"
+        }}>
+          {customTrigger}
+        </div>
+
+        <Menu 
+        theme="dark" 
+        defaultSelectedKeys={[selectedTab]} 
+        // mode="inline"
+        style={{ marginTop: 24 }}>
+          {menuItems.map((item) => (
+            // <div>
+            <Menu.Item key={item.key} 
+              style={{marginTop: 0, marginBottom: 6, marginLeft: 0, marginRight: 0, 
+                height: 40,
+                padding: '10px, 14px, 10px, 14px'
+              }}
+              onClick={() => {
+                updateSelectedTab(item.key);
+                navigateSelectedTab(Number(item.key));
+              }}
+              icon={<Icon component={item.icon}/> }>
+              <span style={{
+                fontSize: 13,
+                fontWeight: selectedTab === item.key ? 600 : 500,
+                letterSpacing: '-0.01em',
+                textAlign: 'left',
+
+              }}>{item.label}</span>
+            </Menu.Item>
+          ))}
+        </Menu>
+      </Sider>
+      
+      <Layout>
+        <Content>
+          <div style={{ width: "100%", overflowY: "hidden" }}>{children}</div>
+        </Content>
+      </Layout>
+    </Layout>
   );
 }
 
-export default Layout;
+export default CustomLayout;
