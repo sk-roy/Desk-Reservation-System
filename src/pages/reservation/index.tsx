@@ -1,7 +1,8 @@
 import React from "react";
 import Layout from "../../layout";
 import { Box, Button, FormControl, MenuItem, Select, Typography } from "@mui/material";
-import DataTable from "./DataTable";
+
+import { DataTable } from "./DataTable";
 import Sidebar from "../../components/sidebar";
 
 

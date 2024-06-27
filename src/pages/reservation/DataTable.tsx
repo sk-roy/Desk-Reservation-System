@@ -1,14 +1,14 @@
 import * as React from 'react';
-import { DataGrid, GridColDef, GridFooterContainer, GridPagination, GridRowParams, gridPageCountSelector, useGridApiContext, useGridSelector } from '@mui/x-data-grid';
-import { Box, Button, FormControl, MenuItem, Select, Stack, TablePaginationProps, Typography, colors } from '@mui/material';
-import MuiPagination from '@mui/material/Pagination';
+import { DataGrid, GridColDef, GridFooterContainer, GridRowParams } from '@mui/x-data-grid';
+import { Box, Stack, Typography } from '@mui/material';
 import CustomFooter from './CustomFooter';
-import DeleteIcon from '@mui/icons-material/Delete';
-import { ClassNames, useTheme } from '@emotion/react';
 import theme from '../../theme';
 import { DataGridRows } from '../../assets/data';
-import { BorderBottom, Padding } from '@mui/icons-material';
 import IconUnsorted from "../../assets/icons/chevron-selector-vertical.svg"
+import DeleteButton from '../../components/buttons/DeleteButton';
+import DeleteIcon from '../../components/icons/DeleteIcon';
+import TertiaryButton from '../../components/buttons/TertiaryButton';
+import Edit03Icon from '../../components/icons/Edit03Icon';
 
 
 const StatusCell = ({ status }: {status: number}) => {
@@ -29,44 +29,17 @@ const StatusCell = ({ status }: {status: number}) => {
   );
 }
 
-const CustomButtonCell = ({ status }: { status: number }) => {
-  return (    
-    <Box>
-    {status === 1 ? (
-      <Button 
-      sx={{
-        borderRadius: "6px",
-        paddingLeft: "14px",
-        paddingTop: "7px",
-        paddingRight: "14px",
-        paddingBottom: "7px",
-        // borderColor: "transparent",
-        textTransform: "none",
-        fontSize: "12px",
-        fontWeight: "600",
-        backgroundColor: "#EEF3FA",
-      }}>
-        <Typography className='Semi Bold 12' color={theme.palette.grey[400]}>Cancel</Typography>
-      </Button>
-    ) :
-     (
-      <Button
-      variant="outlined"
-      sx={{
-        color: 'red',
-        textTransform: "none",
-        paddingBottom: "7px",
-        fontSize: '10px',
-        fontWeight: 600,
-        backgroundColor: "#EEF3FA",
-        borderColor: "transparent"
-      }}
-      startIcon={<DeleteIcon />}
-      >
-        Delete
-      </Button>
-    )}
-  </Box>
+const CustomButtonCell = ({ status, id, currentRow }: { status: number, id: number, currentRow: number }) => {
+  return (   
+    <>{ 
+      currentRow === id && 
+      <Box>
+      {
+        status === 1 ? <TertiaryButton title='Edit' icon={<Edit03Icon color={theme.customTheme.Color.grey[3]}/>}/>
+                    : <DeleteButton title="Delete" height={32} icon={<DeleteIcon/>}/>
+      }
+      </Box>      
+    }</>
   );
 };
 
@@ -102,40 +75,17 @@ const MadeReservedOnCell = ({ status, madeReservedOn }: {status: number, madeRes
 
 const columnLenth = 6;
 
-const columns: GridColDef[] = [
-  { 
-    field: 'reservedOn', headerName: 'Reserved On', flex: (1/columnLenth), sortable: true,
-    disableColumnMenu: true,
-    renderCell: (params) => <ReservedOnCell {...params.row} />
-  }, {
-    field: 'desk', headerName: 'Desk', flex: (1/columnLenth), sortable: true,
-    disableColumnMenu: true,
-    renderCell: (params) => <DeskCell {...params.row} />
-  }, { 
-    field: 'status', headerName: 'Status', flex: (1/columnLenth),
-    disableColumnMenu: true, headerClassName: 'status-header',
-    renderCell: (params) => <StatusCell status={params.value} />,
-  },{ 
-    field: 'madeReservedOn', headerName: 'Made Reserved On', flex: (1/columnLenth), sortable: true,
-    disableColumnMenu: true,
-    renderCell: (params) => <MadeReservedOnCell {...params.row} />
-  },{
-    field: 'button', headerName: '', flex: (1/columnLenth),
-    disableColumnMenu: true, headerClassName: 'button-header',
-    renderCell: (params) => <CustomButtonCell {...params.row} />,
-  },
-];
 
-export default function DataTable() {
+export const DataTable: React.FC = () => {
   const initialPage = 0;
   const initialRowsPerPage = 10;
   const rowsPerPageOptions = [10, 15, 20];
 
   const [page, setPage] = React.useState<number>(initialPage);
   const [rowsPerPage, setRowsPerPage] = React.useState<number>(initialRowsPerPage);
+  const [currentRow, setCurrentRow] = React.useState(-1);
 
 
-  
   const datagridSx = {
     border: 0,
     '& .MuiDataGrid-columnHeader': {
@@ -178,7 +128,32 @@ export default function DataTable() {
       '& .button-header .MuiDataGrid-iconButtonContainer': {
           display: 'none',
       },
-  };  
+  }; 
+  
+  const columns: GridColDef[] = [
+    { 
+      field: 'reservedOn', headerName: 'Reserved On', flex: (1/columnLenth), sortable: true,
+      disableColumnMenu: true,
+      renderCell: (params) => <ReservedOnCell {...params.row} />
+    }, {
+      field: 'desk', headerName: 'Desk', flex: (1/columnLenth), sortable: true,
+      disableColumnMenu: true,
+      renderCell: (params) => <DeskCell {...params.row} />
+    }, { 
+      field: 'status', headerName: 'Status', flex: (1/columnLenth),
+      disableColumnMenu: true, headerClassName: 'status-header',
+      renderCell: (params) => <StatusCell status={params.value} />,
+    },{ 
+      field: 'madeReservedOn', headerName: 'Made Reserved On', flex: (1/columnLenth), sortable: true,
+      disableColumnMenu: true,
+      renderCell: (params) => <MadeReservedOnCell {...params.row} />
+    },{
+      field: 'button', headerName: '', flex: (1/columnLenth),
+      disableColumnMenu: true, headerClassName: 'button-header',
+      renderCell: (params) => <CustomButtonCell currentRow={currentRow}  {...params.row} />,
+    },
+  ];
+
 
   const rowClicked = (params: GridRowParams<any>) => {
       console.log('Row clicked');
@@ -237,6 +212,15 @@ const CustomNoRowsOverlay = () => {
     return <Stack></Stack>;
 };
 
+const handleRowHover = (event: React.MouseEvent<HTMLElement>) => {
+  const id = event.currentTarget.parentElement!.dataset.id!;
+  setCurrentRow(parseInt(id, 10));
+};
+
+const handleRowExit = () => {
+  setCurrentRow(-1);
+};
+
 
   return (
     <Box sx={{ height: 'calc(100vh - 174px)', width: '100%' }}>
@@ -267,6 +251,12 @@ const CustomNoRowsOverlay = () => {
             page: page,
         }}
         checkboxSelection
+        slotProps={{
+          cell: {
+            onMouseEnter: handleRowHover,
+            onMouseLeave: handleRowExit,
+          },
+        }}
       />
     </Box>
   );
