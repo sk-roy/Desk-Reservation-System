@@ -4,6 +4,7 @@ import { Box, Button, FormControl, MenuItem, Select, Typography } from "@mui/mat
 
 import { DataTable } from "./DataTable";
 import Sidebar from "../../components/sidebar";
+import DateRangePicker from "./DateRangePicker";
 
 
 
@@ -99,6 +100,8 @@ const Header = () => {
                 alignItems="space-between"
                 >   
                     {/* <DateRangeFilter />  */}
+                    <DateRangePicker/>
+
                     <SelectDept department="Select Date Range"/>
 
                     <Select // dropdown
