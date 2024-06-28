@@ -16,6 +16,7 @@ import UpDownArrowIcon from "../../components/icons/UpDownArrowIcon";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
 import SecondaryButton from "../../components/buttons/SecondaryButton";
 import RefreshIcon from "../../components/icons/Refresh";
+import theme from "../../theme";
 
 const styles = {
   calendarWrapper: {
@@ -30,7 +31,7 @@ interface DateRangeSelection {
 }
 
 const DateRangePicker: React.FC = () => {
-  const dateFormat = "dd/MM/yyyy";
+  const dateFormat = "dd-MM-yyyy";
   const today = new Date();
   const next5Days = addDays(today, 5);
 
@@ -88,41 +89,35 @@ const DateRangePicker: React.FC = () => {
   };
 
   return (
-    <div>
+    <>
       <Box
         display="flex"
         alignItems="center"
-        border="1px solid var(--Offwhite-Offwhite-4, #C7D3E1)"
-        borderRadius="8px"
-        padding="9px 14px"
         onClick={onAdornmentClick}
         sx={{
           cursor: "pointer",
           height: "38px",
-          borderRadius: "6px",
-          border: "1px solid var(--Offwhite-Offwhite-3, #E8EDF5)",
-          boxShadow: "0px 1px 4px 0px #4C577314",
-          fontSize: "13px",
-          paddingLeft: "9px",
-          paddingTop: "16px",
-          paddingRight: "9px",
-          paddingBottom: "18px",
-          color: "#6C859B",
+          width: "300px",
+          borderRadius: "8px",
+          border: `1px solid var(--Offwhite-Offwhite-4, ${theme.customTheme.Color.OffWhite[4]})`,
+          padding: "9px 14px 9px 14px",
+          gap: "10px",
+          backgroundColor: theme.customTheme.Color.Primary.White,
         }}
-      >
+        >
         <InputAdornment position="start">
           <CalenderIcon />
         </InputAdornment>
         <input
           style={{
-            height: "38px",
             border: "none",
             outline: "none",
             flex: 1,
+            color: theme.customTheme.Color.grey[3]
           }}
           name="Date Range Picker"
           value={inputValue}
-          placeholder={today.toString()}
+          placeholder="Select Date Range"
           onChange={onInputChange}
         />
         <InputAdornment position="end">
@@ -144,6 +139,15 @@ const DateRangePicker: React.FC = () => {
           horizontal: "left",
         }}
         onClose={onPopoverClose}
+        sx={{
+          '.MuiPaper-root': {
+            boxShadow: theme.customTheme.Shadows.Elevation3,
+            borderRadius: '8px',
+            backgroundColor: theme.customTheme.Color.Primary.White,
+            padding: '20px',
+            gap: "40px",
+          },
+        }}
       >
         <div>
           <DateRange
@@ -171,11 +175,11 @@ const DateRangePicker: React.FC = () => {
             gap: "8px",
           }}
         >
-          <PrimaryButton title="Apply Filter" />
+          <PrimaryButton title="Apply Filter" onClick={() => {  setDisplayCalendar(false); }}/>
           <SecondaryButton title="Reset All" icon={<RefreshIcon />} />
         </div>
       </Popover>
-    </div>
+    </>
   );
 };
 

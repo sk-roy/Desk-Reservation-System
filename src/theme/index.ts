@@ -56,6 +56,7 @@ const theme = createTheme({
             3: '0px 1px 4px 0px #4D526421',
             Elevation1: '0px 2px 4px 0px #3A414F0F', 
             Elevation2: '0px 6px 16px 0px #3A414F14',    
+            Elevation3: '0px 6px 26px 0px #3A414F24',              
         },
     },
 

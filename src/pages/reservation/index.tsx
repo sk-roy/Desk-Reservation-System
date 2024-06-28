@@ -99,11 +99,7 @@ const Header = () => {
                 gap="10px"
                 alignItems="space-between"
                 >   
-                    {/* <DateRangeFilter />  */}
                     <DateRangePicker/>
-
-                    <SelectDept department="Select Date Range"/>
-
                     <Select // dropdown
                     defaultValue={2}
                     sx={{  

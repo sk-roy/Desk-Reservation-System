@@ -31,6 +31,7 @@ type theme = {
         3: string,
         Elevation1: string,
         Elevation2: string,
+        Elevation3: string,
     },
 };
             
