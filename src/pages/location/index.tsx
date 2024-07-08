@@ -9,8 +9,9 @@ import Edit03Icon from "../../components/icons/Edit03Icon";
 import UpDownArrowIcon from "../../components/icons/UpDownArrowIcon";
 import TertiaryButton from "../../components/buttons/TertiaryButton";
 import PrimaryButton from "../../components/buttons/PrimaryButton";
-import { LocationDrawer } from "./Drawers";
+import { LocationDrawer } from "./LocationDrawers";
 import Sidebar from "../../components/sidebar";
+import { UpdateHalidays } from "./HolidaysDrawers";
 
 
 
@@ -150,6 +151,7 @@ const Header = () => {
 }
 
 const HeadquarterHeader = () => {
+    const [UpdateHolidaysDrawerOpen, setUpdateHolidaysDrawerOpen] = useState(false);
     const [EditLocationDrawerOpen, setEditLocationDrawerOpen] = useState(false);
   
     const EditLocationDrawerOnClick = () => {
@@ -158,6 +160,14 @@ const HeadquarterHeader = () => {
   
     const EditLocationDrawerOnClose = () => {
         setEditLocationDrawerOpen(false);
+    };
+    
+    const UpdateHolidaysDrawerOnClick = () => {
+        setUpdateHolidaysDrawerOpen(true);
+    };
+  
+    const UpdateHolidaysDrawerOnClose = () => {
+        setUpdateHolidaysDrawerOpen(false);
     };
 
 
@@ -259,10 +269,21 @@ const HeadquarterHeader = () => {
                 alignItems: "center",
                 width: "297px",
                 gap: "10px",
-            }}>                
-                <TertiaryButton title="Update Holidays" icon={<CalenderIcon/>} height={38}/>                   
-                <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.customTheme.Color.Primary.White}/>}  onClick={EditLocationDrawerOnClick}
-                /> 
+            }}>            
+                <TertiaryButton title="Update Holidays" icon={<CalenderIcon/>} height={38} onClick={UpdateHolidaysDrawerOnClick}/>                   
+                <PrimaryButton title="Edit Location" icon={<Edit03Icon color={theme.customTheme.Color.Primary.White}/>}  onClick={EditLocationDrawerOnClick}/> 
+                <UpdateHalidays title="Holidays" onClose={UpdateHolidaysDrawerOnClose} open={UpdateHolidaysDrawerOpen} newLocation={false}
+                data={{
+                    locationName: "Headquarter",
+                    shortName: "HQ",
+                    holidays: [
+                        { date: "Wed, 21 Feb 2024", title: "Int. Mother Language Day" },
+                        { date: "Tue, 26 Mar 2024", title: "Independence Day" },
+                        { date: "Sun, 07 Apr 2024", title: "Shab-E-Qadr" },
+                        { date: "Wed, 10 Apr 2024", title: "Eid-Ul-Fitr" },
+                    ]
+                }
+                }/>
                 <LocationDrawer title="Edit Location" onClose={EditLocationDrawerOnClose} open={EditLocationDrawerOpen} newLocation={false}
                 data={{
                     locationName: "Headquarter",

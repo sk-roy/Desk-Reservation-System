@@ -16,18 +16,19 @@ const TertiaryButton: React.FC<ButtonProps> = (props) => {
             borderRadius: "6px",
             padding: "7px 12px 7px 10px",
             gap: "6px",
-            backgroundColor: theme.customTheme.Color.Primary.White,
+            backgroundColor: props.bgColor ? props.bgColor : theme.customTheme.Color.Primary.White,
             border: `1px solid ${theme.customTheme.Color.OffWhite[3]}`,
             boxShadow: theme.customTheme.Shadows.Elevation1,
             textTransform: "none",
-        }}> 
+        }}
+        onClick={props.onClick}> 
             {props.icon}
             <Typography
             style={{
                 fontSize: "12px",
                 fontWeight: 600,
                 lineHeight: "18px",
-                color: theme.customTheme.Color.grey[3],
+                color: props.textColor ? props.textColor : theme.customTheme.Color.grey[3],
             }}> 
                 {props.title} 
             </Typography>

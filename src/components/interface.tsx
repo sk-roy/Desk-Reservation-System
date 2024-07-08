@@ -10,6 +10,7 @@ export interface ButtonProps {
     title: string;
     icon?: ReactNode;
     height?: number;
+    textColor?: string;
     bgColor?: string;
     onClick?: () => void;
 }
