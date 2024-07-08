@@ -497,7 +497,7 @@ const WeekBar = () => {
 
 const FooterAnalysis: React.FC<UserCardProps> = ({text, data, data2}) => {
     return (
-        <Box   // Total Booking
+        <Box   // Total Reservation
         display="flex"
         flexDirection="row"
         justifyContent="flex-start"
@@ -505,7 +505,7 @@ const FooterAnalysis: React.FC<UserCardProps> = ({text, data, data2}) => {
         width="306px"
         gap="20px">
             <img
-            src={(text === 'Total Booking') ? UserIcon : (text === 'Total Attendence') ? ReservationIcon : UtilisationIcon}
+            src={(text === 'Total Reservation') ? UserIcon : (text === 'Total Attendence') ? ReservationIcon : UtilisationIcon}
             alt="User"
             height="60px"
             width="60px"
@@ -664,7 +664,7 @@ const UserTimeline = () => {
                 padding="16px"
                 gap="38px"
                 >       
-                    <FooterAnalysis text='Total Booking' data={75} data2={1}/>    
+                    <FooterAnalysis text='Total Reservation' data={75} data2={1}/>    
                     <Divider orientation="vertical" flexItem /> 
                     <FooterAnalysis text='Total Attendence' data={75} data2={1}/>  
                     <Divider orientation="vertical" flexItem /> 

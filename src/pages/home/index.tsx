@@ -525,7 +525,7 @@ const Home: React.FC = () => {
                         fontSize="13px"
                         fontWeight={600}
                         color="#6C859B">
-                          Total Booking
+                          Total Reservation
                         </Typography>
 
                         <Typography

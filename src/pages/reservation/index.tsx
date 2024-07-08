@@ -59,7 +59,7 @@ const Header = () => {
         //height="130px"
         gap='6px'
         >
-            <Box // Frame 45 - Booking
+            <Box // Frame 45 - Reservation
             display="flex"
             flexDirection="column"
             height="72px"
@@ -86,11 +86,11 @@ const Header = () => {
                     fontFamily="Inter"
                     component="div"
                 >
-                    35 bookings this month
+                    35 reservations this month
                 </Typography>
             </Box>  
             
-            <Box   // Booking action bar
+            <Box   // Reservation action bar
             display="flex"
             flexDirection="row"
             width="100%"
@@ -236,7 +236,7 @@ const StatusCell = ({ status }: {status: number}) => {
   
 
 
-const Booking: React.FC = () => {
+const Reservation: React.FC = () => {
     const columnLenth = 6;
     const initialPage = 0;
     const initialRowsPerPage = 10;
@@ -316,4 +316,4 @@ interface CustomDateGridProps {
     );
 }
 
-export default Booking;
+export default Reservation;

@@ -14,7 +14,7 @@ const Loader = (Component: any) => (props: any) =>
   );
 
 const Home = Loader(lazy(() => import("./pages/home")));
-const Booking = Loader(lazy(() => import("./pages/reservation")));
+const Reservation = Loader(lazy(() => import("./pages/reservation")));
 const Analytics = Loader(lazy(() => import("./pages/analytics")));
 const Team = Loader(lazy(() => import("./pages/team")));
 const Location = Loader(lazy(() => import("./pages/location")));
@@ -26,8 +26,8 @@ export const router = createBrowserRouter([
       element: <Home />,
     },
     {
-      path: "/booking",
-      element: <Booking />,
+      path: "/reservation",
+      element: <Reservation />,
     },
     {
       path: "/analytics",
@@ -51,8 +51,8 @@ export const tablist = [
     icon: <HomeIcon />,
   },
   {
-    name: "Booking",
-    path: "/booking",
+    name: "Reservation",
+    path: "/reservation",
     icon: <ReservationIcon />,
   },
   {
