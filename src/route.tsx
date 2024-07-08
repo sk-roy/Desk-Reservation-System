@@ -18,6 +18,9 @@ const Reservation = Loader(lazy(() => import("./pages/reservation")));
 const Analytics = Loader(lazy(() => import("./pages/analytics")));
 const Team = Loader(lazy(() => import("./pages/team")));
 const Location = Loader(lazy(() => import("./pages/location")));
+const Attendence = Loader(lazy(() => import("./pages/attendence")));
+const Users = Loader(lazy(() => import("./pages/users")));
+const Integrations = Loader(lazy(() => import("./pages/integrations")));
 
 
 export const router = createBrowserRouter([
@@ -40,6 +43,18 @@ export const router = createBrowserRouter([
     {
       path: "/location",
       element: <Location />,
+    },
+    {
+      path: "/attendence",
+      element: <Attendence />,
+    },
+    {
+      path: "/users",
+      element: <Users />,
+    },
+    {
+      path: "/integrations",
+      element: <Integrations />,
     },
 ]);
 
@@ -68,6 +83,21 @@ export const tablist = [
   {
     name: "Location",
     path: "/location",
+    icon: <LocationIcon />,
+  },
+  {
+    name: "Attendence",
+    path: "/attendence",
+    icon: <LocationIcon />,
+  },
+  {
+    name: "Users",
+    path: "/users",
+    icon: <LocationIcon />,
+  },
+  {
+    name: "Integrations",
+    path: "/integrations",
     icon: <LocationIcon />,
   },
 ];
