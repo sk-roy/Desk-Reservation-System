@@ -1,3 +1,4 @@
+import { GridColDef } from "@mui/x-data-grid";
 import { ReactNode } from "react";
 
 
@@ -68,3 +69,27 @@ export interface UserCardProps {
 export interface StringComponentProps {
     text: string;
 }
+
+export interface DataGridRow {
+    id: number;
+    reservedOn: string;
+    desk: string;
+    status: number;
+    madeReservedOn: string;
+    button: number;
+}
+
+
+export interface CustomDateGridProps {
+    rows: DataGridRow[];
+    columns: GridColDef[];
+    page?: number;
+    rowsPerPage?: number;
+    currentRow?: number;
+    rowsPerPageOptions?: number[];
+    pageSize?: number;
+    setPage: React.Dispatch<React.SetStateAction<number>>;
+    setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
+    setCurrentRow: React.Dispatch<React.SetStateAction<number>>;
+    rowClick?: (clickedRow: DataGridRow) => void;
+  }

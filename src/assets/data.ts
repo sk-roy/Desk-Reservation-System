@@ -1,3 +1,5 @@
+import { DataGridRow } from "../components/interface";
+
 export const ReservationList = [
   { date: "Tomorrow, 14 Feb, 2024", desk: 7, room: 5, floor: 2},
   { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
@@ -9,7 +11,7 @@ export const ReservationList = [
 ];
 
 
-export const DataGridRows = [
+export const datagridrows: DataGridRow[] = [
   { id: 1, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 301-03', status: 1, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
   { id: 2, reservedOn: 'Friday, 26 Oct 2023', desk: 'Desk 303-03', status: 0, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
   { id: 3, reservedOn: 'Monday, 15 Sep 2023', desk: 'Desk 302-09', status: 1, madeReservedOn: '27 Oct 2022 6:22 AM', button: 1  },
