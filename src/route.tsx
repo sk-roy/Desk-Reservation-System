@@ -7,6 +7,7 @@ import TeamIcon from "./components/icons/TeamIcon";
 import LocationIcon from "./components/icons/LocationIcon";
 import UserIcon from "./components/icons/UserIcon";
 import AttendanceIcon from "./components/icons/AttendanceIcon";
+import IntegrationIcon from "./components/icons/IntegrationIcon";
 
 const Loader = (Component: any) => (props: any) =>
   (
@@ -90,7 +91,7 @@ export const tablist = [
   {
     name: "Integrations",
     path: "/integrations",
-    icon: <Integrations />,
+    icon: <IntegrationIcon />,
   },
   {
     name: "Analytics",
