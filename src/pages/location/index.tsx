@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Layout from "../../layout";
 import theme from "../../theme";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import PlusCircleIcon from "../../components/icons/PlusCircleIcon";

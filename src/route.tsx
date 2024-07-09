@@ -5,6 +5,8 @@ import ReservationIcon from "./components/icons/ReservationIcon";
 import AnalyticsIcon from "./components/icons/AnalyticsIcon";
 import TeamIcon from "./components/icons/TeamIcon";
 import LocationIcon from "./components/icons/LocationIcon";
+import UserIcon from "./components/icons/UserIcon";
+import AttendanceIcon from "./components/icons/AttendanceIcon";
 
 const Loader = (Component: any) => (props: any) =>
   (
@@ -71,14 +73,14 @@ export const tablist = [
     icon: <ReservationIcon />,
   },
   {
-    name: "Analytics",
-    path: "/analytics",
-    icon: <AnalyticsIcon />,
+    name: "Attendence",
+    path: "/attendence",
+    icon: <AttendanceIcon />,
   },
   {
-    name: "Team",
-    path: "/team",
-    icon: <TeamIcon />,
+    name: "Users",
+    path: "/users",
+    icon: <UserIcon />,
   },
   {
     name: "Location",
@@ -86,19 +88,19 @@ export const tablist = [
     icon: <LocationIcon />,
   },
   {
-    name: "Attendence",
-    path: "/attendence",
-    icon: <LocationIcon />,
-  },
-  {
-    name: "Users",
-    path: "/users",
-    icon: <LocationIcon />,
-  },
-  {
     name: "Integrations",
     path: "/integrations",
-    icon: <LocationIcon />,
+    icon: <Integrations />,
+  },
+  {
+    name: "Analytics",
+    path: "/analytics",
+    icon: <AnalyticsIcon />,
+  },
+  {
+    name: "DRS Team",
+    path: "/team",
+    icon: <TeamIcon />,
   },
 ];
   
