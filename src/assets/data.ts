@@ -1,4 +1,4 @@
-import { DataGridRow } from "../components/interface";
+import { DataGridAttendance, DataGridRow, LocationFloorProps } from "../components/interface";
 
 export const ReservationList = [
   { date: "Tomorrow, 14 Feb, 2024", desk: 7, room: 5, floor: 2},
@@ -49,6 +49,23 @@ export const datagridrows: DataGridRow[] = [
   { id: 35, reservedOn: 'Monday, 05 Aug 2023', desk: 'Desk 401-03', status: 0, madeReservedOn: '27 Oct 2022 6:22 AM', button: 0  },
   { id: 36, reservedOn: 'Friday, 07 Jul 2023', desk: 'Desk 601-03', status: 0, madeReservedOn: '27 Oct 2022 6:22 AM', button: 0  },
 ];
+
+
+export const DataGridAttendanceRows: DataGridAttendance[] = [
+  { id: 1, name: 'Ronald Richards', reservationCount: 9, reservationUtilized: 29, percentage: 5 },
+  { id: 2, name: 'Ronald Richards', reservationCount: 9, reservationUtilized: 29, percentage: 5 },
+  { id: 3, name: 'Ronald Richards', reservationCount: 9, reservationUtilized: 29, percentage: 5 },
+  { id: 4, name: 'Ronald Richards', reservationCount: 9, reservationUtilized: 29, percentage: 5 },
+  { id: 5, name: 'Ronald Richards', reservationCount: 9, reservationUtilized: 29, percentage: 5 },
+]
+
+export const LocationFloors: LocationFloorProps[] = [
+  { id: 1, level: 1, roomCount: 5, deskCount: 45, },
+  { id: 2, level: 2, roomCount: 6, deskCount: 32, },
+  { id: 3, level: 3, roomCount: 4, deskCount: 27, },
+  { id: 4, level: 4, roomCount: 5, deskCount: 36, },
+  { id: 5, level: 5, roomCount: 5, deskCount: 40, },
+]
 
 
 export const TeamData = [

@@ -14,6 +14,7 @@ const CustomDataGrid: React.FC<CustomDateGridProps> = ({
   currentRow,
   rowsPerPageOptions = [10, 25, 50],
   pageSize,
+  checkboxSelection = false,
   setPage,
   setRowsPerPage,
   setCurrentRow,
@@ -163,7 +164,7 @@ const handleRowExit = () => {
             pageSize: rowsPerPage,
             page: page,
         }}
-        checkboxSelection
+        checkboxSelection = {checkboxSelection}
         slotProps={{
           cell: {
             onMouseEnter: handleRowHover,

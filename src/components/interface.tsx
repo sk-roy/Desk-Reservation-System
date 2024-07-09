@@ -81,15 +81,32 @@ export interface DataGridRow {
 
 
 export interface CustomDateGridProps {
-    rows: DataGridRow[];
+    rows: DataGridRow[] | DataGridAttendance[] | LocationFloorProps[];
     columns: GridColDef[];
     page?: number;
     rowsPerPage?: number;
     currentRow?: number;
     rowsPerPageOptions?: number[];
     pageSize?: number;
+    checkboxSelection?: boolean;
     setPage: React.Dispatch<React.SetStateAction<number>>;
     setRowsPerPage: React.Dispatch<React.SetStateAction<number>>;
     setCurrentRow: React.Dispatch<React.SetStateAction<number>>;
     rowClick?: (clickedRow: DataGridRow) => void;
   }
+
+
+export interface DataGridAttendance {
+    id: number;
+    name: string;
+    reservationCount: number;
+    reservationUtilized: number;
+    percentage: number;
+}
+
+export interface LocationFloorProps {
+    id: number;
+    level: number;
+    roomCount: number;
+    deskCount: number;
+}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Layout from "../../layout";
 import theme from "../../theme";
 import { Avatar, Box, Button, Typography } from "@mui/material";
@@ -12,6 +12,11 @@ import PrimaryButton from "../../components/buttons/PrimaryButton";
 import { LocationDrawer } from "./LocationDrawers";
 import Sidebar from "../../components/sidebar";
 import { UpdateHalidays } from "./HolidaysDrawers";
+import { GridColDef } from "@mui/x-data-grid";
+import CustomDataGrid from "../../components/CustomDataGrid";
+import { LocationFloors } from "../../assets/data";
+import DeleteButton from "../../components/buttons/DeleteButton";
+import DeleteIcon from "../../components/icons/DeleteIcon";
 
 
 
@@ -242,7 +247,7 @@ const HeadquarterHeader = () => {
                         backgroundColor: theme.customTheme.Color.OffWhite[1],
                         border: `1px solid ${theme.customTheme.Color.OffWhite[4]}`,
                     }}>                            
-                        <Typography className="Semi Bold 13">15 Holidays</Typography>
+                        <Typography className="Semi Bold 13" color={theme.customTheme.Color.grey[3]}>15 Holidays</Typography>
                         <InfoCircleIcon />
                     </div>
                     <div
@@ -257,7 +262,7 @@ const HeadquarterHeader = () => {
                         backgroundColor: theme.customTheme.Color.OffWhite[1],
                         border: `1px solid ${theme.customTheme.Color.OffWhite[4]}`,
                     }}>                            
-                        <Typography className="Semi Bold 13">Next Holiday: 21 Feb 2024</Typography>
+                        <Typography className="Semi Bold 13" color={theme.customTheme.Color.grey[3]}>Next Holiday: 21 Feb 2024</Typography>
                     </div>
                 </div>
             </div>
@@ -345,187 +350,71 @@ const TableHeader = () => {
     );
 }
 
-interface DataType {
-    key: number;
-    name: string;
-    roomCount: number;
-    deskCount: number;
-}
 
-interface MyRecord {
-    key: number;
-}
-
+const AddCustomDatagrid = () => {
+    const columnLenth = 4;
+    const initialPage = 0;
+    const initialRowsPerPage = 10;
+    const rowsPerPageOptions = [10, 15, 20];
   
-// const LocationTable = () => {
-//     const [hoveredRowId, setHoveredRowId] = useState<number | null>(null);
+    const [page, setPage] = React.useState<number>(initialPage);
+    const [rowsPerPage, setRowsPerPage] = React.useState<number>(initialRowsPerPage);
+    const [currentRow, setCurrentRow] = React.useState(-1);
   
-//     const handleRowHover = (recordKey: number) => {
-//         setHoveredRowId(recordKey);
-//     };
+  
+    const columns: GridColDef[] = [
+        { 
+          field: 'level', headerName: 'Name', flex: (1/columnLenth), disableColumnMenu: true,
+          renderCell: (params) => <Box display="flex" gap='10px' alignItems='center'>
+            <Box 
+            sx={{
+                borderRadius: '30px',
+                height: '40px',
+                width: '40px',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: theme.customTheme.Color.OffWhite[3],
+            }}>
+                <Typography className='Bold 16' color={theme.customTheme.Color.Primary.Blue}>{'L'}{params.value}</Typography>
+            </Box>
+            <Typography className='Bold 16' color={theme.customTheme.Color.Primary.Dark}>{'Level-0'}{params.value}</Typography>
+          </Box>
+        }, {
+          field: 'roomCount', headerName: 'Room Count', flex: (1/columnLenth), sortable: false, disableColumnMenu: true,
+          renderCell: (params) => <Typography className='Semi Bold 13' color={theme.customTheme.Color.grey[4]}>{params.value}</Typography>,
+        }, { 
+          field: 'deskCount', headerName: 'Desk Count', flex: (1/columnLenth), sortable: false, disableColumnMenu: true,
+          renderCell: (params) => <Typography className='Semi Bold 13' color={theme.customTheme.Color.grey[4]}>{params.value}</Typography>,
+        },{ 
+          field: 'action', headerName: '', flex: (1/columnLenth), sortable: false, disableColumnMenu: true,
+          renderCell: (params) => <Box display='flex' justifyContent='flex-end' width='100%' paddingRight='40px'>{ 
+                currentRow === params.id && 
+                <Box display='flex' gap='10px'>
+                    <TertiaryButton title='Edit' icon={<Edit03Icon color={theme.customTheme.Color.grey[3]}/>}/>
+                    <DeleteButton title="Delete" height={32} icon={<DeleteIcon/>}/>
+                </Box>      
+          }</Box>
+        }
+    ];
+  
+    return (
+      <CustomDataGrid 
+        rows={LocationFloors} 
+        columns={columns}
+        page={page}
+        rowsPerPage={rowsPerPage}
+        currentRow={currentRow}
+        rowsPerPageOptions = {rowsPerPageOptions}
+        // pageSize={}
+        
+        setPage={setPage}
+        setRowsPerPage={setRowsPerPage}
+        setCurrentRow={setCurrentRow}
     
-//     const columns: TableProps<DataType>['columns'] = [
-//         {
-//             title: 'Name',
-//             dataIndex: 'name',
-//             key: 'name',
-//             width: `${100 / 4}%`,
-//             render: (text) => <div 
-//             style={{
-//                 display: "flex",
-//                 flexDirection: "row",
-//                 justifyContent: "flex-start",
-//                 gap: "14px",
-//             }}>                
-//                 <Text
-//                 style={{     
-//                     display: "flex",
-//                     justifyContent: "center",
-//                     alignItems: "center",
-//                     width: "40px",
-//                     borderRadius: "30px",
-//                     padding: "8px",
-//                     fontSize: '16px',
-//                     fontWeight: 700,
-//                     lineHeight: '24px',
-//                     color: theme.customTheme.Color.Primary.Blue,
-//                     backgroundColor: theme.customTheme.Color.OffWhite[3],
-//                 }}>
-//                     {`L${text}`}
-//                 </Text>
-//                 <Text
-//                 style={{     
-//                     display: "flex",
-//                     justifyContent: "flex-start",
-//                     alignItems: "center",
-//                     fontSize: '16px',
-//                     fontWeight: 700,
-//                     lineHeight: '24px',
-//                     color: theme.customTheme.Color.Primary.Dark,
-//                 }}>
-//                     {`Level-${text}`}
-//                 </Text>
-//             </div>,
-//         },
-//         {
-//             title: 'Room Count',
-//             dataIndex: 'roomCount',
-//             key: 'roomCount',
-//             width: `${100 / 4}%`,
-//             render: (text) =>              
-//                 <Text
-//                 style={{     
-//                     display: "flex",
-//                     justifyContent: "start",
-//                     alignItems: "center",
-//                     fontSize: '14px',
-//                     fontWeight: 600,
-//                     lineHeight: '20px',
-//                     color: theme.customTheme.Color.grey[4],
-//                 }}> {text} </Text>
-//         },
-//         {
-//             title: 'Desk Count',
-//             dataIndex: 'deskCount',
-//             key: 'deskCount',
-//             width: `${100 / 4}%`,
-//             render: (text) =>              
-//                 <Text
-//                 style={{     
-//                     display: "flex",
-//                     justifyContent: "start",
-//                     alignItems: "center",
-//                     fontSize: '14px',
-//                     fontWeight: 600,
-//                     lineHeight: '20px',
-//                     color: theme.customTheme.Color.grey[4],
-//                 }}> {text} </Text>
-//         },
-//         {
-//             dataIndex: 'action',
-//             key: 'action',
-//             width: `${100 / 4}%`,
-//             render: (_: any, record: DataType) => (
-//                 <div
-//                 style={{
-//                     display: "flex",
-//                     justifyContent: "flex-end",
-//                 }}>
-//                     {record.key === hoveredRowId && (
-//                         <Space size="middle">
-//                             <EditButton />
-//                             <DeleteButton />
-//                         </Space>
-//                     )}
-//                     {record.key !== hoveredRowId && <div>{""}</div>}
-//                 </div> 
-//             ),
-//         },
-//     ];
-    
-//     const data: DataType[] = [
-//     {
-//         key: 1,
-//         name: '1',
-//         roomCount: 32,
-//         deskCount: 4,
-//     },
-//     {
-//         key: 2,
-//         name: '2',
-//         roomCount: 42,
-//         deskCount: 4,
-//     },
-//     {
-//         key: 3,
-//         name: '3',
-//         roomCount: 32,
-//         deskCount: 4,
-//     },
-//     ];
-
-//     return (
-//         <div
-//         style={{
-//             width: "100%",
-//         }}>
-            
-//             <ConfigProvider
-//             theme={{
-//                 token: {
-//                     // Seed Token
-//                     // borderRadius: 2,
-                    
-
-//                     // Alias Token
-//                     // colorBgContainer: '#f6ffed',
-
-//                 },
-//                 components: {
-//                     Table: {                
-//                         headerBg: theme.customTheme.Color.Primary.White,
-//                         headerColor: theme.customTheme.Color.grey[2],
-//                     }
-//                 }
-//             }}
-//         >
-//                 <Table 
-//                 columns={columns} 
-//                 dataSource={data} 
-//                 pagination={{hideOnSinglePage: true}}
-//                 // style={{
-//                 // backgroundColor: "transparent",
-//                 // }}
-//                 rowClassName={() => 'transparent-row'} 
-//                 onRow={(record) => ({
-//                 onMouseEnter: () => handleRowHover(record.key),
-//                 onMouseLeave: () => handleRowHover(0),
-//                 })}
-//                 />
-//             </ConfigProvider>
-//         </div>
-//     );
-// }
+      />  
+    );
+  }
 
 
 const Body = () => {
@@ -550,8 +439,7 @@ const Body = () => {
             }}>
                 <HeadquarterHeader/>
                 <TableHeader/>
-                {/* <LocationTable/> */}
-                <div>Location Table</div>
+                <AddCustomDatagrid/>
             </div>
             
         </div>
