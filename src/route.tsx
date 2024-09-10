@@ -1,10 +1,9 @@
 import { createBrowserRouter } from "react-router-dom";
-import Booking from "./pages/booking";
-import Bookmark from "./pages/bookmark";
+import Booking from "./pages/reservation";
 import Home from "./pages/home";
 import Error from "./pages/error";
 import Analytics from "./pages/analytics";
-import Profile from "./pages/profile";
+import Team from "./pages/team";
 
 
 export const router = createBrowserRouter([
@@ -24,13 +23,8 @@ export const router = createBrowserRouter([
       errorElement: <Error />,
     },
     {
-      path: "/bookmarks",
-      element: <Bookmark />,
-      errorElement: <Error />,
-    },
-    {
-      path: "/profile",
-      element: <Profile />,
+      path: "/team",
+      element: <Team />,
       errorElement: <Error />,
     },
   ]);

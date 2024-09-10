@@ -102,3 +102,15 @@ export const carsData = [
     isTrending: true,
   },
 ];
+
+export const ReservationList = [
+  { date: "Tomorrow, 14 Feb, 2024", desk: 7, room: 5, floor: 2},
+  { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
+  { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
+  { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
+  { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
+  { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
+  { date: "Monday, 23 Jan, 2024", desk: 7, room: 5, floor: 2},
+];
+
+

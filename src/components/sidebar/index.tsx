@@ -1,4 +1,4 @@
-import { Box, Hidden, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Hidden, Stack, Typography } from "@mui/material";
 import React, { useState } from "react";
 import { useLocation } from "react-router";
 import homeIcon from "../../assets/icons/home.svg";
@@ -17,7 +17,7 @@ const navLinks = [
         link: "/"
     },
     {
-        name: "Booking",
+        name: "Reservation",
         icon: bookingIcon,
         link: "/booking"
     },
@@ -27,15 +27,10 @@ const navLinks = [
         link: "/analytics"
     },
     {
-        name: "Bookmark",
+        name: "DRS Team",
         icon: bookmarkIcon,
-        link: "/bookmark"
+        link: "/team"
     },
-    // {
-    //     name: "Profile",
-    //     icon: profileIcon,
-    //     link: "/profile"
-    // },
 ];
 
 
@@ -248,13 +243,14 @@ const Sidebar = () => {
                     display="flex"
                     alignItems="center"
                     gap={1}>
-                        <img
-                        src={profileAvatar}
-                        alt="Brian O'Conor"
-                        style={{
+                        <Avatar
+                        sx={{
                             width: "24px",
-                            height: "24px"
-                        }}/>
+                            height: "24px",
+                            bgcolor: "#2CA066"
+                        }}>
+                            <Typography fontSize="14" fontWeight={600} color='#FFFFFF'>B</Typography>
+                        </Avatar>
                         <Hidden mdDown>
                             <Typography fontSize="13px">Brian O'Conor</Typography>
                         </Hidden>                    
