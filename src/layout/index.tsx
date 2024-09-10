@@ -33,30 +33,12 @@ const Layout = ({ children }: LayoutProps) => {
       variant="permanent"
       anchor="left"
     >
-      <Sidebar/>
+      {/* <Sidebar/> */}
     </Drawer>
-    <Box sx={{ width: "100%", overflowY: "scroll" }}>{children}</Box>
+    
+    <Box sx={{ width: "100%", overflowY: "hidden" }}>{children}</Box>
   </Box>
-
-        // <Box
-        //   sx={{
-        //     backgroundColor: "#FFFFFF",
-        //     display: "flex",
-        //     flexDirection: {
-        //       xs: "column",
-        //       lg: "row",
-        //     },
-        //     color: "black",
-        //     gap: 3,
-        //     overflowY: "hidden",
-        //     width: '1440px',
-        //     height: "900px",
-        //   }}
-        // >
-        //   <Sidebar />
-        //   <Box sx={{ width: "100%", overflowY: "scroll" }}>{children}</Box>
-        // </Box>
-    );
+  );
 }
 
 export default Layout;
