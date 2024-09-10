@@ -1,10 +1,10 @@
-import { Box, Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, CardMedia, Typography } from "@mui/material";
 import Layout from "../../layout";
 import theme from "../../theme";
 import * as React from 'react';
 import Grid from '@mui/material/Grid';
-import Paper from '@mui/material/Paper';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { TeamData } from "../../assets/data";
+import MailOutlinedIcon from '@mui/icons-material/MailOutlined';
 
 
 const Header = () => {
@@ -37,42 +37,93 @@ interface Person {
 }
 
 interface PersonProps {
-    person: Person;
+    member: Person;
 }
 
-const PersonCard: React.FC<PersonProps> = ({person}) => {
+const PersonCard: React.FC<PersonProps> = ({member}) => {
+    
+    const handleOpenMailbox = () => {
+        const emailAddress = 'mailto:${member.email}';
+        window.location.href = emailAddress;
+    };
+
     return (
-        <Card>
-            Person
-        </Card>
+        <Box        
+        bgcolor= "#FFFFFF"
+        boxShadow= {theme.shadows[3]}
+        sx={{
+            borderRadius: "8px",
+            py: "28px",
+            px: "14px",
+            gap: "14px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+        }}>            
+            <CardMedia 
+            component="img" 
+            image={member.image}             
+            alt="Your Image" 
+            sx={{
+                height: "72px",
+                width: "72px",
+                borderRadius: '30px',
+                border: "1px solid var(--Offwhite-Offwhite-4, #C7D3E1)"
+            }}/> 
+
+            <Typography
+            className="Bold 16"
+            color={theme.palette.primary.dark}>
+                {member.name}
+            </Typography>
+            <Typography
+            className="Medium 13"
+            color={theme.palette.grey[400]}>
+                {member.designation}
+            </Typography>
+            <Button
+            sx={{
+                py:"4px",
+                px:"10px",
+                borderRadius:"16px",
+                bgcolor: "#EEF3FA",
+                textTransform: "none",
+                gap: "6px"
+            }}
+            onClick={handleOpenMailbox}>
+                <MailOutlinedIcon 
+                sx={{height: "14px", width: "14px"}}
+                htmlColor={theme.palette.grey[400]}/>
+
+                <Typography
+                className="Regular 12"
+                color={theme.palette.grey[400]}>
+                    {member.email}
+                </Typography>
+            </Button>
+        </Box>
     );
 }
 
 const Body = () => {
-
-    const teamData = [
-        {
-            name: "sujit",
-            designation: "sse",
-            email: "sujitEmail",
-            image: "img",
-        },
-        {
-            name: "roy",
-            designation: "se",
-            email: "royEmail",
-            image: "royImg",
-        },
-    ];
-    return (   
-        <Box> Body
-{/* 
-            {teamData.map((person, index) => {
-                <PersonCard key={index} person={person} />
-            })} */}
-        </Box>
-
-
+    return (  
+        <Grid
+        container
+        spacing="14px"
+        sx={{
+            py: "28px",
+            px: "32px",
+        }}>             
+            {TeamData.map((member, index) => {
+                return (
+                    <Grid
+                    item
+                    xs={3}>   
+                        <PersonCard key={index} member={member} />                
+                    </Grid>
+                );
+            })}
+        </Grid>
     );
 }
 
@@ -85,9 +136,9 @@ const Team = () => {
             height="900px"
             display="flex"
             flexDirection="column"
+            bgcolor="#F9FAFB"
             >
                 <Header/>
-
                 <Body/>
             </Box>
         </Layout>
