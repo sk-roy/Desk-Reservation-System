@@ -17,3 +17,7 @@
   background: #161d2f;
   border-radius: 2px;
 }
+
+.ant-table-tbody {
+  background-color: #fafafa;
+}
