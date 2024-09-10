@@ -17,3 +17,35 @@
   background: #161d2f;
   border-radius: 2px;
 }
+
+.ant-table-tbody {
+  background-color: #fafafa;
+}
+
+.transparent-row {
+  background-color: #fff !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #1890ff; /* Customize this color as needed */
+  color: #fff; /* Change text color to white */
+}
+
+.medium-12 {
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+}
+
+.drawer-label {
+  font-family: Inter, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 18px;
+  letter-spacing: -0.01em;
+  text-align: left;
+  color: #8092A3;
+}
