@@ -8,6 +8,7 @@ import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { Height } from "@mui/icons-material";
+import Sidebar from "../../components/sidebar";
 
 
 
@@ -171,7 +172,7 @@ const Header = () => {
 const Booking = () => {
 
     return (
-        <Layout>
+        <Sidebar>
             <Box 
             display='flex'
             flexDirection='column'
@@ -192,7 +193,7 @@ const Booking = () => {
                     <EnhancedTable/>
                 </Box>
             </Box>
-        </Layout>
+        </Sidebar>
     );
 }
 

@@ -7,6 +7,7 @@ import FilterByMonthSelect from "./FilterByMonthSelect";
 import HomeChart from "./HomeChart";
 import { ReservationList } from "../../assets/data";
 import theme from "../../theme";
+import Sidebar from "../../components/sidebar";
 
 
 
@@ -327,8 +328,8 @@ const NextReservation: React.FC<ReservationProps> = ({reservation}) => {
 
 const Home: React.FC = () => {
     return (
-      <Layout>
-          <Grid 
+      <Sidebar>
+        <Grid 
           container 
           padding="32px" 
           spacing="16px">
@@ -660,7 +661,7 @@ const Home: React.FC = () => {
             </Grid>
           </Grid>
         </Grid>
-    </Layout>
+      </Sidebar>
   );
 };
 
